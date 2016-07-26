@@ -1,10 +1,14 @@
-<div class="tab-pane fade in active" id="page-overview" role="tabpanel" >
+<div class="tab-pane fade in active" id="page-overview" role="tabpanel">
     <div class="col-md-8">
         <div class="panel panel-default open">
             <div class="panel-heading">
-                <strong>policy info</strong>
+                <ul class="panel-actions list-inline pull-right">
+                    <li><span>edit</span></li>
+                    <li><span>settings</span></li>
+                </ul>
+                <h1 class="panel-title">Policy infomation</h1>
             </div>
-            <div class="panel-collapse panel-body">
+            <div class="panel-body">
                 <table class="table table-striped table-condensed">
                     <tr>
                         <td>Customer</td>
@@ -21,7 +25,7 @@
                 </table>
             </div>
             <div class="panel-heading">
-                <strong>policy info</strong>
+                <h1 class="panel-title">policy info</h1>
             </div>
             <div class="panel-collapse panel-body">
                 <table class="table table-striped table-condensed">
@@ -56,7 +60,7 @@
                 </table>
             </div>
             <div class="panel-heading">
-                <strong>Sales</strong>
+                <h1 class="panel-title">Sales</h1>
             </div>
             <div class="panel-collapse panel-body">
                 <table class="table table-striped table-condensed">
@@ -67,9 +71,9 @@
                 </table>
             </div>
             <div class="panel-heading">
-                <strong>Previous policy</strong>
+                <h1 class="panel-title">Previous policy</h1>
             </div>
-            <div class="panel-collapse panel-body">
+            <div class="panel-body">
                 <table class="table table-striped table-condensed">
                     <tr>
                         <td>Previous Policy</td>
@@ -78,7 +82,7 @@
                 </table>
             </div>
             <div class="panel-heading">
-                <strong>Quote</strong>
+                <h1 class="panel-title">Quote</h1>
             </div>
             <div class="panel-collapse panel-body">
                 <table class="table table-striped table-condensed">
@@ -89,7 +93,7 @@
                 </table>
             </div>
             <div class="panel-heading">
-                <strong>Renewal</strong>
+                <h1 class="panel-title">Renewal</h1>
             </div>
             <div class="panel-collapse panel-body">
                 <table class="table table-striped table-condensed">
@@ -103,7 +107,12 @@
     </div>
     <div class="col-md-4">
         <div class="panel panel-default open">
-            <div class="panel-heading"><strong>Premium</strong></div>
+            <div class="panel-heading">
+                <ul class="panel-actions list-inline pull-right">
+                    <li><span>edit</span></li>
+                    <li><span>settings</span></li>
+                </ul>
+                <h1 class="panel-title">Premium</h1></div>
             <div class="panel-collapse panel-body">
                 <table class="table table-striped table-condensed">
                     <tr>
@@ -124,11 +133,14 @@
                     </tr>
                 </table>
             </div>
-            <strong><div class="panel-heading">Discount</div></strong>
+            <div class="panel-heading">
+                <h1 class="panel-title">Discount</h1>
+            </div>
             <div class="panel-collapse panel-body">
                 <table class="table table-striped table-condensed" id="discount-table"></table>
             </div>
-            <div class="panel-heading"><strong>Customer payment</strong></div>
+            <div class="panel-heading">
+                <h1 class="panel-title">Customer payment</h1></div>
             <div class="panel-collapse panel-body">
                 <table class="table table-striped table-condensed">
                     <tr>
@@ -149,7 +161,8 @@
                     </tr>
                 </table>
             </div>
-            <div class="panel-heading"><strong>Commission</strong></div>
+            <div class="panel-heading">
+                <h1 class="panel-title">Commission</h1></div>
             <div class="panel-collapse panel-body">
                 <table class="table table-striped table-condensed">
                     <tr>
@@ -162,7 +175,7 @@
                     </tr>
                 </table>
             </div>
-            <div class="panel-heading"><strong>Notes</strong></div>
+            <div class="panel-heading"><h1 class="panel-title">Notes</h1></div>
             <div class="panel-collapse panel-body">
                 <table class="table table-striped table-condensed"></table>
             </div>

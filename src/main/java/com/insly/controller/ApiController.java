@@ -9,7 +9,7 @@ public class ApiController {
 
     @RequestMapping("users")
     // pagination should be supported later
-    public String list() {
+    public String listCustomers() {
     	
         return "{\n" +
                 "    \"total\": 14,\n" +
@@ -206,6 +206,19 @@ public class ApiController {
                 "    ]\n" +
                 "}";
  
+    }
+    
+    @RequestMapping("claims")
+    // pagination should be supported later
+    public String listClaims() {
+    	return "{\n" +
+                "    \"total\": 1,\n" +
+                "    \"rows\": [\n" +
+                "        {\n" +
+                "			\"claim_id\":	\"1234567890\""+
+                "        }\n" +
+                "    ]\n" +
+                "}";
     }
 }
 

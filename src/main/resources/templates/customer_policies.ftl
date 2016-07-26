@@ -2,17 +2,17 @@
 <link rel="stylesheet" href="../bootstrap-table/bootstrap-table.css">
 <script src="../bootstrap-table/extensions/tableExport.js"></script>
 <script src="../bootstrap-table/bootstrap-table-export.js"></script>
-<div id="page-policies" class="tab-pane" role="tabpanel">
+<div id="page-policies" class="tab-pane fade" role="tabpanel">
     <div class="col-md-12">
         <div class="panel panel-default open">
             <div class="panel-heading">
                 <ul class="panel-actions list-inline pull-right">
-                    <li><span onclick="FILTER.panelVisibleToggle('policy-filter')">showfilter</span></li>
+                    <li><span onclick="FILTER.panelVisibleToggle('customer-policies-filter')">showfilter</span></li>
                 </ul>
                 <h1 class="panel-title">Policies</h1>
             </div>
             <div class="panel-body">
-                <div class="panel-filter" id="policy-filter">
+                <div class="panel-filter" id="customer-policies-filter">
                     <form class="form-inline">
                         <table class="table">
                             <tr>
@@ -22,7 +22,7 @@
                                             <label for="filter-policy-number">Policy Number:</label>
                                         </div>
                                         <div>
-                                            <input type="text" class="form-control" id="filter-policy number">
+                                            <input type="text" class="form-control" id="filter-policy-number">
                                         </div>
                                     </div>
                                 </td>
@@ -114,7 +114,7 @@
                                             <label for="filter-policy-type">POLICY TYPE</label>
                                         </div>
                                         <div>
-                                            <select id="policy-type" class="filter-form-control">
+                                            <select id="filter-policy-type" class="form-control">
                                                 <option>---all---</option>
                                             </select>
                                         </div>
@@ -133,14 +133,15 @@
                         </table>
                     </form>
                 </div>
-                <table id="policy-table" class="table-striped"></table>
+                <table id="policy-table" class="table table-condensed table-striped"></table>
             </div>
         </div>
     </div>
 </div>
 <script>
+
 $('#policy-table').bootstrapTable({
-    url: '/api/policies',
+    url: '/api/customer/{number}/policies',
     showColumns: true,
     showToggle: true,
     showExport: true,
@@ -150,25 +151,24 @@ $('#policy-table').bootstrapTable({
         fileName: 'policies'
     },
     columns: [{
-        field: 'policy_number',
+        field: 'policy\_number',
         title: 'POLICY',
         sortable: true,
     }, {
         field: 'insurer',
         title: 'INSURER'
     }, {
-        field: 'inception_date',
+        field: 'inception\_date',
         title: 'INCEPTION DATE'
     }, {
-        field: 'expiry_date',
+        field: 'expiry\_date',
         title: 'EXPIRY DATE'
     }, {
-        field: 'customer_full_name',
+        field: 'customer\_full\_name',
         title: 'CUSTOMER'
     }],
     onClickRow: function(row, element, field) {
         window.location.href = 'policy-detail/' + row.policy_number;
     }
 });
-
 </script>

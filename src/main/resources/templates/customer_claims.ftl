@@ -2,7 +2,6 @@
 <link rel="../stylesheet" href="bootstrap-table/bootstrap-table.css">
 <script src="../bootstrap-table/extensions/tableExport.js"></script>
 <script src="../bootstrap-table/bootstrap-table-export.js"></script>
-
 <div class="tab-pane fade" id="page-claims" role="tabpanel">
     <div class="col-md-12">
         <div class="panel panel-default open">
@@ -10,13 +9,13 @@
                 <ul class="panel-actions list-inline pull-right">
                     <li><span>action1</span></li>
                     <li><span>action2</span></li>
-                    <li><span onclick="FILTER.panelVisibleToggle('policy-claim-filter')">show filter</span></li>
+                    <li><span onclick="panelVisibleToggle('customer-claim-filter')">show filter</span></li>
                     <li><span>action4</span></li>
                 </ul>
                 <h1 class="panel-title">Claims</h1>
             </div>
             <div class="panel-body">
-                <div class="panel-filter" id="policy-claim-filter">
+                <div class="panel-filter" id="customer-claim-filter">
                     <table class="table table-condensed">
                         <tr>
                             <td>
@@ -25,61 +24,17 @@
                                         <label for="filter-claim-id">Claim Id</label>
                                     </div>
                                     <div>
-                                        <input type="text" class="filter-form-control">
+                                        <input type="text" class="form-control" id="filter-claim-id">
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <div class="form-group">
                                     <div>
-                                        <label for="filter-customer">Customer</label>
+                                        <label for="filter-policy">Policy</label>
                                     </div>
                                     <div>
-                                        <input type="text" class="filter-form-control">
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-group">
-                                    <div>
-                                        <label for="filter-object">Object</label>
-                                    </div>
-                                    <div>
-                                        <input type="text" class="filter-form-control">
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="extended-filter">
-                                <div class="form-group">
-                                    <div>
-                                        <label for="filter-status">status</label>
-                                    </div>
-                                    <div>
-                                        <select class="form-control" id="filter-status">
-                                        	<option>---all---</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group">
-                                    <div>
-                                        <label for="filter-start-date">Start Date</label>
-                                    </div>
-                                    <div>
-                                        <input type="date" class="form-control" id="filter-start-date">
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-group">
-                                    <div>
-                                        <label for="filter-end-date">End Date</label>
-                                    </div>
-                                    <div>
-                                        <input type="date" class="form-control" id="filter-end-date">
+                                        <input type="text" class="form-control" id="filter-policy">
                                     </div>
                                 </div>
                             </td>
@@ -89,36 +44,72 @@
                                         <label for="filter-insurer">Insurer</label>
                                     </div>
                                     <div>
-                                        <input type="text" class="form-control" id="filter-insurer">
+                                        <select id="filter-insurer" class="form-control">
+                                            <option value="0">---all---</option>
+                                        </select>
                                     </div>
                                 </div>
                             </td>
-                            <td class="extended-filter">
+                            <td>
                                 <div class="form-group">
                                     <div>
-                                        <label for="filter-product">Product</label>
+                                        <label for="filter-status">Status</label>
                                     </div>
                                     <div>
-                                        <input type="text" class="form-control" id="filter-product">
+                                        <select id="filter-status" class="form-control">
+                                            <option value="0">---all---</option>
+                                        </select>
                                     </div>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <td class="extended-filter">
+                            <td>
                                 <div class="form-group">
                                     <div>
-                                        <label for="filter-automatically-issued-policy">Automatically Issued Policy</label>
+                                        <label for="filter-claimant">Object</label>
                                     </div>
                                     <div>
-                                        <input type="text" class="form-control" id="filter-automatically-issued-policy">
+                                        <input type="text" class="form-control" id="filter-claimant">
                                     </div>
                                 </div>
                             </td>
+                            <td>
+                                <div class="form-group">
+                                    <div>
+                                        <label for="filter-product">Status</label>
+                                    </div>
+                                    <div>
+                                        <select id="filter-product" class="form-control">
+                                            <option value="0">---all---</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <div>
+                                        <label for="filter-broker">Status</label>
+                                    </div>
+                                    <div>
+                                        <select id="filter-broker" class="form-control">
+                                            <option value="0">---all---</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+
                         </tr>
                         <tr>
-                            <td colspan="4">
-                                <div class="pull-right"><a href="javascript:FILTER.extendedFiltersToggle('policy-claim-filter')" id="full-filter-toggle">hide all</a></div>
+                            <td class="extended-filter">
+                                <div class="form-group">
+                                    <div>
+                                        <label for="filter-incident-loss-date">Incident/Loss Date</label>
+                                    </div>
+                                    <div>
+                                        <input type="date" class="form-control" id="filter-incident-loss-date">
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -138,7 +129,11 @@
 </div>
 <script>
 
-$('#claims-table').bootstrapTable({
+function panelVisibleToggle(panelID){
+	$('#'+panelID).slideToggle();
+}
+
+$('#page-claims #claims-table').bootstrapTable({
     url: '/api/claims',
     showColumns: true,
     showToggle: true,

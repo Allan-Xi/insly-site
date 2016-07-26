@@ -40,11 +40,49 @@ public class WebController {
     	policy.put("coverage", 123);
     	policy.put("object", "obj");
     	
-    	ModelAndView mav = new ModelAndView("/policy_detail");
+    	ModelAndView mav = new ModelAndView("policy_detail");
     	
     	mav.addObject("policy", policy);
     	
     	return mav;
+    }
+    
+    
+    @RequestMapping("customer-detail/{number}")
+    public ModelAndView customerDetail(@PathVariable String number) throws Exception{
+    	
+    	Map<String, Object> customer = new HashMap<String,Object>();
+    	
+    	ModelAndView mav = new ModelAndView("customer_detail");
+    	mav.addObject("customer", customer);
+    	
+    	return mav;
+    }
+    
+    @RequestMapping("claims")
+    public String claims(){
+    	return "claims";
+    }
+    
+    @RequestMapping("claim-detail/{number}")
+    public ModelAndView claimDetail(@PathVariable String number){
+    	Map<String, Object> claim = new HashMap<String,Object>();
+    	Map<String, Object> policy = new HashMap<String,Object>();
+    	Map<String, Object> insurer = new HashMap<String,Object>();
+    	Map<String, Object> claimant = new HashMap<String,Object>();
+    	
+    	ModelAndView mav = new ModelAndView("claim_detail");
+    	mav.addObject("claim", claim);
+    	mav.addObject("policy", policy);
+    	mav.addObject("insurer", insurer);
+    	mav.addObject("claimant", claimant);
+    	
+    	return mav;
+    }
+    
+    @RequestMapping("quotes")
+    public String quotes(){
+    	return "quotes";
     }
 }
 
