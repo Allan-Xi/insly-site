@@ -1,7 +1,0 @@
-target/
-*.iml
-*.ipr
-*.iws
-.idea/
-node_modules/
-
