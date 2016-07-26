@@ -4,7 +4,7 @@
             <li><a href="#">HOME</a></li>
             <li class="active"><a href="/customers">CUSTOMERS</a></li>
             <li><a href="#">QUOTES</a></li>
-            <li><a href="#">POLICIES</a></li>
+            <li><a href="/policies">POLICIES</a></li>
             <li><a href="#">CLAIMS</a></li>
             <li><a href="#">INVOICING</a></li>
             <li><a href="#">REPORTS</a></li>
