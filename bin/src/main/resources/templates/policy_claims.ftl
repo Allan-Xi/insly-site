@@ -25,7 +25,7 @@
                                         <label for="filter-claim-id">Claim Id</label>
                                     </div>
                                     <div>
-                                        <input type="text" class="form-control" id="filter-claim-id">
+                                        <input type="text" class="filter-form-control">
                                     </div>
                                 </div>
                             </td>
@@ -35,7 +35,7 @@
                                         <label for="filter-customer">Customer</label>
                                     </div>
                                     <div>
-                                        <input type="text" class="form-control" id="filter-customer">
+                                        <input type="text" class="filter-form-control">
                                     </div>
                                 </div>
                             </td>
@@ -45,7 +45,7 @@
                                         <label for="filter-object">Object</label>
                                     </div>
                                     <div>
-                                        <input type="text" class="form-control" id="filter-object">
+                                        <input type="text" class="filter-form-control">
                                     </div>
                                 </div>
                             </td>
