@@ -16,5 +16,10 @@ public class WebController {
     public String customers() {
         return "customers";
     }
+
+    @RequestMapping("customers/quickAddCustomer")
+    public String quickAddCustomer() {
+        return "quickAddCustomer";
+    }
 }
 
