@@ -2,7 +2,7 @@
     <div>
         <ul class="nav navbar-nav">
             <li><a href="#">HOME</a></li>
-            <li class="active"><a href="/customers">CUSTOMERS</a></li>
+            <li class="active"><a href="/customer">CUSTOMERS</a></li>
             <li><a href="#">QUOTES</a></li>
             <li><a href="#">POLICIES</a></li>
             <li><a href="#">CLAIMS</a></li>

@@ -9,12 +9,12 @@ public class WebController {
 
     @RequestMapping("")
     public String index() {
-        return "customers";
+        return "customer";
     }
 
-    @RequestMapping("customers")
+    @RequestMapping("customer")
     public String customers() {
-        return "customers";
+        return "customer";
     }
 
     @RequestMapping("customers/quickAddCustomer")
