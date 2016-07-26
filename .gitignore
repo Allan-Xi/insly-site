@@ -5,3 +5,5 @@ target/
 .idea/
 node_modules/
 
+/bin/
+.project

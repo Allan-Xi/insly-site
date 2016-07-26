@@ -171,4 +171,16 @@ $('#policy-table').bootstrapTable({
         window.location.href = 'policy-detail/' + row.policy_number;
     }
 });
+	// Position between .fixed-table-toolbar and btn-group should be adjusted
+    $('.fixed-table-toolbar .btn-group:first').append('<button onclick="FILTER.panelVisibleToggle(\'customer-filter\')" type="button" class="btn btn-default"><i class="glyphicon glyphicon-filter"></i></button>')
+    $('.fixed-table-toolbar .btn-group:first').append('<button id="btn-add" type="button" class="btn btn-default"><a href="/customers/quickAddCustomer"><i class="glyphicon glyphicon-plus"></i></a></button>')
+    $('#panel-toolbar-placeholder').after($('.fixed-table-toolbar'))
+    $("#btn-filter").click(function () {
+        $("#customer-table-filter").slideToggle("fast");
+    });
+    $('.fixed-table-toolbar').css({
+        height: 40,
+		marginTop:-15,
+		marginBotton:-15
+    })
 </script>

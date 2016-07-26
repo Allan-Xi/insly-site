@@ -5,10 +5,8 @@
 <div id="page-customers" class="container-fluid">
     <div class="panel panel-default open">
         <div class="panel-heading">
-            <ul class="panel-actions list-inline pull-right">
-                <li><span onclick="FILTER.panelVisibleToggle('customer-filter')">showfilter</span></li>
-            </ul>
             <h1 class="panel-title">Customers</h1>
+            <div id="panel-toolbar-placeholder"></div>
         </div>
         <div class="panel-body">
             <div id="customer-filter" class="panel-filter">
@@ -130,7 +128,16 @@ $('#customer-table').bootstrapTable({
             window.location.href = 'customer-detail/' + row.name;
         }
 });
-</script>
-<script>
-
+	// Position between .fixed-table-toolbar and btn-group should be adjusted
+    $('.btn-group:first').append('<button onclick="FILTER.panelVisibleToggle(\'customer-filter\')" type="button" class="btn btn-default"><i class="glyphicon glyphicon-filter"></i></button>')
+    $('.btn-group:first').append('<button id="btn-add" type="button" class="btn btn-default"><a href="/customers/quickAddCustomer"><i class="glyphicon glyphicon-plus"></i></a></button>')
+    $('#panel-toolbar-placeholder').after($('.fixed-table-toolbar'))
+    $("#btn-filter").click(function () {
+        $("#customer-table-filter").slideToggle("fast");
+    });
+    $('.fixed-table-toolbar').css({
+        height: 40,
+		marginTop:-15,
+		marginBotton:-15
+    })
 </script>
