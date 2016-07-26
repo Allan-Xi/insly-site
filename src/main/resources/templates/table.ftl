@@ -104,6 +104,6 @@
         $("#customer-table-filter").slideToggle("fast");
     });
     $('.fixed-table-toolbar').css({
-        height: 40,
+        height: 60,
     })
 </script>
