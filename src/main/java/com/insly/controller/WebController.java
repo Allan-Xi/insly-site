@@ -88,5 +88,6 @@ public class WebController {
     public String quotes(){
     	return "quotes";
     }
+    
 }
 
