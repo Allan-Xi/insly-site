@@ -1,5 +1,6 @@
 <#include "header.ftl"/>
 <script src="common.js"></script>
+
 <body id="quotes">
     <h1>Demo Broker</h1>
     <#include "nav.ftl"/>
@@ -8,17 +9,15 @@
     <script src="../bootstrap-table
 /extensions/tableExport.js"></script>
     <script src="../bootstrap-table/bootstrap-table-export.js"></script>
-    <div id="page-claims" class="tab-pane" role="tabpanel">
+    <div id="page-quotes" class="tab-pane" role="tabpanel">
         <div class="col-md-12">
             <div class="panel panel-default open">
                 <div class="panel-heading">
-                    <ul class="panel-actions list-inline pull-right">
-                        <li><span onclick="FILTER.panelVisibleToggle('claim-filter')">showfilter</span></li>
-                    </ul>
                     <h1 class="panel-title">Quotes</h1>
+                    <div id="panel-toolbar-placeholder"></div>
                 </div>
                 <div class="panel-body">
-                    <div class="panel-filter" id="claim-filter">
+                    <div class="panel-filter" id="quotes-filter">
                         <form class="form-inline">
                             <table class="table">
                                 <tr>
@@ -144,42 +143,52 @@
             </div>
         </div>
     </div>
-    <script>
-    $('#quote-table').bootstrapTable({
-        url: '/api/quotes',
-        showColumns: true,
-        showToggle: true,
-        showExport: true,
-        pagination: true,
-        sidePagination: 'server',
-        exportOptions: {
-            fileName: 'policies'
-        },
-        columns: [{
-            field: 'quote_no',
-            title: 'QUOTE NO',
-            sortable: true,
-        }, {
-            field: 'customer',
-            title: 'CUSTOMER'
-        }, {
-            field: 'object',
-            title: 'OBJECT'
-        }, {
-            field: 'date',
-            title: 'Date'
-        }, {
-            field: 'status',
-            title: 'Status'
-        }, {
-            field: 'broker',
-            title: 'Broker'
-        }],
-        onClickRow: function(row, element, field) {
-            window.location.href = 'quote-detail/' + row.quote_no;
-        }
-    });
-    </script>
 </body>
+<script>
+$('#quote-table').bootstrapTable({
+    url: '/api/quotes',
+    showColumns: true,
+    showToggle: true,
+    showExport: true,
+    pagination: true,
+    sidePagination: 'server',
+    exportOptions: {
+        fileName: 'policies'
+    },
+    columns: [{
+        field: 'quote_number',
+        title: 'QUOTE NO',
+        sortable: true,
+    }, {
+        field: 'customer',
+        title: 'CUSTOMER'
+    }, {
+        field: 'object',
+        title: 'OBJECT'
+    }, {
+        field: 'date',
+        title: 'Date'
+    }, {
+        field: 'status',
+        title: 'Status'
+    }, {
+        field: 'broker',
+        title: 'Broker'
+    }],
+    onClickRow: function(row, element, field) {
+        window.location.href = 'quote-detail/' + row.quote_no;
+    }
+});
+// Position between .fixed-table-toolbar and btn-group should be adjusted
+$('#page-quotes .fixed-table-toolbar .btn-group:first').append('<button onclick="FILTER.panelVisibleToggle(\'quotes-filter\')" type="button" class="btn btn-default"><i class="glyphicon glyphicon-filter"></i></button>')
+$('#page-quotes .fixed-table-toolbar .btn-group:first').append('<button id="btn-add" type="button" class="btn btn-default"><a href="#"><i class="glyphicon glyphicon-plus"></i></a></button>')
+$('#page-quotes #panel-toolbar-placeholder').after($('#page-quotes .fixed-table-toolbar'))
+
+$('#page-quotes .fixed-table-toolbar').css({
+    height: 40,
+    marginTop: -15,
+    marginBotton: -15
+})
+</script>
 
 </html>

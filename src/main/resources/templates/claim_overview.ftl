@@ -197,7 +197,7 @@
                     </tr>
                     <tr>
                         <td>Lat/Lng</td>
-                        <td>${claim.location.lat!},${claim.location.lng!}</td>
+                        <td>${claim.lat!},${claim.lng!}</td>
                     </tr>
                     <tr>
                         <td>Accident Type</td>
@@ -258,3 +258,6 @@
         </div>
     </div>
 </div>
+<script>
+$('#claim-overview td').attr('width', '50%');
+</script>

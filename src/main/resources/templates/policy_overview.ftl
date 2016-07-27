@@ -31,31 +31,31 @@
                 <table class="table table-striped table-condensed">
                     <tr>
                         <td>Policy type</td>
-                        <td>${policy_type!}</td>
+                        <td>${policy.type!}</td>
                     </tr>
                     <tr>
                         <td>Insurer</td>
-                        <td>${insurer!}</td>
+                        <td>${policy.insurer!}</td>
                     </tr>
                     <tr>
                         <td>policy number</td>
-                        <td>${policy_number!}</td>
+                        <td>${policy.number!}</td>
                     </tr>
                     <tr>
                         <td>issue date</td>
-                        <td>${issue_date!}</td>
+                        <td>${policy.issue_date!}</td>
                     </tr>
                     <tr>
                         <td>start date</td>
-                        <td>${start_date!}</td>
+                        <td>${policy.start_date!}</td>
                     </tr>
                     <tr>
                         <td>end date</td>
-                        <td>${end_date!}</td>
+                        <td>${policy.end_date!}</td>
                     </tr>
                     <tr>
                         <td>status</td>
-                        <td>${status!}</td>
+                        <td>${policy.status!}</td>
                     </tr>
                 </table>
             </div>
@@ -110,75 +110,94 @@
             <div class="panel-heading">
                 <ul class="panel-actions list-inline pull-right">
                     <li><span class="glyphicon glyphicon-edit" onclick="javascript:location.href='#'"></span></li>
-                    <li><span class="glyphicon glyphicon-cog" onclick="javascript:location.href='#'"></span></li>
                 </ul>
                 <h1 class="panel-title">Premium</h1></div>
             <div class="panel-collapse panel-body">
                 <table class="table table-striped table-condensed">
                     <tr>
                         <td>Gross premium</td>
-                        <td>${gross_premium!}</td>
+                        <td>${policy.gross_premium!} USD</td>
                     </tr>
                     <tr>
                         <td>Installments</td>
-                        <td>${installments!}</td>
+                        <td>${policy.installments!}</td>
                     </tr>
                     <tr>
                         <td>Collection</td>
-                        <td>${collection!}</td>
+                        <td>${policy.collection!}</td>
                     </tr>
                     <tr>
                         <td>Net premium</td>
-                        <td>${net_premium!}</td>
+                        <td>${policy.net_premium!} USD</td>
                     </tr>
                 </table>
             </div>
+        </div>
+        <div class="panel panel-default open">
             <div class="panel-heading">
+                <ul class="panel-actions list-inline pull-right">
+                    <li><span class="glyphicon glyphicon-edit" onclick="javascript:location.href='#'"></span></li>
+                </ul>
                 <h1 class="panel-title">Discount</h1>
             </div>
             <div class="panel-collapse panel-body">
                 <table class="table table-striped table-condensed" id="discount-table"></table>
+                No discount set.
             </div>
+        </div>
+        <div class="panel panel-default open">
             <div class="panel-heading">
                 <h1 class="panel-title">Customer payment</h1></div>
             <div class="panel-collapse panel-body">
                 <table class="table table-striped table-condensed">
                     <tr>
                         <td>Customer paid</td>
-                        <td>${customer_paid!}</td>
+                        <td>${policy.customer_paid!}</td>
                     </tr>
                     <tr>
                         <td>Customer payable</td>
-                        <td>${customer_payable!}</td>
+                        <td>${policy.customer_payable!}</td>
                     </tr>
                     <tr>
                         <td>Policy balance</td>
-                        <td>${policy_balance!}</td>
+                        <td>${policy.policy_balance!}</td>
                     </tr>
-                    <tr class="table-warning">
+                    <tr class="danger" style="{color:#FF0000}">
                         <td>Sum over due date</td>
-                        <td>${due_date!}</td>
+                        <td>${policy.due_date!}</td>
                     </tr>
                 </table>
             </div>
+        </div>
+        <div class="panel panel-default open">
             <div class="panel-heading">
                 <h1 class="panel-title">Commission</h1></div>
             <div class="panel-collapse panel-body">
                 <table class="table table-striped table-condensed">
                     <tr>
                         <td>Commission</td>
-                        <td>${commission!}</td>
+                        <td>${policy.commission_percentage!}</td>
                     </tr>
                     <tr>
                         <td>Commission</td>
-                        <td>${commission!}</td>
+                        <td>${policy.commission!} USD</td>
                     </tr>
                 </table>
             </div>
-            <div class="panel-heading"><h1 class="panel-title">Notes</h1></div>
+        </div>
+        <div class="panel panel-default open">
+            <div class="panel-heading">
+                <ul class="panel-actions list-inline pull-right">
+                    <li><span class="glyphicon glyphicon-edit" onclick="javascript:location.href='#'"></span></li>
+                </ul>
+                <h1 class="panel-title">Notes</h1></div>
             <div class="panel-collapse panel-body">
                 <table class="table table-striped table-condensed"></table>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+$('#page-overview td').attr('width', '50%');
+</script>

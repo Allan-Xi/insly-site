@@ -65,7 +65,7 @@
 </div>
 <script>
 $('#vehicle-table').bootstrapTable({
-    url: '/api/customer/{number}/vehicles',
+    url: '/api/customers/{number}/vehicles',
     showColumns: true,
     showToggle: true,
     showExport: true,

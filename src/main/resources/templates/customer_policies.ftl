@@ -138,7 +138,7 @@
 </div>
 <script>
 $('#policy-table').bootstrapTable({
-    url: '/api/customer/{number}/policies',
+    url: '/api/customers/{number}/policies',
     showColumns: true,
     showToggle: true,
     showExport: true,
@@ -165,7 +165,7 @@ $('#policy-table').bootstrapTable({
     	title: 'STATUS'
     }],
     onClickRow: function(row, element, field) {
-        window.location.href = 'customer/policy-detail/' + row.policy_number;
+        window.location.href = '#';
     }
 });
 // Position between .fixed-table-toolbar and btn-group should be adjusted

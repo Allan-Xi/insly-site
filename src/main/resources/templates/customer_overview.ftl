@@ -33,7 +33,7 @@
                 <table class="table table-striped table-condensed">
                     <tr>
                         <td>E-mail address</td>
-                        <td>${customer.email!}</td>
+                        <td><a href="Mailto:"+ ${customer.email!}>${customer.email!}</a></td>
                     </tr>
                     <tr>
                         <td>Phone</td>
@@ -45,7 +45,7 @@
                     </tr>
                     <tr>
                         <td>Preferred communication channel</td>
-                        <td>${customer.channel!}</td>
+                        <td>${customer.preferred_channel!}</td>
                     </tr>
                 </table>
             </div>
@@ -144,7 +144,6 @@
 <script>
     $('#address-table').bootstrapTable({
     url: '/api',
-    showColumns: true,
     pagination: true,
     sidePagination: 'server',
     columns: [{
@@ -161,7 +160,6 @@
 });
 $('#overview-policy-table').bootstrapTable({
     url: '/api',
-    showColumns: true,
     pagination: true,
     sidePagination: 'server',
     columns: [{
@@ -181,7 +179,6 @@ $('#overview-policy-table').bootstrapTable({
 });
 $('#page-overview #task-table').bootstrapTable({
     url: '/api/customer/tasks',
-    showColumns: true,
     pagination: true,
     sidePagination: 'server',
     columns: [{
@@ -202,5 +199,6 @@ $('#page-overview #task-table').bootstrapTable({
         title: 'STATUS',
     }]
 });
+$("#page-overview td").attr('width', '50%');
 </script>
 

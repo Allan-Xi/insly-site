@@ -1,5 +1,6 @@
 package com.insly.controller;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,7 +11,6 @@ public class ApiController {
     @RequestMapping("users")
     // pagination should be supported later
     public String listCustomers() {
-    	
         return "{\n" +
                 "    \"total\": 14,\n" +
                 "    \"rows\": [\n" +
@@ -208,6 +208,83 @@ public class ApiController {
  
     }
     
+    @RequestMapping("customers/{number}/policies")
+    public String customerPolicies(@PathVariable String number ){
+    	return "{\n" +
+                "    \"total\": 1,\n" +
+                "    \"rows\": [\n" +
+                "        {\n" +
+                "			\"policy_number\":	\"AAAAAAAAAAA\",\n"+
+                "			\"insurer\":	\"Journey Ltd\",\n"+
+                "			\"validity\":	\"valid\"\n"+
+                "        }\n" +
+                "    ]\n" +
+                "}";
+    }
+    
+    @RequestMapping("customers/{number}/vehicles")
+    public String getCustomerVehicles(@PathVariable String number){
+    	return "{\n" +
+                "    \"total\": 1,\n" +
+                "    \"rows\": [\n" +
+                "        {\n" +
+                "			\"vehicle\":	\"Toyata S1\",\n"+
+                "			\"type\":	\"whatever\",\n"+
+                "			\"status\":	\"valid\"\n"+
+                "        }\n" +
+                "    ]\n" +
+                "}";
+    }
+    
+    @RequestMapping("customers/{number}/quotes")
+    public String getCustomerQuotes(@PathVariable String number){
+    	return "{\n" +
+                "    \"total\": 1,\n" +
+                "    \"rows\": [\n" +
+                "        {\n" +
+                "			\"quote_number\":	\"1\",\n"+
+                "			\"object\":	\"vehicle\",\n"+
+                "			\"status\":	\"valid\",\n"+
+                "			\"broker\":	\"broker\",\n"+
+                "			\"date\":	\"01/01/2016\"\n"+
+                "        }\n" +
+                "    ]\n" +
+                "}";
+    }
+    
+    @RequestMapping("customers/{number}/claims")
+    public String getCustomerClaims(@PathVariable String number){
+    	return "{\n" +
+                "    \"total\": 1,\n" +
+                "    \"rows\": [\n" +
+                "        {\n" +
+                "			\"claim_id\":	\"BBBBBBBAAABB\",\n"+
+                "			\"object\":	\"vehicle\",\n"+
+                "			\"customer\":	\"Piano\",\n"+
+                "			\"status\":	\"valid\",\n"+
+                "			\"broker\":	\"broker\",\n"+
+                "			\"date\":	\"01/01/2016\"\n"+
+                "        }\n" +
+                "    ]\n" +
+                "}";
+    }
+    
+    @RequestMapping("customers/{number}/crm")
+    public String getCustomerCRM(@PathVariable String number){
+    	return "{\n" +
+                "    \"total\": 1,\n" +
+                "    \"rows\": [\n" +
+                "        {\n" +
+                "			\"task\":	\"Finish website\",\n"+
+                "			\"description\":	\"Finish this website in 2 days!\",\n"+
+                "			\"responsible\":	\"Journey\",\n"+
+                "			\"status\":	\"valid\",\n"+
+                "			\"date\":	\"01/01/2016\"\n"+
+                "        }\n" +
+                "    ]\n" +
+                "}";
+    }
+    
     @RequestMapping("claims")
     // pagination should be supported later
     public String listClaims() {
@@ -216,6 +293,21 @@ public class ApiController {
                 "    \"rows\": [\n" +
                 "        {\n" +
                 "			\"claim_id\":	\"1234567890\""+
+                "        }\n" +
+                "    ]\n" +
+                "}";
+    }
+    
+    @RequestMapping("quotes")
+    // pagination should be supported later
+    public String listQuotes() {
+    	return "{\n" +
+                "    \"total\": 1,\n" +
+                "    \"rows\": [\n" +
+                "        {\n" +
+                "			\"quote_number\":	\"quo.123456\","+
+                "			\"customer\":	\"Someone\",\n"+
+                "			\"object\":	\"Vehicle\"\n"+
                 "        }\n" +
                 "    ]\n" +
                 "}";

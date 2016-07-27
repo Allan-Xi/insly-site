@@ -209,5 +209,8 @@ $('#page-claims .fixed-table-toolbar').css({
     marginBotton: -15
 })
 </script>
+<script>
+$('#page-overview td').attr('width', '50%');
+</script>
 
 </html>

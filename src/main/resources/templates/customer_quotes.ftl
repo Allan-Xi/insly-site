@@ -19,7 +19,7 @@
                                         <label for="filter-quote-number">QUOTE NUMBER</label>
                                     </div>
                                     <div>
-                                        <input type="text" id="quote-number" class="filter-form-control">
+                                        <input type="text" id="filter-quote-number" class="form-control">
                                     </div>
                                 </div>
                             </td>
@@ -75,7 +75,7 @@
 
 
 $('#quote-table').bootstrapTable({
-    url: '/api/customer/{number}/quotes',
+    url: '/api/customers/{number}/quotes',
     showColumns: true,
     showToggle: true,
     showExport: true,
@@ -85,7 +85,7 @@ $('#quote-table').bootstrapTable({
         fileName: 'claims'
     },
     columns: [{
-        field: 'quote_no',
+        field: 'quote_number',
         title: 'QUOTE NO',
         sortable: true
     }, {

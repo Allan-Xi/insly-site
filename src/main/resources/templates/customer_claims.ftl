@@ -125,7 +125,7 @@
 <script>
 
 $('#page-claims #claims-table').bootstrapTable({
-    url: '/api/claims',
+    url: '/api/customers/${customer.id!'none'}/claims',
     showColumns: true,
     showToggle: true,
     showExport: true,

@@ -57,7 +57,7 @@
 // show filter animation
 
 $('#crm-table').bootstrapTable({
-    url: '/api/customer/{number}/crm',
+    url: '/api/customers/{number}/crm',
     showColumns: true,
     showToggle: true,
     showExport: true,
