@@ -98,7 +98,7 @@
 
     // Position between .fixed-table-toolbar and btn-group should be adjusted
     $('.btn-group:first').append('<button id="btn-filter" type="button" class="btn btn-default"><i class="glyphicon glyphicon-filter"></i></button>')
-    $('.btn-group:first').append('<button id="btn-add" type="button" class="btn btn-default"><a href="/customers/quickAddCustomer"><i class="glyphicon glyphicon-plus"></i></a></button>')
+    $('.btn-group:first').append('<button id="btn-add" type="button" class="btn btn-default"><a href="/customer/addquick"><i class="glyphicon glyphicon-plus"></i></a></button>')
     $('.fixed-table-toolbar').after($('#customer-table-filter'))
     $("#btn-filter").click(function () {
         $("#customer-table-filter").slideToggle("fast");

@@ -26,9 +26,9 @@ public class WebController {
         return "customer";
     }
 
-    @RequestMapping("customers/quickAddCustomer")
+    @RequestMapping("customer/addquick")
     public String quickAddCustomer() {
-        return "quickAddCustomer";
+        return "addquick";
     }
     
     @RequestMapping("policies")
