@@ -6,10 +6,8 @@
     <div class="col-md-12">
         <div class="panel panel-default open">
             <div class="panel-heading">
-                <ul class="panel-actions list-inline pull-right">
-                    <li><span onclick="FILTER.panelVisibleToggle('policy-filter')">showfilter</span></li>
-                </ul>
                 <h1 class="panel-title">Policies</h1>
+                <div id="panel-toolbar-placeholder"></div>
             </div>
             <div class="panel-body">
                 <div class="panel-filter" id="policy-filter">
@@ -170,5 +168,16 @@ $('#policy-table').bootstrapTable({
         window.location.href = 'policy-detail/' + row.policy_number;
     }
 });
+	
+	// Position between .fixed-table-toolbar and btn-group should be adjusted
+    $('#page-policies .btn-group:first').append('<button onclick="FILTER.panelVisibleToggle(\'policy-filter\')" type="button" class="btn btn-default"><i class="glyphicon glyphicon-filter"></i></button>')
+    $('#page-policies .btn-group:first').append('<button id="btn-add" type="button" class="btn btn-default"><a href="/policies/addquick"><i class="glyphicon glyphicon-plus"></i></a></button>')
+    $('#page-policies #panel-toolbar-placeholder').after($('#page-policies .fixed-table-toolbar'));
+    
+    $('#page-policies .fixed-table-toolbar').css({
+        height: 60,
+		marginTop:-15,
+		marginBottom:-15
+    })
 
 </script>

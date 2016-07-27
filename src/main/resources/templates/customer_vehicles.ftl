@@ -6,20 +6,17 @@
     <div class="col-md-12">
         <div class="panel panel-default open">
             <div class="panel-heading">
-                <ul class="panel-actions list-inline pull-right">
-                    <li><span onclick="FILTER.panelVisibleToggle('customer-vehicle-filter')">show filter</span></li>
-                    <li><span>add</span></li>
-                </ul>
                 <h1 class="panel-title">Vehicles</h1>
+                <div id="panel-toolbar-placeholder"></div>
             </div>
             <div class="panel-body">
-                <div class="panel-filter" id="customer-vehicle-filter">
+                <div class="panel-filter" id="customer-vehicles-filter">
                     <table class="table table-condensed">
                         <tr>
                             <td>
                                 <div class="form-group">
                                     <div>
-                                        <label for="filter-vehicle-type">TYPE</label>
+                                        <label for="filter-vehicles\-type">TYPE</label>
                                     </div>
                                     <div>
                                         <select class="form-control" id="filter-vehicle-type">
@@ -31,7 +28,7 @@
                             <td>
                                 <div class="form-group">
                                     <div>
-                                        <label for="filter-vehicle">vehicle</label>
+                                        <label for="filter-vehicle">VEHICLE</label>
                                     </div>
                                     <div>
                                         <input type="text" class="form-control" id="filter-vehicle">
@@ -89,4 +86,15 @@ $('#vehicle-table').bootstrapTable({
         title: 'STATUS'
     }]
 });
+
+// Position between .fixed-table-toolbar and btn-group should be adjusted
+$('#page-vehicles .fixed-table-toolbar .btn-group:first').append('<button onclick="FILTER.panelVisibleToggle(\'customer-vehicles-filter\')" type="button" class="btn btn-default"><i class="glyphicon glyphicon-filter"></i></button>')
+$('#page-vehicles .fixed-table-toolbar .btn-group:first').append('<button id="btn-add" type="button" class="btn btn-default"><a href="#"><i class="glyphicon glyphicon-plus"></i></a></button>')
+$('#page-vehicles #panel-toolbar-placeholder').after($('#page-vehicles .fixed-table-toolbar'))
+
+$('#page-vehicles .fixed-table-toolbar').css({
+    height: 40,
+    marginTop: -15,
+    marginBotton: -15
+})
 </script>

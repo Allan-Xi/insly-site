@@ -106,4 +106,5 @@
     $('.fixed-table-toolbar').css({
         height: 60,
     })
+    
 </script>

@@ -6,10 +6,8 @@
     <div class="col-md-12">
         <div class="panel panel-default open">
             <div class="panel-heading">
-                <ul class="panel-actions list-inline pull-right">
-                    <li><span onclick="FILTER.panelVisibleToggle('customer-policies-filter')">showfilter</span></li>
-                </ul>
                 <h1 class="panel-title">Policies</h1>
+                <div id="panel-toolbar-placeholder"></div>
             </div>
             <div class="panel-body">
                 <div class="panel-filter" id="customer-policies-filter">
@@ -139,7 +137,6 @@
     </div>
 </div>
 <script>
-
 $('#policy-table').bootstrapTable({
     url: '/api/customer/{number}/policies',
     showColumns: true,
@@ -151,36 +148,33 @@ $('#policy-table').bootstrapTable({
         fileName: 'policies'
     },
     columns: [{
-        field: 'policy\_number',
-        title: 'POLICY',
+        field: 'policy_number',
+        title: 'POLICY NUMBER',
         sortable: true,
     }, {
         field: 'insurer',
         title: 'INSURER'
     }, {
-        field: 'inception\_date',
-        title: 'INCEPTION DATE'
+        field: 'validity',
+        title: 'VALIDITY'
     }, {
-        field: 'expiry\_date',
-        title: 'EXPIRY DATE'
+        field: 'premium',
+        title: 'PREMIUM'
     }, {
-        field: 'customer\_full\_name',
-        title: 'CUSTOMER'
+    	field: 'status',
+    	title: 'STATUS'
     }],
     onClickRow: function(row, element, field) {
-        window.location.href = 'policy-detail/' + row.policy_number;
+        window.location.href = 'customer/policy-detail/' + row.policy_number;
     }
 });
-	// Position between .fixed-table-toolbar and btn-group should be adjusted
-    $('.fixed-table-toolbar .btn-group:first').append('<button onclick="FILTER.panelVisibleToggle(\'customer-filter\')" type="button" class="btn btn-default"><i class="glyphicon glyphicon-filter"></i></button>')
-    $('.fixed-table-toolbar .btn-group:first').append('<button id="btn-add" type="button" class="btn btn-default"><a href="/customers/quickAddCustomer"><i class="glyphicon glyphicon-plus"></i></a></button>')
-    $('#panel-toolbar-placeholder').after($('.fixed-table-toolbar'))
-    $("#btn-filter").click(function () {
-        $("#customer-table-filter").slideToggle("fast");
-    });
-    $('.fixed-table-toolbar').css({
-        height: 40,
-		marginTop:-15,
-		marginBotton:-15
-    })
+// Position between .fixed-table-toolbar and btn-group should be adjusted
+$('#page-policies .fixed-table-toolbar .btn-group:first').append('<button onclick="FILTER.panelVisibleToggle(\'customer-policies-filter\')" type="button" class="btn btn-default"><i class="glyphicon glyphicon-filter"></i></button>')
+$('#page-policies .fixed-table-toolbar .btn-group:first').append('<button id="btn-add" type="button" class="btn btn-default"><a href="/customers/quickAddCustomer"><i class="glyphicon glyphicon-plus"></i></a></button>')
+$('#page-policies #panel-toolbar-placeholder').after($('#page-policies .fixed-table-toolbar'))
+$('.fixed-table-toolbar').css({
+    height: 40,
+    marginTop: -15,
+    marginBotton: -15
+})
 </script>

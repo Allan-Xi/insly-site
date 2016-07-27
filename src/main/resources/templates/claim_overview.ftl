@@ -3,8 +3,8 @@
         <div class="panel panel-default open">
             <div class="panel-heading">
                 <ul class="panel-actions list-inline pull-right">
-                    <li><span>edit</span></li>
-                    <li><span>settings</span></li>
+                    <li><span class="glyphicon glyphicon-edit" onclick="javascript:location.href='#'"></span></li>
+                    <li><span class="glyphicon glyphicon-cog" onclick="javascript:location.href='#'"></span></li>
                 </ul>
                 <h1 class="panel-title">Claim infomation</h1>
             </div>
@@ -66,7 +66,7 @@
                 <table class="table table-striped table-condensed">
                     <tr>
                         <td>Location of loss or incident</td>
-                        <td>${claim.location!}</td>
+                        <td>${claim.location_of_incident!}</td>
                     </tr>
                     <tr>
                         <td>Loss/damage description</td>
@@ -113,7 +113,7 @@
         <div class="panel panel-default open">
             <div class="panel-heading">
                 <ul class="panel-actions list-inline pull-right">
-                    <li><span>edit</span></li>
+                    <li><span class="glyphicon glyphicon-edit" onclick="javascript:location.href='#'"></span></li>
                 </ul>
                 <h1 class="panel-title">Claimant(s)</h1>
             </div>
@@ -157,7 +157,7 @@
         <div class="panel panel-default open">
             <div class="panel-heading">
                 <ul class="panel-actions list-inline pull-right">
-                    <li><span>edit</span></li>
+                    <li><span class="glyphicon glyphicon-edit" onclick="javascript:location.href='#'"></span></li>
                 </ul>
                 <h1 class="panel-title">Amounts</h1></div>
             <div class="panel-collapse panel-body">
@@ -173,14 +173,87 @@
                 </table>
             </div>
         </div>
-                <div class="panel panel-default open">
+        <div class="panel panel-default open">
             <div class="panel-heading">
                 <ul class="panel-actions list-inline pull-right">
-                    <li><span>add</span></li>
+                    <li><span class="glyphicon glyphicon-plus" onclick="javascript:location.href='#'"></span></li>
                 </ul>
                 <h1 class="panel-title">Note</h1></div>
             <div class="panel-collapse panel-body">
                 No notes.
+            </div>
+        </div>
+        <div class="panel panel-primary open">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    General Information
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed table-striped">
+                    <tr>
+                        <td>Location</td>
+                        <td>${claim.location_of_incident!}</td>
+                    </tr>
+                    <tr>
+                        <td>Lat/Lng</td>
+                        <td>${claim.location.lat!},${claim.location.lng!}</td>
+                    </tr>
+                    <tr>
+                        <td>Accident Type</td>
+                        <td>${claim.type!}</td>
+                    </tr>
+                    <tr>
+                        <td>Voice Recording</td>
+                        <td>${claim.voice_recording!}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-primary open">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    Policyholder Vehicle Information
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed table-striped">
+                    <tr>
+                        <td>Damage Drawing:</td>
+                        <td><img src=${claim.damage_drawing!'123.png'} alt="damage drawing"></td>
+                    </tr>
+                    <tr>
+                        <td>Damage Selection:</td>
+                        <td>${claim.damage_selection!}</td>
+                    </tr>
+                    <tr>
+                        <td>Damage Photos</td>
+                        <td><img src=${claim.damage_photos!'123.png'} alt="damage photos"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-primary open">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    Other Vehicle Information
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed table-striped">
+                    <tr>
+                        <td>Damage Drawing:</td>
+                        <td><img src=${claim.damage_drawing!'123.png'} alt="damage drawing"></td>
+                    </tr>
+                    <tr>
+                        <td>Damage Selection:</td>
+                        <td>${claim.damage_selection!}</td>
+                    </tr>
+                    <tr>
+                        <td>Damage Photos</td>
+                        <td><img src=${claim.damage_photos!'123.png'} alt="damage photos"></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

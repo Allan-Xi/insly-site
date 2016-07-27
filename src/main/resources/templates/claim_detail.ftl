@@ -1,6 +1,6 @@
 <#include "header.ftl">
 <#include "nav.ftl">
-<body>
+<body id="claim">
     <div class="navbar container-fluid" role="navigation">
         <div class="navbar-nav">
         <h3>Claim: ${policy_number!"1234567890"}</h3>
@@ -38,4 +38,6 @@
         e.preventDefault();
         $(this).tab('show');
     })
+</script>
+<script src="../common.js">
 </script>

@@ -6,11 +6,8 @@
     <div class="col-md-12">
         <div class="panel panel-default open">
             <div class="panel-heading">
-                <ul class="panel-actions list-inline pull-right">
-                    <li><span onclick="FILTER.panelVisibleToggle('customer-crm-filter')">show filter</span></li>
-                    <li><span>add</span></li>
-                </ul>
                 <h1 class="panel-title">CRM</h1>
+                <div id="panel-toolbar-placeholder"></div>
             </div>
             <div class="panel-body">
                 <div class="panel-filter" id="customer-crm-filter">
@@ -90,4 +87,14 @@ $('#crm-table').bootstrapTable({
     	title: 'STATUS'
     }]
 });
+// Position between .fixed-table-toolbar and btn-group should be adjusted
+$('#page-crm .fixed-table-toolbar .btn-group:first').append('<button onclick="FILTER.panelVisibleToggle(\'customer-crm-filter\')" type="button" class="btn btn-default"><i class="glyphicon glyphicon-filter"></i></button>')
+$('#page-crm .fixed-table-toolbar .btn-group:first').append('<button id="btn-add" type="button" class="btn btn-default"><a href="#"><i class="glyphicon glyphicon-plus"></i></a></button>')
+$('#page-crm #panel-toolbar-placeholder').after($('#page-crm .fixed-table-toolbar'))
+
+$('#page-crm .fixed-table-toolbar').css({
+    height: 40,
+    marginTop: -15,
+    marginBotton: -15
+})
 </script>

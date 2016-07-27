@@ -6,11 +6,8 @@
     <div class="col-md-12">
         <div class="panel panel-default open">
             <div class="panel-heading">
-                <ul class="panel-actions list-inline pull-right">
-                    <li><span onclick="FILTER.panelVisibleToggle('customer-quotes-filter')">show filter</span></li>
-                    <li><span>add</span></li>
-                </ul>
                 <h1 class="panel-title">Quotes</h1>
+                <div id="panel-toolbar-placeholder"></div>
             </div>
             <div class="panel-body">
                 <div class="panel-filter" id="customer-quotes-filter">
@@ -105,4 +102,15 @@ $('#quote-table').bootstrapTable({
         title: 'BROKER'
     }]
 });
+
+// Position between .fixed-table-toolbar and btn-group should be adjusted
+$('#page-quotes .fixed-table-toolbar .btn-group:first').append('<button onclick="FILTER.panelVisibleToggle(\'customer-quotes-filter\')" type="button" class="btn btn-default"><i class="glyphicon glyphicon-filter"></i></button>')
+$('#page-quotes .fixed-table-toolbar .btn-group:first').append('<button id="btn-add" type="button" class="btn btn-default"><a href="#"><i class="glyphicon glyphicon-plus"></i></a></button>')
+$('#page-quotes #panel-toolbar-placeholder').after($('#page-quotes .fixed-table-toolbar'))
+
+$('#page-quotes .fixed-table-toolbar').css({
+    height: 40,
+    marginTop: -15,
+    marginBotton: -15
+})
 </script>

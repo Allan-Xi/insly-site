@@ -1,10 +1,12 @@
+<script src="../bootstrap-table/bootstrap-table.js"></script>
+<link rel="stylesheet" href="../bootstrap-table/bootstrap-table.css">
 <div class="tab-pane fade in active" id="page-overview" role="tabpanel">
-    <div class="col-md-8">
+    <div class="col-md-7">
         <div class="panel panel-default open">
             <div class="panel-heading">
                 <ul class="panel-actions list-inline pull-right">
-                    <li><span>edit</span></li>
-                    <li><span>settings</span></li>
+                    <li><span class="glyphicon glyphicon-edit" onclick="javascript:location.href='/customer/${customer.id!'123456demo'}/customer-info/edit'"></span></li>
+                    <li><span class="glyphicon glyphicon-cog"  onclick="javascript:location.href='/customer/${customer.id!'123456demo'}/customer-info/config'"></span></li>
                 </ul>
                 <h1 class="panel-title">Customer info</h1>
             </div>
@@ -70,11 +72,11 @@
         <div class="panel panel-default open">
             <div class="panel-heading">
                 <ul class="panel-actions list-inline pull-right">
-                    <li><span>add</span></li>
+                    <li><span class="glyphicon glyphicon-plus" onclick="javascript:location.href='#'"></span></li>
                 </ul>
                 <h1 class="panel-title">
-        			Customer address
-        		</h1>
+                    Customer address
+                </h1>
             </div>
             <div class="panel-body">
                 <table class="table table-condensed table-striped" id="address-table"></table>
@@ -83,18 +85,18 @@
         <div class="panel panel-default open">
             <div class="panel-heading">
                 <ul class="panel-actions list-inline pull-right">
-                    <li><span>edit</span></li>
+                    <li><span class="glyphicon glyphicon-edit" onclick="javascript:location.href='#'"></span></li>
                 </ul>
                 <h1 class="panel-title">
-        			Customer profile
-        		</h1>
+                    Customer profile
+                </h1>
             </div>
             <div class="panel-body">
                 Field of activity.
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
         <div class="panel panel-default open">
             <div class="panel-heading">
                 <h1 class="panel-title">Customer balance</h1></div>
@@ -119,7 +121,7 @@
         <div class="panel panel-default open">
             <div class="panel-heading">
                 <ul class="panel-actions list-inline pull-right">
-                    <li><span>add</span></li>
+                    <li><span class="glyphicon glyphicon-plus" onclick="javascript:location.href='#'"></span></li>
                 </ul>
                 <h1 class="panel-title">Tasks</h1></div>
             <div class="panel-body">
@@ -129,7 +131,7 @@
         <div class="panel panel-default open">
             <div class="panel-heading">
                 <ul class="panel-actions list-inline pull-right">
-                    <li><span>add</span></li>
+                    <li><span class="glyphicon glyphicon-plus" onclick="javascript:location.href='#'"></span></li>
                 </ul>
                 <h1 class="panel-title">Notes</h1></div>
             <div class="panel-body">
@@ -138,3 +140,67 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('#address-table').bootstrapTable({
+    url: '/api',
+    showColumns: true,
+    pagination: true,
+    sidePagination: 'server',
+    columns: [{
+        field: 'address',
+        title: 'ADDRESS',
+        sortable: true,
+    }, {
+        field: 'type',
+        title: 'TYPE'
+    }, {
+        field: 'modified',
+        title: 'MODIFIED DATE'
+    }]
+});
+$('#overview-policy-table').bootstrapTable({
+    url: '/api',
+    showColumns: true,
+    pagination: true,
+    sidePagination: 'server',
+    columns: [{
+        field: 'status',
+        title: 'STATUS',
+        sortable: true,
+    }, {
+        field: 'gross_premium',
+        title: 'GROSS PREMIUM',
+    }, {
+        field: 'customer_payable',
+        title: 'CUSTOMER PAYABLE',
+    }, {
+        field: 'commission',
+        title: 'COMMISSION',
+    }]
+});
+$('#page-overview #task-table').bootstrapTable({
+    url: '/api/customer/tasks',
+    showColumns: true,
+    pagination: true,
+    sidePagination: 'server',
+    columns: [{
+        field: 'date',
+        title: 'DATE',
+        sortable: true,
+    }, {
+        field: 'person',
+        title: 'PERSON',
+    }, {
+        field: 'task',
+        title: 'TASK',
+    }, {
+        field: 'desctiption',
+        title: 'DESCRIPTION',
+    }, {
+        field: 'status',
+        title: 'STATUS',
+    }]
+});
+</script>
+

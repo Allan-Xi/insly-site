@@ -2,14 +2,12 @@
 <link rel="../stylesheet" href="bootstrap-table/bootstrap-table.css">
 <script src="../bootstrap-table/extensions/tableExport.js"></script>
 <script src="../bootstrap-table/bootstrap-table-export.js"></script>
-<div class="tab-pane fade in active" id="page-photos" role="tabpanel">
+<div class="tab-pane fade" id="page-photos" role="tabpanel">
     <div class="col-md-12">
         <div class="panel panel-default open">
             <div class="panel-heading">
-                <ul class="panel-actions list-inline pull-right">
-                    <li><span>add</span></li>
-                </ul>
 				<h1 class="panel-title">no title</h1>
+				<div id="panel-toolbar-placeholder"></div>
             </div>
             <div class="panel-body">
                 <table class="table table-condensed table-striped" id="image-table"></table>
@@ -37,4 +35,13 @@ $("#image-table").bootstrapTable({
         title: 'ADDED'
     }]
 });
+// Position between .fixed-table-toolbar and btn-group should be adjusted
+$('#page-photos .fixed-table-toolbar .btn-group:first').append('<button id="btn-add" type="button" class="btn btn-default"><a href="#"><i class="glyphicon glyphicon-plus"></i></a></button>')
+$('#page-photos #panel-toolbar-placeholder').after($('#page-photos .fixed-table-toolbar'))
+
+$('#page-photos .fixed-table-toolbar').css({
+    height: 40,
+    marginTop: -15,
+    marginBotton: -15
+})
 </script>

@@ -2,6 +2,10 @@
     <div class="col-md-12">
         <div class="panel panel-default open">
             <div class="panel-heading">
+            <ul class="panel-actions list-inline pull-right">
+                    <ls><span class="glyphicon glyphicon-edit"></span></ls>
+                    <ls><span class="glyphicon glyphicon-trash"></span></ls>
+                </ul>
                 <h1 class="panel-title">Motor Insurance</h1>
             </div>
             <div class="panel-body">
@@ -10,62 +14,62 @@
                         <td>COVERAGE</td>
                         <td>
                             <input type="text" class="hidden" id="motor-coverage">full coverage
-                            <!-- @{motor.coverage!} -->
+                            ${motor.customer!}
                         </td>
                     </tr>
                     <tr class="field">
                         <td>THRID PARTY LIABILITY PROPERTY: COVERAGE</td>
                         <td>
                             <input type="text" class="hidden" id="motor-tp-property">500.00
-                            <!-- @{motor.tp_property!} -->USD</td>
+                            ${motor.tp_property!}USD</td>
                     </tr>
                     <tr class="field">
                         <td>THIRD PARTY LIABILITY: HEALTH COVERAGE</td>
                         <td>
                             <input type="text" class="hidden" id="motor-tp-health">500
-                            <!-- @{motor.tp_health!} -->
+                            ${motor.tp_health!}
                         </td>
                     </tr>
                     <tr class="field">
                         <td>THIRD PARTY LIABILITY: DEDUCTIBLE</td>
                         <td>
                             <input type="text" class="hidden" id="motor-tp-deductible">100
-                            <!-- @{motor.tp_deductible!} -->
+                            ${motor.tp_deductible!}
                         </td>
                     </tr>
                     <tr class="field">
                         <td>OWN DAMAGE: PROPERTY COVERAGE</td>
                         <td>
                             <input type="text" class="hidden" id="own-property">400
-                            <!-- @{motor.own_property!} -->
+                            ${motor.own_property!}
                         </td>
                     </tr>
                     <tr class="field">
                         <td>OWN DAMAGE: HEALTH COVERAGE</td>
                         <td>
                             <input type="text" class="hidden" id="own-health">400
-                            <!-- @{motor.own_health!} -->
+                            ${motor.own_health!}
                         </td>
                     </tr>
                     <tr class="field">
                         <td>OWN DAMAGE: DEDUCTIBLE</td>
                         <td>
                             <input type="text" class="hidden" id="own-deductible">400
-                            <!-- @{motor.own_deductible!} -->
+                            ${motor.own_deductible!}
                         </td>
                     </tr>
                     <tr class="field">
                         <td>NEW VALUE COVERAGE</td>
                         <td>
                             <input type="text" class="hidden" id="value-coverage">yes
-                            <!-- @{motor.value_coverage!} -->
+                            ${motor.value_coverage!}
                         </td>
                     </tr>
                     <tr class="field">
                         <td>COURTESY CAR</td>
                         <td>
                             <input type="text" class="hidden" id="courtesy-car">yes
-                            <!-- @{motor.curtesy!} -->
+                            ${motor.curtesy!}
                         </td>
                     </tr>
                 </table>
@@ -79,7 +83,7 @@
                         <td>COMMISSION</td>
                         <td>
                             <input type="text" class="hidden" id="commission">10%
-                            <!-- @{commission!} -->
+                            ${commission!}
                         </td>
                     </tr>
                 </table>

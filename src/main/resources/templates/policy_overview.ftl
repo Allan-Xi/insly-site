@@ -3,8 +3,8 @@
         <div class="panel panel-default open">
             <div class="panel-heading">
                 <ul class="panel-actions list-inline pull-right">
-                    <li><span>edit</span></li>
-                    <li><span>settings</span></li>
+                    <li><span class="glyphicon glyphicon-edit" onclick="javascript:location.href='#'"></span></li>
+                    <li><span class="glyphicon glyphicon-cog" onclick="javascript:location.href='#'"></span></li>
                 </ul>
                 <h1 class="panel-title">Policy infomation</h1>
             </div>
@@ -109,8 +109,8 @@
         <div class="panel panel-default open">
             <div class="panel-heading">
                 <ul class="panel-actions list-inline pull-right">
-                    <li><span>edit</span></li>
-                    <li><span>settings</span></li>
+                    <li><span class="glyphicon glyphicon-edit" onclick="javascript:location.href='#'"></span></li>
+                    <li><span class="glyphicon glyphicon-cog" onclick="javascript:location.href='#'"></span></li>
                 </ul>
                 <h1 class="panel-title">Premium</h1></div>
             <div class="panel-collapse panel-body">

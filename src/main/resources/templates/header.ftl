@@ -21,6 +21,9 @@
 		.panel-filter .fixed-table-container {
     		border:0px !important;
 		}
+		.extended-filter{
+			display:none;
+		}
     </style>
     <script src="util.js"></script>
     <script src="../util.js"></script>

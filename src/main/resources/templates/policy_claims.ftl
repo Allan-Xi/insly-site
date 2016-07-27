@@ -7,16 +7,11 @@
     <div class="col-md-12">
         <div class="panel panel-default open">
             <div class="panel-heading">
-                <ul class="panel-actions list-inline pull-right">
-                    <li><span>action1</span></li>
-                    <li><span>action2</span></li>
-                    <li><span onclick="FILTER.panelVisibleToggle('policy-claim-filter')">show filter</span></li>
-                    <li><span>action4</span></li>
-                </ul>
                 <h1 class="panel-title">Claims</h1>
+                <div id="panel-toolbar-placeholder"></div>
             </div>
             <div class="panel-body">
-                <div class="panel-filter" id="policy-claim-filter">
+                <div class="panel-filter" id="policy-claims-filter">
                     <table class="table table-condensed">
                         <tr>
                             <td>
@@ -118,7 +113,7 @@
                         </tr>
                         <tr>
                             <td colspan="4">
-                                <div class="pull-right"><a href="javascript:FILTER.extendedFiltersToggle('policy-claim-filter')" id="full-filter-toggle">hide all</a></div>
+                                <div class="pull-right"><a href="javascript:FILTER.extendedFiltersToggle('policy-claims-filter')" id="full-filter-toggle">show all</a></div>
                             </td>
                         </tr>
                         <tr>
@@ -178,4 +173,16 @@ $('#claims-table').bootstrapTable({
         title: 'LOSS DATE'
     }]
 });
+
+	// Position between .fixed-table-toolbar and btn-group should be adjusted
+    $('#page-claims .btn-group:first').append('<button onclick="FILTER.panelVisibleToggle(\'policy-claims-filter\')" type="button" class="btn btn-default"><i class="glyphicon glyphicon-filter"></i></button>')
+    $('#page-claims .btn-group:first').append('<button id="btn-add" type="button" class="btn btn-default"><a href="/policies/addquick"><i class="glyphicon glyphicon-plus"></i></a></button>')
+    $('#page-claims #panel-toolbar-placeholder').after($('#page-claims .fixed-table-toolbar'));
+    
+    $('#page-claims .fixed-table-toolbar').css({
+        height: 60,
+		marginTop:-15,
+		marginBottom:-15
+    })
+
 </script>

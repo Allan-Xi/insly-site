@@ -78,7 +78,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="extended-filter">
+                                    <td>
                                         <div class="form-group">
                                             <div>
                                                 <label for="filter-type">Type</label>
@@ -128,7 +128,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4" class="panel-buttons">
+                                    <td colspan="5" class="panel-buttons">
                                         <div class="group pull-right">
                                             <button type="submit" class="btn btn-primary">Apply filters</button>
                                             <button type="reset" class="btn btn-warning">Clear filters</button>

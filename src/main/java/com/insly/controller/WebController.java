@@ -28,12 +28,17 @@ public class WebController {
 
     @RequestMapping("customer/addquick")
     public String quickAddCustomer() {
-        return "addquick";
+        return "customer_addquick";
     }
     
     @RequestMapping("policies")
     public String policies(){
     	return "policies";
+    }
+    
+    @RequestMapping("policies/addquick")
+    public String quickAddPolicy(){
+    	return "policy_addquick";
     }
     
     @RequestMapping("policy-detail/{number}")
@@ -44,10 +49,13 @@ public class WebController {
     	policy.put("coverage", 123);
     	policy.put("object", "obj");
     	
+    	Map<String, Object> motor = new HashMap<String, Object>();
+    	motor.put("coverage", "0");
+    	motor.put("tp_property", "0");
     	ModelAndView mav = new ModelAndView("policy_detail");
     	
     	mav.addObject("policy", policy);
-    	
+    	mav.addObject("motor", motor);
     	return mav;
     }
     

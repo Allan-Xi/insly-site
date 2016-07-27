@@ -11,10 +11,8 @@
         <div class="col-md-12">
             <div class="panel panel-default open">
                 <div class="panel-heading">
-                    <ul class="panel-actions list-inline pull-right">
-                        <li><span onclick="FILTER.panelVisibleToggle('claim-filter')">showfilter</span></li>
-                    </ul>
                     <h1 class="panel-title">Claims</h1>
+                    <div id="panel-toolbar-placeholder"></div>
                 </div>
                 <div class="panel-body">
                     <div class="panel-filter" id="claim-filter">
@@ -55,7 +53,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="extended-filter">
+                                    <td>
                                         <div class="form-group">
                                             <div>
                                                 <label for="filter-incident-loss-date">Incident/Loss Date</label>
@@ -124,7 +122,7 @@
                                     <td>
                                         <div class="form-group">
                                             <div>
-                                                <label for="filter-date-submitted">POLICY Date submitted to Broker</label>
+                                                <label for="filter-date-submitted">Date submitted to Broker</label>
                                             </div>
                                             <div>
                                                 <input type="date" id="filter-date-submitted" class="form-control">
@@ -134,7 +132,7 @@
                                     <td>
                                         <div class="form-group">
                                             <div>
-                                                <label for="filter-claim-handler">Product:</label>
+                                                <label for="filter-claim-handler">Claim Handler</label>
                                             </div>
                                             <div>
                                                 <select class="form-control" id="filter-claim-handler">
@@ -161,45 +159,55 @@
             </div>
         </div>
     </div>
-    <script>
-    $('#claim-table').bootstrapTable({
-        url: '/api/claims',
-        showColumns: true,
-        showToggle: true,
-        showExport: true,
-        pagination: true,
-        sidePagination: 'server',
-        exportOptions: {
-            fileName: 'policies'
-        },
-        columns: [{
-            field: 'claim_id',
-            title: 'CLAIM ID',
-            sortable: true,
-        }, {
-            field: 'policy',
-            title: 'POLICY'
-        }, {
-            field: 'status',
-            title: 'STATUS'
-        }, {
-            field: 'claimant',
-            title: 'CLAIMANT'
-        }, {
-            field: 'object',
-            title: 'OBJECT'
-        }, {
-            field: 'claim_handler',
-            title: 'CLAIM HANDLER'
-        }, {
-            field: 'loss_date',
-            title: 'LOSS DATE'
-        }],
-        onClickRow: function(row, element, field) {
-            window.location.href = 'claim-detail/' + row.claim_id;
-        }
-    });
-    </script>
 </body>
+<script>
+$('#claim-table').bootstrapTable({
+    url: '/api/claims',
+    showColumns: true,
+    showToggle: true,
+    showExport: true,
+    pagination: true,
+    sidePagination: 'server',
+    exportOptions: {
+        fileName: 'policies'
+    },
+    columns: [{
+        field: 'claim_id',
+        title: 'CLAIM ID',
+        sortable: true,
+    }, {
+        field: 'policy',
+        title: 'POLICY'
+    }, {
+        field: 'status',
+        title: 'STATUS'
+    }, {
+        field: 'claimant',
+        title: 'CLAIMANT'
+    }, {
+        field: 'object',
+        title: 'OBJECT'
+    }, {
+        field: 'claim_handler',
+        title: 'CLAIM HANDLER'
+    }, {
+        field: 'loss_date',
+        title: 'LOSS DATE'
+    }],
+    onClickRow: function(row, element, field) {
+        window.location.href = 'claim-detail/' + row.claim_id;
+    }
+});
+// Position between .fixed-table-toolbar and btn-group should be adjusted
+$('#page-claims .fixed-table-toolbar .btn-group:first').append('<button onclick="FILTER.panelVisibleToggle(\'customer-claims-filter\')" type="button" class="btn btn-default"><i class="glyphicon glyphicon-filter"></i></button>')
+$('#page-claims .fixed-table-toolbar .btn-group:first').append('<button id="btn-add" type="button" class="btn btn-default"><a href="#"><i class="glyphicon glyphicon-plus"></i></a></button>')
+$('#page-claims #panel-toolbar-placeholder').after($('#page-claims .fixed-table-toolbar'))
+
+$('#page-claims .fixed-table-toolbar').css({
+    height: 40,
+    marginTop: -15,
+    marginBotton: -15
+})
+</script>
 
 </html>

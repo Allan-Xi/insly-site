@@ -1,6 +1,6 @@
 <#include "header.ftl">
 <#include "nav.ftl">
-<body>
+<body id="policies">
 	<div class="navbar container-fluid" role="navigation">
 		<div class="navbar-nav">
 		<h3>Policy: ${policy_number!"xxxx"}</h3>
@@ -41,3 +41,4 @@
 		$(this).tab('show');
 	})
 </script>
+<script src="../common.js"></script>

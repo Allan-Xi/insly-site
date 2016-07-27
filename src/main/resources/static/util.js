@@ -20,3 +20,7 @@ FILTER.extendedFiltersToggle = function(parentID){
 	$(children).toggle();
 	
 }
+
+ROUTE={};
+
+ROUTE.redirect

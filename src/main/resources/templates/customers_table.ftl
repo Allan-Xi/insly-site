@@ -79,12 +79,12 @@
                             </td>
                         </tr>
                         <tr>
-                        	<td colspan="4">
+                        	<td colspan="3">
                         	<a class="pull-right" href="javascript:FILTER.extendedFiltersToggle('customer-filter')">show all</a>
                         	</td>
                         </tr>
                         <tr>
-                            <td class="panel-button" colspan="4">
+                            <td class="panel-button" colspan="3">
                                 <div class="group pull-right">
                                 <button type="submit" class="btn btn-primary">Apply filters</button>
                                 <button type="reset" class="btn btn-warning">Clear filters</button>
@@ -132,12 +132,9 @@ $('#customer-table').bootstrapTable({
     $('.btn-group:first').append('<button onclick="FILTER.panelVisibleToggle(\'customer-filter\')" type="button" class="btn btn-default"><i class="glyphicon glyphicon-filter"></i></button>')
     $('.btn-group:first').append('<button id="btn-add" type="button" class="btn btn-default"><a href="/customer/addquick"><i class="glyphicon glyphicon-plus"></i></a></button>')
     $('#panel-toolbar-placeholder').after($('.fixed-table-toolbar'))
-    $("#btn-filter").click(function () {
-        $("#customer-table-filter").slideToggle("fast");
-    });
     $('.fixed-table-toolbar').css({
-        height: 40,
+        height: 60,
 		marginTop:-15,
-		marginBotton:-15
+		marginBottom:-15
     })
 </script>
