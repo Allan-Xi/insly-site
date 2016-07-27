@@ -1,7 +1,7 @@
-<script src="../bootstrap-table/bootstrap-table.js"></script>
-<link rel="stylesheet" href="../bootstrap-table/bootstrap-table.css">
-<script src="../bootstrap-table/extensions/tableExport.js"></script>
-<script src="../bootstrap-table/bootstrap-table-export.js"></script>
+<script src="/bootstrap-table/bootstrap-table.js"></script>
+<link rel="stylesheet" href="/bootstrap-table/bootstrap-table.css">
+<script src="/bootstrap-table/extensions/tableExport.js"></script>
+<script src="/bootstrap-table/bootstrap-table-export.js"></script>
 <div id="page-policies" class="tab-pane" role="tabpanel">
     <div class="col-md-12">
         <div class="panel panel-default open">
@@ -20,7 +20,7 @@
                                             <label for="filter-policy-number">Policy Number:</label>
                                         </div>
                                         <div>
-                                            <input type="text" class="form-control" id="filter-policy number">
+                                            <input type="text" class="form-control" id="filter-policy-number">
                                         </div>
                                     </div>
                                 </td>
@@ -112,7 +112,7 @@
                                             <label for="filter-policy-type">POLICY TYPE</label>
                                         </div>
                                         <div>
-                                            <select id="policy-type" class="form-control" id="filter-policy-type">
+                                            <select id="filter-policy-type" class="form-control">
                                                 <option>---all---</option>
                                             </select>
                                         </div>
@@ -150,7 +150,7 @@ $('#policy-table').bootstrapTable({
     columns: [{
         field: 'policy_number',
         title: 'POLICY',
-        sortable: true,
+        sortable: true
     }, {
         field: 'insurer',
         title: 'INSURER'
@@ -168,16 +168,16 @@ $('#policy-table').bootstrapTable({
         window.location.href = 'policy-detail/' + row.policy_number;
     }
 });
-	
-	// Position between .fixed-table-toolbar and btn-group should be adjusted
-    $('#page-policies .btn-group:first').append('<button onclick="FILTER.panelVisibleToggle(\'policy-filter\')" type="button" class="btn btn-default"><i class="glyphicon glyphicon-filter"></i></button>')
-    $('#page-policies .btn-group:first').append('<button id="btn-add" type="button" class="btn btn-default"><a href="/policies/addquick"><i class="glyphicon glyphicon-plus"></i></a></button>')
-    $('#page-policies #panel-toolbar-placeholder').after($('#page-policies .fixed-table-toolbar'));
-    
-    $('#page-policies .fixed-table-toolbar').css({
-        height: 60,
-		marginTop:-15,
-		marginBottom:-15
-    })
+
+// Position between .fixed-table-toolbar and btn-group should be adjusted
+$('#page-policies .btn-group:first').append('<button onclick="FILTER.panelVisibleToggle(\'policy-filter\')" type="button" class="btn btn-default"><i class="glyphicon glyphicon-filter"></i></button>')
+$('#page-policies .btn-group:first').append('<button id="btn-add" type="button" class="btn btn-default"><a href="/policies/addquick"><i class="glyphicon glyphicon-plus"></i></a></button>')
+$('#page-policies #panel-toolbar-placeholder').after($('#page-policies .fixed-table-toolbar'));
+
+$('#page-policies .fixed-table-toolbar').css({
+    height: 60,
+    marginTop: -15,
+    marginBottom: -15
+})
 
 </script>

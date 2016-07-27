@@ -1,13 +1,12 @@
 <#include "header.ftl"/>
-<script src="common.js"></script>
 
 <body id="quotes" class="container-fluid">
     <h1>Demo Broker</h1>
     <#include "nav.ftl"/>
-    <script src="../bootstrap-table/bootstrap-table.js"></script>
-    <link rel="stylesheet" href="../bootstrap-table/bootstrap-table.css">
-    <script src="../bootstrap-table/extensions/tableExport.js"></script>
-    <script src="../bootstrap-table/bootstrap-table-export.js"></script>
+    <script src="/bootstrap-table/bootstrap-table.js"></script>
+    <link rel="stylesheet" href="/bootstrap-table/bootstrap-table.css">
+    <script src="/bootstrap-table/extensions/tableExport.js"></script>
+    <script src="/bootstrap-table/bootstrap-table-export.js"></script>
     <div id="page-quotes" class="tab-pane" role="tabpanel">
         <div class="col-md-12">
             <div class="panel panel-default open">
@@ -36,7 +35,7 @@
                                                 <label for="filter-customer">Customer</label>
                                             </div>
                                             <div>
-                                                <input type="text" class="form-control" id="filter-insurer-id">
+                                                <input type="text" class="form-control" id="filter-customer">
                                             </div>
                                         </div>
                                     </td>
@@ -56,7 +55,7 @@
                                                 <label for="filter-date">Date</label>
                                             </div>
                                             <div>
-                                                <input type="date" class="form-control" id="filter-insurer-id">
+                                                <input type="date" class="form-control" id="filter-date">
                                             </div>
                                         </div>
                                     </td>
@@ -157,7 +156,7 @@ $('#quote-table').bootstrapTable({
     columns: [{
         field: 'quote_number',
         title: 'QUOTE NO',
-        sortable: true,
+        sortable: true
     }, {
         field: 'customer',
         title: 'CUSTOMER'

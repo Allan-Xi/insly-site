@@ -1,7 +1,7 @@
-<script src="../bootstrap-table/bootstrap-table.js"></script>
-<link rel="../stylesheet" href="bootstrap-table/bootstrap-table.css">
-<script src="../bootstrap-table/extensions/tableExport.js"></script>
-<script src="../bootstrap-table/bootstrap-table-export.js"></script>
+<script src="/bootstrap-table/bootstrap-table.js"></script>
+<link rel="stylesheet" href="/bootstrap-table/bootstrap-table.css">
+<script src="/bootstrap-table/extensions/tableExport.js"></script>
+<script src="/bootstrap-table/bootstrap-table-export.js"></script>
 <div class="tab-pane fade" id="page-crm" role="tabpanel">
     <div class="col-md-12">
         <div class="panel panel-default open">

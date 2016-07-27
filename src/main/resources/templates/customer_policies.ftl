@@ -1,7 +1,7 @@
-<script src="../bootstrap-table/bootstrap-table.js"></script>
-<link rel="stylesheet" href="../bootstrap-table/bootstrap-table.css">
-<script src="../bootstrap-table/extensions/tableExport.js"></script>
-<script src="../bootstrap-table/bootstrap-table-export.js"></script>
+<script src="/bootstrap-table/bootstrap-table.js"></script>
+<link rel="stylesheet" href="/bootstrap-table/bootstrap-table.css">
+<script src="/bootstrap-table/extensions/tableExport.js"></script>
+<script src="/bootstrap-table/bootstrap-table-export.js"></script>
 <div id="page-policies" class="tab-pane fade" role="tabpanel">
     <div class="col-md-12">
         <div class="panel panel-default open">
@@ -150,7 +150,7 @@ $('#policy-table').bootstrapTable({
     columns: [{
         field: 'policy_number',
         title: 'POLICY NUMBER',
-        sortable: true,
+        sortable: true
     }, {
         field: 'insurer',
         title: 'INSURER'

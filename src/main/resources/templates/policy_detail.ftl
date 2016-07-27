@@ -42,4 +42,3 @@ $("#policy-tabs").click(function(e) {
     $(this).tab('show');
 })
 </script>
-<script src="../common.js"></script>

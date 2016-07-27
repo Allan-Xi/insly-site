@@ -1,12 +1,12 @@
 <script src="../bootstrap-table/bootstrap-table.js"></script>
-<link rel="stylesheet" href="../bootstrap-table/bootstrap-table.css">
+<link rel="stylesheet" href="/bootstrap-table/bootstrap-table.css">
 <div class="tab-pane fade in active" id="page-overview" role="tabpanel">
     <div class="col-md-7">
         <div class="panel panel-default open">
             <div class="panel-heading">
                 <ul class="panel-actions list-inline pull-right">
-                    <li><span class="glyphicon glyphicon-edit" onclick="javascript:location.href='/customer/${customer.id!'123456demo'}/customer-info/edit'"></span></li>
-                    <li><span class="glyphicon glyphicon-cog" onclick="javascript:location.href='/customer/${customer.id!'123456demo'}/customer-info/config'"></span></li>
+                    <li><span class="glyphicon glyphicon-edit" onclick="ocation.href='/customer/${customer.id!'123456demo'}/customer-info/edit'"></span></li>
+                    <li><span class="glyphicon glyphicon-cog" onclick="location.href='/customer/${customer.id!'123456demo'}/customer-info/config'"></span></li>
                 </ul>
                 <h1 class="panel-title">Customer info</h1>
             </div>
@@ -82,7 +82,7 @@
         <div class="panel panel-default open">
             <div class="panel-heading">
                 <ul class="panel-actions list-inline pull-right">
-                    <li><span class="glyphicon glyphicon-plus" onclick="javascript:location.href='#'"></span></li>
+                    <li><span class="glyphicon glyphicon-plus" onclick="location.href='#'"></span></li>
                 </ul>
                 <h1 class="panel-title">
                     Customer address
@@ -95,7 +95,7 @@
         <div class="panel panel-default open">
             <div class="panel-heading">
                 <ul class="panel-actions list-inline pull-right">
-                    <li><span class="glyphicon glyphicon-edit" onclick="javascript:location.href='#'"></span></li>
+                    <li><span class="glyphicon glyphicon-edit" onclick="location.href='#'"></span></li>
                 </ul>
                 <h1 class="panel-title">
                     Customer profile
@@ -131,7 +131,7 @@
         <div class="panel panel-default open">
             <div class="panel-heading">
                 <ul class="panel-actions list-inline pull-right">
-                    <li><span class="glyphicon glyphicon-plus" onclick="javascript:location.href='#'"></span></li>
+                    <li><span class="glyphicon glyphicon-plus" onclick="location.href='#'"></span></li>
                 </ul>
                 <h1 class="panel-title">Tasks</h1></div>
             <div class="panel-body">
@@ -141,7 +141,7 @@
         <div class="panel panel-default open">
             <div class="panel-heading">
                 <ul class="panel-actions list-inline pull-right">
-                    <li><span class="glyphicon glyphicon-plus" onclick="javascript:location.href='#'"></span></li>
+                    <li><span class="glyphicon glyphicon-plus" onclick="location.href='#'"></span></li>
                 </ul>
                 <h1 class="panel-title">Notes</h1></div>
             <div class="panel-body">
@@ -158,7 +158,7 @@ $('#address-table').bootstrapTable({
     columns: [{
         field: 'address',
         title: 'ADDRESS',
-        sortable: true,
+        sortable: true
     }, {
         field: 'type',
         title: 'TYPE'
@@ -174,16 +174,16 @@ $('#overview-policy-table').bootstrapTable({
     columns: [{
         field: 'status',
         title: 'STATUS',
-        sortable: true,
+        sortable: true
     }, {
         field: 'gross_premium',
-        title: 'GROSS PREMIUM',
+        title: 'GROSS PREMIUM'
     }, {
         field: 'customer_payable',
-        title: 'CUSTOMER PAYABLE',
+        title: 'CUSTOMER PAYABLE'
     }, {
         field: 'commission',
-        title: 'COMMISSION',
+        title: 'COMMISSION'
     }]
 });
 $('#page-overview #task-table').bootstrapTable({
@@ -193,19 +193,19 @@ $('#page-overview #task-table').bootstrapTable({
     columns: [{
         field: 'date',
         title: 'DATE',
-        sortable: true,
+        sortable: true
     }, {
         field: 'person',
-        title: 'PERSON',
+        title: 'PERSON'
     }, {
         field: 'task',
-        title: 'TASK',
+        title: 'TASK'
     }, {
         field: 'desctiption',
-        title: 'DESCRIPTION',
+        title: 'DESCRIPTION'
     }, {
         field: 'status',
-        title: 'STATUS',
+        title: 'STATUS'
     }]
 });
 $('#policy-on-vehicle-table').bootstrapTable({
@@ -215,19 +215,19 @@ $('#policy-on-vehicle-table').bootstrapTable({
     columns: [{
         field: 'policy_number',
         title: 'POLICY NUMBER',
-        sortable: true,
+        sortable: true
     }, {
         field: 'insurer',
-        title: 'INSURER',
+        title: 'INSURER'
     }, {
         field: 'validity',
-        title: 'VALIDITY',
+        title: 'VALIDITY'
     }, {
         field: 'customer',
-        title: 'CUSTOMER',
+        title: 'CUSTOMER'
     }, {
         field: 'vehicle',
-        title: 'VEHICLE',
+        title: 'VEHICLE'
     }, {
         field: 'status',
         title: 'STATUS'
