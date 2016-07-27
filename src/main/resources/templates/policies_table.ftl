@@ -114,7 +114,7 @@
                                             <label for="filter-policy-type">POLICY TYPE</label>
                                         </div>
                                         <div>
-                                            <select id="policy-type" class="filter-form-control">
+                                            <select id="policy-type" class="form-control" id="filter-policy-type">
                                                 <option>---all---</option>
                                             </select>
                                         </div>
