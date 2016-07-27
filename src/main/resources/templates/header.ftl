@@ -24,6 +24,9 @@
 		.extended-filter{
 			display:none;
 		}
+		.aligned-table-col-2 td{
+			width:50%;
+		}
     </style>
     <script src="util.js"></script>
     <script src="../util.js"></script>

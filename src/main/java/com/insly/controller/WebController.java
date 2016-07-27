@@ -113,9 +113,39 @@ public class WebController {
     @RequestMapping("claim-detail/{number}")
     public ModelAndView claimDetail(@PathVariable String number){
     	Map<String, Object> claim = new HashMap<String,Object>();
+    	
+    	claim.put("id", "10107600");
+    	claim.put("customer", "Kiehn, Antonette");
+    	claim.put("status", "Claim reopened");
+    	claim.put("incident_loss_date", "09/01/2014 12:00");
+    	claim.put("date_submitted", "10/01/2014");
+    	claim.put("settlement_date", "11/01/2014");
+    	claim.put("location_of_incident", "5651 Distribution Way Englewood, CO 80110");
+    	claim.put("loss_description", "Head on collision");
+    	claim.put("injury_description", "Internal bruising");
+    	claim.put("incident_circumstances", "Blinding sun");
+    	claim.put("info", "none");
+    	claim.put("loss_amount", "10000");
+    	claim.put("deducible", "2526");
+    	
     	Map<String, Object> policy = new HashMap<String,Object>();
+    	policy.put("number", "R4789123235");
+    	policy.put("insurer", "Continental Casualty Company");
+    	policy.put("product", "Vehicle Insurance");
+    	policy.put("start_date", "07/17/2014");
+    	policy.put("end_date", "10/16/2014");
+    	
     	Map<String, Object> insurer = new HashMap<String,Object>();
+    	insurer.put("contact_name", "CNA");
+    	insurer.put("email", "test@journey.com");
+    	insurer.put("phone", "414-14-14361");
+    	
     	Map<String, Object> claimant = new HashMap<String,Object>();
+    	claimant.put("type", "General claimant info");
+    	claimant.put("name", "Kwikprint");
+    	claimant.put("address", "nowhere");
+    	claimant.put("email", "hailhydra@journey.com");
+    	claimant.put("telephone", "1516614163");
     	
     	ModelAndView mav = new ModelAndView("claim_detail");
     	mav.addObject("claim", claim);

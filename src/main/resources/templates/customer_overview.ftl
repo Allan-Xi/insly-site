@@ -6,12 +6,12 @@
             <div class="panel-heading">
                 <ul class="panel-actions list-inline pull-right">
                     <li><span class="glyphicon glyphicon-edit" onclick="javascript:location.href='/customer/${customer.id!'123456demo'}/customer-info/edit'"></span></li>
-                    <li><span class="glyphicon glyphicon-cog"  onclick="javascript:location.href='/customer/${customer.id!'123456demo'}/customer-info/config'"></span></li>
+                    <li><span class="glyphicon glyphicon-cog" onclick="javascript:location.href='/customer/${customer.id!'123456demo'}/customer-info/config'"></span></li>
                 </ul>
                 <h1 class="panel-title">Customer info</h1>
             </div>
             <div class="panel-body">
-                <table class="table table-striped table-condensed">
+                <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Customer type</td>
                         <td>${customer.type!}</td>
@@ -30,10 +30,10 @@
                 <h1 class="panel-title">Contact info</h1>
             </div>
             <div class="panel-body">
-                <table class="table table-striped table-condensed">
+                <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>E-mail address</td>
-                        <td><a href="Mailto:"+ ${customer.email!}>${customer.email!}</a></td>
+                        <td><a href="Mailto:" + ${customer.email!}>${customer.email!}</a></td>
                     </tr>
                     <tr>
                         <td>Phone</td>
@@ -53,7 +53,7 @@
                 <h1 class="panel-title">Customer management</h1>
             </div>
             <div class="panel-body">
-                <table class="table table-striped table-condensed">
+                <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Sales channel</td>
                         <td>${customer.sales_channel!}</td>
@@ -67,6 +67,16 @@
                         <td>English ${customer.language!}</td>
                     </tr>
                 </table>
+            </div>
+        </div>
+        <div class="panel panel-primary open">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    Policies on Vehicle
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed table-striped" id="policy-on-vehicle-table"></table>
             </div>
         </div>
         <div class="panel panel-default open">
@@ -140,9 +150,8 @@
         </div>
     </div>
 </div>
-
 <script>
-    $('#address-table').bootstrapTable({
+$('#address-table').bootstrapTable({
     url: '/api',
     pagination: true,
     sidePagination: 'server',
@@ -199,6 +208,29 @@ $('#page-overview #task-table').bootstrapTable({
         title: 'STATUS',
     }]
 });
-$("#page-overview td").attr('width', '50%');
+$('#policy-on-vehicle-table').bootstrapTable({
+    url: '/api/customer/policies-on-vehicle',
+    pagination: true,
+    sidePagination: 'server',
+    columns: [{
+        field: 'policy_number',
+        title: 'POLICY NUMBER',
+        sortable: true,
+    }, {
+        field: 'insurer',
+        title: 'INSURER',
+    }, {
+        field: 'validity',
+        title: 'VALIDITY',
+    }, {
+        field: 'customer',
+        title: 'CUSTOMER',
+    }, {
+        field: 'vehicle',
+        title: 'VEHICLE',
+    }, {
+        field: 'status',
+        title: 'STATUS'
+    }]
+})
 </script>
-

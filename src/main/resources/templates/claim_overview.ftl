@@ -9,7 +9,7 @@
                 <h1 class="panel-title">Claim infomation</h1>
             </div>
             <div class="panel-body">
-                <table class="table table-striped table-condensed">
+                <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Claim ID</td>
                         <td>${claim.id!}</td>
@@ -36,10 +36,10 @@
                 <h1 class="panel-title">Policy</h1>
             </div>
             <div class="panel-collapse panel-body">
-                <table class="table table-striped table-condensed">
+                <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Policy</td>
-                        <td>${policy.policy_number!}</td>
+                        <td>${policy.number!}</td>
                     </tr>
                     <tr>
                         <td>Insurer</td>
@@ -63,7 +63,7 @@
                 <h1 class="panel-title">Loss Information</h1>
             </div>
             <div class="panel-collapse panel-body">
-                <table class="table table-striped table-condensed">
+                <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Location of loss or incident</td>
                         <td>${claim.location_of_incident!}</td>
@@ -90,7 +90,7 @@
                 <h1 class="panel-title">Insurer contacts</h1>
             </div>
             <div class="panel-body">
-                <table class="table table-striped table-condensed">
+                <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Insurer contact name</td>
                         <td>${insurer.contact_name!}</td>
@@ -119,7 +119,7 @@
             </div>
             <div class="panel-body">
                 <!-- should use freemaker list here -->
-                <table class="table table-condensed table-striped">
+                <table class="table table-condensed table-striped aligned-table-col-2">
                     <caption>Claimant #1</caption>
                     <tr>
                         <td>Type</td>
@@ -131,7 +131,7 @@
                     </tr>
                     <tr>
                         <td>Address</td>
-                        <td>${claimant.Address!}</td>
+                        <td>${claimant.address!}</td>
                     </tr>
                     <tr>
                         <td>Claimant e-mail address</td>
@@ -161,7 +161,7 @@
                 </ul>
                 <h1 class="panel-title">Amounts</h1></div>
             <div class="panel-collapse panel-body">
-                <table class="table table-striped table-condensed">
+                <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Loss amount</td>
                         <td>${claim.loss_amount!} USD</td>
@@ -175,7 +175,7 @@
         </div>
         <div class="panel panel-default open">
             <div class="panel-heading">
-                <ul class="panel-actions list-inline pull-right">
+                <ul class="panel-actions list-inline pull-right aligned-table-col-2">
                     <li><span class="glyphicon glyphicon-plus" onclick="javascript:location.href='#'"></span></li>
                 </ul>
                 <h1 class="panel-title">Note</h1></div>
@@ -190,7 +190,7 @@
                 </h1>
             </div>
             <div class="panel-body">
-                <table class="table table-condensed table-striped">
+                <table class="table table-condensed table-striped aligned-table-col-2">
                     <tr>
                         <td>Location</td>
                         <td>${claim.location_of_incident!}</td>
@@ -220,7 +220,7 @@
                 <table class="table table-condensed table-striped">
                     <tr>
                         <td>Damage Drawing:</td>
-                        <td><img src=${claim.damage_drawing!'123.png'} alt="damage drawing"></td>
+                        <td class="img-cell"><img src=${claim.damage_drawing! "/images/damage_drawing.png"} alt="damage drawing"></td>
                     </tr>
                     <tr>
                         <td>Damage Selection:</td>
@@ -228,8 +228,44 @@
                     </tr>
                     <tr>
                         <td>Damage Photos</td>
-                        <td><img src=${claim.damage_photos!'123.png'} alt="damage photos"></td>
-                    </tr>
+                        <td>
+                            <!-- temp solution. TODO: should use freemaker #list as here. -->
+                            <table class="img-condensed-table">
+                                <tr>
+                                    <td>
+                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
+                                    </td>
+                                    <td>
+                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
+                                    </td>
+                                    <td>
+                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
+                                    </td>
+                                    <td>
+                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
+                                    </td>
+                                    <td>
+                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
+                                    </td>
+                                    <td>
+                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
+                                    </td>
+                                    <td>
+                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
                 </table>
             </div>
         </div>
@@ -243,7 +279,7 @@
                 <table class="table table-condensed table-striped">
                     <tr>
                         <td>Damage Drawing:</td>
-                        <td><img src=${claim.damage_drawing!'123.png'} alt="damage drawing"></td>
+                        <td class="img-cell"><img src=${claim.damage_drawing! "/images/damage_drawing.png"} alt="damage drawing"></td>
                     </tr>
                     <tr>
                         <td>Damage Selection:</td>
@@ -251,13 +287,52 @@
                     </tr>
                     <tr>
                         <td>Damage Photos</td>
-                        <td><img src=${claim.damage_photos!'123.png'} alt="damage photos"></td>
-                    </tr>
+                        <td>
+                            <!-- temp solution. should use freemaker #list as here. -->
+                            <table class="img-condensed-table">
+                                <tr>
+                                    <td>
+                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
+                                    </td>
+                                    <td>
+                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
+                                    </td>
+                                    <td>
+                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
+                                    </td>
+                                    <td>
+                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
+                                    </td>
+                                    <td>
+                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
+                                    </td>
+                                    <td>
+                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
+                                    </td>
+                                    <td>
+                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
                 </table>
             </div>
         </div>
     </div>
 </div>
 <script>
-$('#claim-overview td').attr('width', '50%');
+
+$('#page-overview .img-cell img').attr('height', '60%');
+$('#page-overview .img-condensed-table img').attr('height', '10%');
+$('#page-overview img').css('margin', '3px');
 </script>

@@ -9,7 +9,7 @@
                 <h1 class="panel-title">Policy infomation</h1>
             </div>
             <div class="panel-body">
-                <table class="table table-striped table-condensed">
+                <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Customer</td>
                         <td>${policy.customer!}</td>
@@ -28,7 +28,7 @@
                 <h1 class="panel-title">policy info</h1>
             </div>
             <div class="panel-collapse panel-body">
-                <table class="table table-striped table-condensed">
+                <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Policy type</td>
                         <td>${policy.type!}</td>
@@ -63,7 +63,7 @@
                 <h1 class="panel-title">Sales</h1>
             </div>
             <div class="panel-collapse panel-body">
-                <table class="table table-striped table-condensed">
+                <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Sales type</td>
                         <td>${sales_type!}</td>
@@ -74,7 +74,7 @@
                 <h1 class="panel-title">Previous policy</h1>
             </div>
             <div class="panel-body">
-                <table class="table table-striped table-condensed">
+                <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Previous Policy</td>
                         <td>${previous_policy!}</td>
@@ -85,7 +85,7 @@
                 <h1 class="panel-title">Quote</h1>
             </div>
             <div class="panel-collapse panel-body">
-                <table class="table table-striped table-condensed">
+                <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Created from quote</td>
                         <td>${quote!}</td>
@@ -96,7 +96,7 @@
                 <h1 class="panel-title">Renewal</h1>
             </div>
             <div class="panel-collapse panel-body">
-                <table class="table table-striped table-condensed">
+                <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Renewal status</td>
                         <td>${renewal!}</td>
@@ -113,7 +113,7 @@
                 </ul>
                 <h1 class="panel-title">Premium</h1></div>
             <div class="panel-collapse panel-body">
-                <table class="table table-striped table-condensed">
+                <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Gross premium</td>
                         <td>${policy.gross_premium!} USD</td>
@@ -149,7 +149,7 @@
             <div class="panel-heading">
                 <h1 class="panel-title">Customer payment</h1></div>
             <div class="panel-collapse panel-body">
-                <table class="table table-striped table-condensed">
+                <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Customer paid</td>
                         <td>${policy.customer_paid!}</td>
@@ -173,7 +173,7 @@
             <div class="panel-heading">
                 <h1 class="panel-title">Commission</h1></div>
             <div class="panel-collapse panel-body">
-                <table class="table table-striped table-condensed">
+                <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Commission</td>
                         <td>${policy.commission_percentage!}</td>
@@ -192,12 +192,8 @@
                 </ul>
                 <h1 class="panel-title">Notes</h1></div>
             <div class="panel-collapse panel-body">
-                <table class="table table-striped table-condensed"></table>
+                <table class="table table-striped table-condensed" id="note-table"></table>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-$('#page-overview td').attr('width', '50%');
-</script>
