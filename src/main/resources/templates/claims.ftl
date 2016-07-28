@@ -1,12 +1,11 @@
 <#include "header.ftl"/>
-<script src="common.js"></script>
 <body id="claims">
     <h1>Demo Broker</h1>
     <#include "nav.ftl"/>
-    <script src="../bootstrap-table/bootstrap-table.js"></script>
-    <link rel="stylesheet" href="../bootstrap-table/bootstrap-table.css">
-    <script src="../bootstrap-table/extensions/tableExport.js"></script>
-    <script src="../bootstrap-table/bootstrap-table-export.js"></script>
+    <script src="/bootstrap-table/bootstrap-table.js"></script>
+    <link rel="stylesheet" href="/bootstrap-table/bootstrap-table.css">
+    <script src="/bootstrap-table/extensions/tableExport.js"></script>
+    <script src="/bootstrap-table/bootstrap-table-export.js"></script>
     <div id="page-claims" class="tab-pane" role="tabpanel">
         <div class="col-md-12">
             <div class="panel panel-default open">
@@ -174,7 +173,7 @@ $('#claim-table').bootstrapTable({
     columns: [{
         field: 'claim_id',
         title: 'CLAIM ID',
-        sortable: true,
+        sortable: true
     }, {
         field: 'policy',
         title: 'POLICY'

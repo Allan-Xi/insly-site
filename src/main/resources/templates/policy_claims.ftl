@@ -1,7 +1,7 @@
-<script src="../bootstrap-table/bootstrap-table.js"></script>
-<link rel="../stylesheet" href="bootstrap-table/bootstrap-table.css">
-<script src="../bootstrap-table/extensions/tableExport.js"></script>
-<script src="../bootstrap-table/bootstrap-table-export.js"></script>
+<script src="/bootstrap-table/bootstrap-table.js"></script>
+<link rel="stylesheet" href="/bootstrap-table/bootstrap-table.css">
+<script src="/bootstrap-table/extensions/tableExport.js"></script>
+<script src="/bootstrap-table/bootstrap-table-export.js"></script>
 
 <div class="tab-pane fade" id="page-claims" role="tabpanel">
     <div class="col-md-12">
@@ -51,7 +51,7 @@
                                     </div>
                                     <div>
                                         <select class="form-control" id="filter-status">
-                                        	<option>---all---</option>
+                                            <option>---all---</option>
                                         </select>
                                     </div>
                                 </div>
@@ -103,7 +103,8 @@
                             <td class="extended-filter">
                                 <div class="form-group">
                                     <div>
-                                        <label for="filter-automatically-issued-policy">Automatically Issued Policy</label>
+                                        <label for="filter-automatically-issued-policy">Automatically Issued
+                                            Policy</label>
                                     </div>
                                     <div>
                                         <input type="text" class="form-control" id="filter-automatically-issued-policy">
@@ -113,7 +114,9 @@
                         </tr>
                         <tr>
                             <td colspan="4">
-                                <div class="pull-right"><a href="javascript:FILTER.extendedFiltersToggle('policy-claims-filter')" id="full-filter-toggle">show all</a></div>
+                                <div class="pull-right"><a
+                                        href="javascript:FILTER.extendedFiltersToggle('policy-claims-filter')"
+                                        id="full-filter-toggle">show all</a></div>
                             </td>
                         </tr>
                         <tr>
@@ -133,56 +136,56 @@
 </div>
 <script>
 
-$('#claims-table').bootstrapTable({
-    url: '/api/claims',
-    showColumns: true,
-    showToggle: true,
-    showExport: true,
-    pagination: true,
-    sidePagination: 'server',
-    exportOptions: {
-        fileName: 'claims'
-    },
-    columns: [{
-        field: 'claim_id',
-        title: 'CLIAM ID',
-        sortable: true
-    }, {
-        field: 'customer',
-        title: 'CUSTOMER'
-    }, {
-        field: 'insurer',
-        title: 'INSURER'
-    }, {
-        field: 'status',
-        title: 'STATUS'
-    }, {
-        field: 'claimant',
-        title: 'CLAIMANT'
-    }, {
-        field: 'product',
-        title: 'PRODUCT'
-    }, {
-        field: 'object',
-        title: 'OBJECT'
-    }, {
-        field: 'broker',
-        title: 'BROKER'
-    }, {
-        field: 'loss_data',
-        title: 'LOSS DATE'
-    }]
-});
+    $('#claims-table').bootstrapTable({
+        url: '/api/claims',
+        showColumns: true,
+        showToggle: true,
+        showExport: true,
+        pagination: true,
+        sidePagination: 'server',
+        exportOptions: {
+            fileName: 'claims'
+        },
+        columns: [{
+            field: 'claim_id',
+            title: 'CLIAM ID',
+            sortable: true
+        }, {
+            field: 'customer',
+            title: 'CUSTOMER'
+        }, {
+            field: 'insurer',
+            title: 'INSURER'
+        }, {
+            field: 'status',
+            title: 'STATUS'
+        }, {
+            field: 'claimant',
+            title: 'CLAIMANT'
+        }, {
+            field: 'product',
+            title: 'PRODUCT'
+        }, {
+            field: 'object',
+            title: 'OBJECT'
+        }, {
+            field: 'broker',
+            title: 'BROKER'
+        }, {
+            field: 'loss_data',
+            title: 'LOSS DATE'
+        }]
+    });
 
-	// Position between .fixed-table-toolbar and btn-group should be adjusted
+    // Position between .fixed-table-toolbar and btn-group should be adjusted
     $('#page-claims .btn-group:first').append('<button onclick="FILTER.panelVisibleToggle(\'policy-claims-filter\')" type="button" class="btn btn-default"><i class="glyphicon glyphicon-filter"></i></button>')
     $('#page-claims .btn-group:first').append('<button id="btn-add" type="button" class="btn btn-default"><a href="/policies/addquick"><i class="glyphicon glyphicon-plus"></i></a></button>')
     $('#page-claims #panel-toolbar-placeholder').after($('#page-claims .fixed-table-toolbar'));
-    
+
     $('#page-claims .fixed-table-toolbar').css({
         height: 60,
-		marginTop:-15,
-		marginBottom:-15
+        marginTop: -15,
+        marginBottom: -15
     })
 
 </script>

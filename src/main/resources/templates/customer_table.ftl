@@ -1,7 +1,7 @@
-<script src="bootstrap-table/bootstrap-table.js"></script>
+<script src="/bootstrap-table/bootstrap-table.js"></script>
 <link rel="stylesheet" href="bootstrap-table/bootstrap-table.css">
-<script src="bootstrap-table/extensions/tableExport.js"></script>
-<script src="bootstrap-table/bootstrap-table-export.js"></script>
+<script src="/bootstrap-table/extensions/tableExport.js"></script>
+<script src="/bootstrap-table/bootstrap-table-export.js"></script>
 <div id="page-customers" class="container-fluid">
     <div class="panel panel-default open">
         <div class="panel-heading">
@@ -16,7 +16,7 @@
                             <td>
                                 <div class="form-group">
                                     <div>
-                                        <label for="filter-name">Name:</label>
+                                        <label for="filter-name">NAME:</label>
                                     </div>
                                     <input type="text" class="form-control" id="filter-name">
                                 </div>
@@ -65,7 +65,7 @@
                                     </select>
                                 </div>
                             </td>
-                            <td>
+                            <td class="extended-filter">
                                 <div class="form-group">
                                     <div>
                                         <label for="filter-account-manager">ACCOUNT MANAGER:</label>
@@ -123,14 +123,14 @@ $('#customer-table').bootstrapTable({
     }, {
         field: 'phone',
         title: 'PHONE'
-    }, ],
+    } ],
     onClickRow: function(row, element, field){
             window.location.href = 'customer-detail/' + row.name;
         }
 });
 	// Position between .fixed-table-toolbar and btn-group should be adjusted
     $('.btn-group:first').append('<button onclick="FILTER.panelVisibleToggle(\'customer-filter\')" type="button" class="btn btn-default"><i class="glyphicon glyphicon-filter"></i></button>')
-    $('.btn-group:first').append('<button id="btn-add" type="button" class="btn btn-default"><a href="/customer/addquick"><i class="glyphicon glyphicon-plus"></i></a></button>')
+    $('.btn-group:first').append('<button id="btn-add" type="button" class="btn btn-default" onclick="location=\'/customer/addquick\'"><i class="glyphicon glyphicon-plus"></i></button>')
     $('#panel-toolbar-placeholder').after($('.fixed-table-toolbar'))
     $('.fixed-table-toolbar').css({
         height: 60,
