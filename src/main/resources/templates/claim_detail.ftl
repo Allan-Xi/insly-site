@@ -17,7 +17,6 @@
                 <li><a href="#page-documents" data-toggle="tab">DOCUMENTS</a></li>
                 <li><a href="#page-photos" data-toggle="tab">PHOTOS</a></li>
                 <li><a href="#page-crm" data-toggle="tab">CRM</a></li>
-                <li><a href="#page-log" data-toggle="tab">LOG</a></li>
             </ul>
         </div>
         <div class="container-fluid">

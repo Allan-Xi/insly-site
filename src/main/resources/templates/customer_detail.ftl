@@ -6,11 +6,6 @@
         <div class="navbar-nav">
             <h3>Customer: ${customer_name!"Visitor"}</h3>
         </div>
-        <div class="navbar-right btn-group" role="toolbar">
-            <button type="button" class="btn btn-default">cancel</button>
-            <button type="button" class="btn btn-default">copy</button>
-            <button type="button" class="btn btn-default">renewal</button>
-        </div>
     </div>
     <div class="navbar">
         <ul class="nav nav-pills" id="customer-tabs">
@@ -19,10 +14,8 @@
             <li><a href="#page-vehicles" data-toggle="tab">VEHICLES(?)</a></li>
             <li><a href="#page-quotes" data-toggle="tab">QUOTES(?)</a></li>
             <li><a href="#page-invoices" data-toggle="tab">INVOICES(?)</a></li>
-            <li><a href="#page-documents" data-toggle="tab">DOCUMENTS</a></li>
             <li><a href="#page-claims" data-toggle="tab">CLAIMS</a></li>
             <li><a href="#page-crm" data-toggle="tab">CRM</a></li>
-            <li><a href="#page-log" data-toggle="tab">LOG</a></li>
         </ul>
     </div>
     <div class="container-fluid">

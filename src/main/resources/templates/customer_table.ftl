@@ -39,18 +39,6 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <div class="form-group">
-                                    <div>
-                                        <label for="filter-customer-type">CUSTOMER TYPE:</label>
-                                    </div>
-                                    <select class="form-control" id="filter-customer-type">
-                                        <option>---all---</option>
-                                        <option>company</option>
-                                        <option>individual</option>
-                                    </select>
-                                </div>
-                            </td>
                             <td class="extended-filter">
                                 <div class="form-group">
                                     <div>
@@ -62,18 +50,6 @@
                                         <option>Campaign at Forbes magazine</option>
                                         <option>Facebook campaign</option>
                                         <option>Online sales through website</option>
-                                    </select>
-                                </div>
-                            </td>
-                            <td class="extended-filter">
-                                <div class="form-group">
-                                    <div>
-                                        <label for="filter-account-manager">ACCOUNT MANAGER:</label>
-                                    </div>
-                                    <select class="form-control" id="filter-account-manager">
-                                        <option>---all---</option>
-                                        <option>Bette Nicka</option>
-                                        <option>Cammy Albares</option>
                                     </select>
                                 </div>
                             </td>

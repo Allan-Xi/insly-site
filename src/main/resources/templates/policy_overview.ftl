@@ -60,28 +60,6 @@
                 </table>
             </div>
             <div class="panel-heading">
-                <h1 class="panel-title">Sales</h1>
-            </div>
-            <div class="panel-collapse panel-body">
-                <table class="table table-striped table-condensed aligned-table-col-2">
-                    <tr>
-                        <td>Sales type</td>
-                        <td>${sales_type!}</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="panel-heading">
-                <h1 class="panel-title">Previous policy</h1>
-            </div>
-            <div class="panel-body">
-                <table class="table table-striped table-condensed aligned-table-col-2">
-                    <tr>
-                        <td>Previous Policy</td>
-                        <td>${previous_policy!}</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="panel-heading">
                 <h1 class="panel-title">Quote</h1>
             </div>
             <div class="panel-collapse panel-body">
@@ -106,33 +84,6 @@
         </div>
     </div>
     <div class="col-md-4">
-        <div class="panel panel-default open">
-            <div class="panel-heading">
-                <ul class="panel-actions list-inline pull-right">
-                    <li><span class="glyphicon glyphicon-edit" onclick="javascript:location.href='#'"></span></li>
-                </ul>
-                <h1 class="panel-title">Premium</h1></div>
-            <div class="panel-collapse panel-body">
-                <table class="table table-striped table-condensed aligned-table-col-2">
-                    <tr>
-                        <td>Gross premium</td>
-                        <td>${policy.gross_premium!} USD</td>
-                    </tr>
-                    <tr>
-                        <td>Installments</td>
-                        <td>${policy.installments!}</td>
-                    </tr>
-                    <tr>
-                        <td>Collection</td>
-                        <td>${policy.collection!}</td>
-                    </tr>
-                    <tr>
-                        <td>Net premium</td>
-                        <td>${policy.net_premium!} USD</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
         <div class="panel panel-default open">
             <div class="panel-heading">
                 <ul class="panel-actions list-inline pull-right">

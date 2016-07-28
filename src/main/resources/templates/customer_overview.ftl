@@ -43,14 +43,7 @@
                         <td>Mobile phone</td>
                         <td>${customer.mobile!}</td>
                     </tr>
-                    <tr>
-                        <td>Preferred communication channel</td>
-                        <td>${customer.preferred_channel!}</td>
-                    </tr>
                 </table>
-            </div>
-            <div class="panel-heading">
-                <h1 class="panel-title">Customer management</h1>
             </div>
             <div class="panel-body">
                 <table class="table table-striped table-condensed aligned-table-col-2">
@@ -67,16 +60,6 @@
                         <td>English ${customer.language!}</td>
                     </tr>
                 </table>
-            </div>
-        </div>
-        <div class="panel panel-primary open">
-            <div class="panel-heading">
-                <h1 class="panel-title">
-                    Policies on Vehicle
-                </h1>
-            </div>
-            <div class="panel-body">
-                <table class="table table-condensed table-striped" id="policy-on-vehicle-table"></table>
             </div>
         </div>
         <div class="panel panel-default open">
@@ -109,33 +92,9 @@
     <div class="col-md-5">
         <div class="panel panel-default open">
             <div class="panel-heading">
-                <h1 class="panel-title">Customer balance</h1></div>
-            <div class="panel-body">
-                <label>${customer.balance!}</label>
-            </div>
-        </div>
-        <div class="panel panel-default open">
-            <div class="panel-heading">
                 <h1 class="panel-title">Policies</h1></div>
             <div class="panel-body">
                 <table class="table table-condensed table-stiped" id="overview-policy-table"></table>
-            </div>
-        </div>
-        <div class="panel panel-default open">
-            <div class="panel-heading">
-                <h1 class="panel-title">Sales opportunities</h1></div>
-            <div class="panel-body">
-                Field of activity not chosen.
-            </div>
-        </div>
-        <div class="panel panel-default open">
-            <div class="panel-heading">
-                <ul class="panel-actions list-inline pull-right">
-                    <li><span class="glyphicon glyphicon-plus" onclick="location.href='#'"></span></li>
-                </ul>
-                <h1 class="panel-title">Tasks</h1></div>
-            <div class="panel-body">
-                <table class="table table-condensed table-stiped" id="task-table"></table>
             </div>
         </div>
         <div class="panel panel-default open">

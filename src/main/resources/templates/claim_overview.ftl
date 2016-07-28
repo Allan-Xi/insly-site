@@ -60,33 +60,6 @@
                 </table>
             </div>
             <div class="panel-heading">
-                <h1 class="panel-title">Loss Information</h1>
-            </div>
-            <div class="panel-collapse panel-body">
-                <table class="table table-striped table-condensed aligned-table-col-2">
-                    <tr>
-                        <td>Location of loss or incident</td>
-                        <td>${claim.location_of_incident!}</td>
-                    </tr>
-                    <tr>
-                        <td>Loss/damage description</td>
-                        <td>${claim.loss_description!}</td>
-                    </tr>
-                    <tr>
-                        <td>Injury description</td>
-                        <td>${claim.injury_description!}</td>
-                    </tr>
-                    <tr>
-                        <td>Incident circumstances</td>
-                        <td>${claim.incident_circumstances!}</td>
-                    </tr>
-                    <tr>
-                        <td>Claim info</td>
-                        <td>${claim.info!}</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="panel-heading">
                 <h1 class="panel-title">Insurer contacts</h1>
             </div>
             <div class="panel-body">

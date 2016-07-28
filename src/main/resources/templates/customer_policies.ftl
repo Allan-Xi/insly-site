@@ -6,7 +6,7 @@
     <div class="col-md-12">
         <div class="panel panel-default open">
             <div class="panel-heading">
-                <h1 class="panel-title">Policies</h1>
+                <h1 class="panel-title">Customer’s Policies</h1>
                 <div id="panel-toolbar-placeholder"></div>
             </div>
             <div class="panel-body">
@@ -132,6 +132,16 @@
                     </form>
                 </div>
                 <table id="policy-table" class="table table-condensed table-striped"></table>
+                <div class="panel panel-primary open">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">
+                            Policies on Vehicle
+                        </h1>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-condensed table-striped" id="policy-on-vehicle-table"></table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
