@@ -21,6 +21,11 @@ public class WebController {
         return "customer";
     }
 
+	@RequestMapping("login")
+	public String login() {
+		return "login";
+	}
+
     @RequestMapping("customer")
     public String customers() {
         return "customer";
