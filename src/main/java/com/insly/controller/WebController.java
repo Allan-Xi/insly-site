@@ -18,7 +18,7 @@ public class WebController {
 	
     @RequestMapping("")
     public String index() {
-        return "customer";
+        return "login";
     }
 
 	@RequestMapping("login")
