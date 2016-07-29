@@ -15,7 +15,7 @@
 <section id="login-container">
     <div id="login-box" class="rounded">
         <div class="login-panel-first">
-            <a target="_blank" href="http://www.insly.com/"><img src="./insly-logo.svg" width="92" height="38"></a>
+            <a target="_blank" href="http://www.insly.com/"><img src="/logo.png" height="38"></a>
         </div>
         <section id="login-content">
             <fieldset>
