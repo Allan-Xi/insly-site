@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="navbar" role="navigation">
             <div class="navbar-nav">
-                <h3>Claim: ${policy_number!"1234567890"}</h3>
+                <h3>Claim: ${claim.id!"1234567890"}</h3>
             </div>
             <div class="navbar-right btn-group" role="toolbar">
                 <button type="button" class="btn btn-default">Update claim status</button>

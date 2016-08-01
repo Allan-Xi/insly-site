@@ -57,7 +57,7 @@
                     </tr>
                     <tr>
                         <td>Language</td>
-                        <td>English ${customer.language!}</td>
+                        <td>${customer.language!}</td>
                     </tr>
                 </table>
             </div>

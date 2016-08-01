@@ -86,7 +86,12 @@ $('#customer-table').bootstrapTable({
     exportOptions: {
         fileName: 'customers'
     },
+    dataField:'users',
     columns: [{
+    	field: 'user_id',
+    	visible: false
+    },
+    {
         field: 'name',
         title: 'NAME',
         sortable: true
@@ -101,7 +106,7 @@ $('#customer-table').bootstrapTable({
         title: 'PHONE'
     } ],
     onClickRow: function(row, element, field){
-            window.location.href = 'customer-detail/' + row.name;
+            window.location.href = 'customer-detail/' + row.user_id;
         }
 });
 	// Position between .fixed-table-toolbar and btn-group should be adjusted

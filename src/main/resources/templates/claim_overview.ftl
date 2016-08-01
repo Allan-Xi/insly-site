@@ -15,16 +15,16 @@
                         <td>${claim.id!}</td>
                     </tr>
                     <tr>
-                        <td>Customer</td>
-                        <td>${claim.customer!}</td>
+                        <td>Driver</td>
+                        <td>${claim.driver!}</td>
                     </tr>
                     <tr>
                         <td>Status</td>
                         <td>${claim.status!}</td>
                     </tr>
                     <tr>
-                        <td>Incident/loss date</td>
-                        <td>${claim.incident_loss_date!}</td>
+                        <td>Accident Date</td>
+                        <td>${claim.accident_time_unix_secs!}</td>
                     </tr>
                     <tr>
                         <td>Date submitted to broker</td>
@@ -39,7 +39,7 @@
                 <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Policy</td>
-                        <td>${policy.number!}</td>
+                        <td>${policy.id!}</td>
                     </tr>
                     <tr>
                         <td>Insurer</td>
@@ -50,12 +50,12 @@
                         <td>${policy.product!}</td>
                     </tr>
                     <tr>
-                        <td>Start date</td>
-                        <td>${policy.start_date!}</td>
+                        <td>Inception Date</td>
+                        <td>${policy.inception_unix_secs!}</td>
                     </tr>
                     <tr>
-                        <td>End date</td>
-                        <td>${policy.end_date!}</td>
+                        <td>Expiry Date</td>
+                        <td>${policy.expiry_unix_secs!}</td>
                     </tr>
                 </table>
             </div>

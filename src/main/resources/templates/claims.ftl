@@ -170,6 +170,7 @@ $('#claim-table').bootstrapTable({
     exportOptions: {
         fileName: 'policies'
     },
+    dataField:'claims',
     columns: [{
         field: 'claim_id',
         title: 'CLAIM ID',
@@ -184,8 +185,8 @@ $('#claim-table').bootstrapTable({
         field: 'claimant',
         title: 'CLAIMANT'
     }, {
-        field: 'object',
-        title: 'OBJECT'
+        field: 'vehicle',
+        title: 'VEHICLE'
     }, {
         field: 'claim_handler',
         title: 'CLAIM HANDLER'

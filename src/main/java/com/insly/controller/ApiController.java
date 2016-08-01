@@ -1,211 +1,116 @@
 package com.insly.controller;
 
+
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.insly.JsonUtil;
+
 @RestController
 @RequestMapping("/api")
 public class ApiController {
+	static private String baseUrl = "http://localhost:3000";
+	static private ObjectMapper mapper = new ObjectMapper();
 
     @RequestMapping("users")
     // pagination should be supported later
-    public String listCustomers() {
-        return "{\n" +
-                "    \"total\": 14,\n" +
-                "    \"rows\": [\n" +
-                "        {\n" +
-                "            \"name\": \"TipiakInc\",\n" +
-                "            \"birthdate\": \"\",\n" +
-                "            \"email\": \"annmarie_castros@gmail.com\",\n" +
-                "            \"phone\": \"phone:936-751-7961\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"name\": \"20 20 Printing Inc\",\n" +
-                "            \"birthdate\": \"\",\n" +
-                "            \"email\": \"merilyn_bayless@cox.net\",\n" +
-                "            \"phone\": \"phone: 408-758-5015\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"name\": \"Able Air Inc\",\n" +
-                "            \"birthdate\": \"\",\n" +
-                "            \"email\": \"zula_rehmer@yahoo.com\",\n" +
-                "            \"phone\": \"phone: 419-533-5170\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"name\": \"Able Air Inc\",\n" +
-                "            \"birthdate\": \"\",\n" +
-                "            \"email\": \"zula_rehmer@yahoo.com\",\n" +
-                "            \"phone\": \"phone: 419-533-5170\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"name\": \"Able Air Inc\",\n" +
-                "            \"birthdate\": \"\",\n" +
-                "            \"email\": \"zula_rehmer@yahoo.com\",\n" +
-                "            \"phone\": \"phone: 419-533-5170\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"name\": \"Able Air Inc\",\n" +
-                "            \"birthdate\": \"\",\n" +
-                "            \"email\": \"zula_rehmer@yahoo.com\",\n" +
-                "            \"phone\": \"phone: 419-533-5170\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"name\": \"Able Air Inc\",\n" +
-                "            \"birthdate\": \"\",\n" +
-                "            \"email\": \"zula_rehmer@yahoo.com\",\n" +
-                "            \"phone\": \"phone: 419-533-5170\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"name\": \"Able Air Inc\",\n" +
-                "            \"birthdate\": \"\",\n" +
-                "            \"email\": \"zula_rehmer@yahoo.com\",\n" +
-                "            \"phone\": \"phone: 419-533-5170\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"name\": \"Able Air Inc\",\n" +
-                "            \"birthdate\": \"\",\n" +
-                "            \"email\": \"zula_rehmer@yahoo.com\",\n" +
-                "            \"phone\": \"phone: 419-533-5170\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"name\": \"Able Air Inc\",\n" +
-                "            \"birthdate\": \"\",\n" +
-                "            \"email\": \"zula_rehmer@yahoo.com\",\n" +
-                "            \"phone\": \"phone: 419-533-5170\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"name\": \"Able Air Inc\",\n" +
-                "            \"birthdate\": \"\",\n" +
-                "            \"email\": \"zula_rehmer@yahoo.com\",\n" +
-                "            \"phone\": \"phone: 419-533-5170\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"name\": \"Able Air Inc\",\n" +
-                "            \"birthdate\": \"\",\n" +
-                "            \"email\": \"zula_rehmer@yahoo.com\",\n" +
-                "            \"phone\": \"phone: 419-533-5170\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"name\": \"Able Air Inc\",\n" +
-                "            \"birthdate\": \"\",\n" +
-                "            \"email\": \"zula_rehmer@yahoo.com\",\n" +
-                "            \"phone\": \"phone: 419-533-5170\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"name\": \"Whistler, Lori\",\n" +
-                "            \"birthdate\": \"01/06/1980\",\n" +
-                "            \"email\": \"lori@whistler.org\",\n" +
-                "            \"phone\": \"phone: 763-347-5457\"\n" +
-                "        }\n" +
-                "    ]\n" +
-                "}";
+    static public String listCustomers() throws Throwable{
+    	CloseableHttpClient httpclient = HttpClients.createDefault();
+    	HttpGet httpget = new HttpGet(baseUrl + "/users");
+    	CloseableHttpResponse response = httpclient.execute(httpget);
+  	   	
+   	   	String results = JsonUtil.customersToString(EntityUtils.toString(response.getEntity()), mapper);
+   	   	
+   	   	response.close();
+   	   	return results;
+    }
+    
+    @RequestMapping("users/{id}")
+    static public String getCustomer(@PathVariable String id) throws Throwable{
+    	CloseableHttpClient httpclient = HttpClients.createDefault();
+    	HttpGet httpget = new HttpGet(baseUrl + "/users" + "/" + id);
+    	CloseableHttpResponse response = httpclient.execute(httpget);
+  	   	
+    	String results = JsonUtil.customersToString(EntityUtils.toString(response.getEntity()), mapper);
+  	   	
+   	   	response.close();
+   	   	return results;
     }
     
     @RequestMapping("policies")
-    public String listPolicies(){
-        return "{\n" +
-                "    \"total\": 12,\n" +
-                "    \"rows\": [\n" +
-                "        {\n" +
-                "            \"policy_number\": \"A384132661\",\n" +
-                "            \"insurer\": \"Mercury Insurance Group\",\n" +
-                "            \"inception_date\": \"3/20/14\",\n" +
-                "            \"expiry_date\": \"9/20/14\",\n" +
-                "       	 \"customer_full_name\": \"Schlossberg, Carolann\",\n"+
-                "            \"status\": \"ON_RISK\"\n"+
-                "        },\n" +
-                "        {\n" +
-                "            \"policy_number\": \"A384132662\",\n" +
-                "            \"insurer\": \"Mercury Insurance Group\",\n" +
-                "            \"inception_date\": \"3/20/14\",\n" +
-                "            \"expiry_date\": \"9/20/14\",\n" +
-                "       	 \"customer_full_name\": \"Schlossberg, Carolann\",\n"+
-                "            \"status\": \"ON_RISK\"\n"+
-                "        },\n" +
-                "        {\n" +
-                "            \"policy_number\": \"A384132663\",\n" +
-                "            \"insurer\": \"Mercury Insurance Group\",\n" +
-                "            \"inception_date\": \"3/20/14\",\n" +
-                "            \"expiry_date\": \"9/20/14\",\n" +
-                "       	 \"customer_full_name\": \"Schlossberg, Carolann\",\n"+
-                "            \"status\": \"ON_RISK\"\n"+
-                "        },\n" +
-                "        {\n" +
-                "            \"policy_number\": \"A384132664\",\n" +
-                "            \"insurer\": \"Mercury Insurance Group\",\n" +
-                "            \"inception_date\": \"3/20/14\",\n" +
-                "            \"expiry_date\": \"9/20/14\",\n" +
-                "       	 \"customer_full_name\": \"Schlossberg, Carolann\",\n"+
-                "            \"status\": \"ON_RISK\"\n"+
-                "        },\n" +
-                "        {\n" +
-                "            \"policy_number\": \"A384132665\",\n" +
-                "            \"insurer\": \"Mercury Insurance Group\",\n" +
-                "            \"inception_date\": \"3/20/14\",\n" +
-                "            \"expiry_date\": \"9/20/14\",\n" +
-                "       	 \"customer_full_name\": \"Schlossberg, Carolann\",\n"+
-                "            \"status\": \"ON_RISK\"\n"+
-                "        },\n" +
-                "        {\n" +
-                "            \"policy_number\": \"A384132666\",\n" +
-                "            \"insurer\": \"Mercury Insurance Group\",\n" +
-                "            \"inception_date\": \"3/20/14\",\n" +
-                "            \"expiry_date\": \"9/20/14\",\n" +
-                "       	 \"customer_full_name\": \"Schlossberg, Carolann\",\n"+
-                "            \"status\": \"ON_RISK\"\n"+
-                "        },\n" +
-                "        {\n" +
-                "            \"policy_number\": \"A384132667\",\n" +
-                "            \"insurer\": \"Mercury Insurance Group\",\n" +
-                "            \"inception_date\": \"3/20/14\",\n" +
-                "            \"expiry_date\": \"9/20/14\",\n" +
-                "       	 \"customer_full_name\": \"Schlossberg, Carolann\",\n"+
-                "            \"status\": \"ON_RISK\"\n"+
-                "        },\n" +
-                "        {\n" +
-                "            \"policy_number\": \"A384132668\",\n" +
-                "            \"insurer\": \"Mercury Insurance Group\",\n" +
-                "            \"inception_date\": \"3/20/14\",\n" +
-                "            \"expiry_date\": \"9/20/14\",\n" +
-                "       	 \"customer_full_name\": \"Schlossberg, Carolann\",\n"+
-                "            \"status\": \"ON_RISK\"\n"+
-                "        },\n" +
-                "        {\n" +
-                "            \"policy_number\": \"A384132669\",\n" +
-                "            \"insurer\": \"Mercury Insurance Group\",\n" +
-                "            \"inception_date\": \"3/20/14\",\n" +
-                "            \"expiry_date\": \"9/20/14\",\n" +
-                "       	 \"customer_full_name\": \"Schlossberg, Carolann\",\n"+
-                "            \"status\": \"ON_RISK\"\n"+
-                "        },\n" +
-                "        {\n" +
-                "            \"policy_number\": \"A384132670\",\n" +
-                "            \"insurer\": \"Mercury Insurance Group\",\n" +
-                "            \"inception_date\": \"3/20/14\",\n" +
-                "            \"expiry_date\": \"9/20/14\",\n" +
-                "       	 \"customer_full_name\": \"Schlossberg, Carolann\",\n"+
-                "            \"status\": \"ON_RISK\"\n"+
-                "        },\n" +
-                "        {\n" +
-                "            \"policy_number\": \"A384132671\",\n" +
-                "            \"insurer\": \"Mercury Insurance Group\",\n" +
-                "            \"inception_date\": \"3/20/14\",\n" +
-                "            \"expiry_date\": \"9/20/14\",\n" +
-                "       	 \"customer_full_name\": \"Schlossberg, Carolann\",\n"+
-                "            \"status\": \"ON_RISK\"\n"+
-                "        },\n" +
-                "        {\n" +
-                "            \"policy_number\": \"A384132672\",\n" +
-                "            \"insurer\": \"Mercury Insurance Group\",\n" +
-                "            \"inception_date\": \"3/20/14\",\n" +
-                "            \"expiry_date\": \"9/20/14\",\n" +
-                "       	 \"customer_full_name\": \"Schlossberg, Carolann\",\n"+
-                "            \"status\": \"ON_RISK\"\n"+
-                "        }\n" +
-                "    ]\n" +
-                "}";
- 
+    static public String listPolicies() throws Throwable{
+    	CloseableHttpClient httpclient = HttpClients.createDefault();
+ 	   	HttpGet httpget = new HttpGet(baseUrl + "/policies");
+ 	   	CloseableHttpResponse response = httpclient.execute(httpget);
+ 	   	String results = "null";
+ 	   	results = EntityUtils.toString(response.getEntity());
+ 	   	response.close();
+ 	   	return results;
+    }
+    
+    @RequestMapping("policies/{id}")
+    static public String getPolicy(@PathVariable String id) throws Throwable{
+    	CloseableHttpClient httpclient = HttpClients.createDefault();
+ 	   	HttpGet httpget = new HttpGet(baseUrl + "/policies" + "/" + id);
+ 	   	CloseableHttpResponse response = httpclient.execute(httpget);
+ 	   	String results = "null";
+ 	   	results = EntityUtils.toString(response.getEntity());
+ 	   	response.close();
+ 	   	return results;
+    }
+    
+    @RequestMapping("claims")
+    // pagination should be supported later
+    static public String listClaims() throws Throwable{
+    	CloseableHttpClient httpclient = HttpClients.createDefault();
+ 	   	HttpGet httpget = new HttpGet(baseUrl + "/claims");
+ 	   	CloseableHttpResponse response = httpclient.execute(httpget);
+ 	   	String results = "null";
+ 	   	results = EntityUtils.toString(response.getEntity());
+ 	   	response.close();
+ 	   	return results;
+    }
+    
+    @RequestMapping("claims/{id}")
+    // pagination should be supported later
+    static public String getClaim(@PathVariable String id) throws Throwable{
+    	CloseableHttpClient httpclient = HttpClients.createDefault();
+ 	   	HttpGet httpget = new HttpGet(baseUrl + "/claims" + "/" + id);
+ 	   	CloseableHttpResponse response = httpclient.execute(httpget);
+ 	   	String results = "null";
+ 	   	results = EntityUtils.toString(response.getEntity());
+ 	   	response.close();
+ 	   	return results;
+    }
+    
+    @RequestMapping("quotes")
+    // pagination should be supported later
+    static public String listQuotes() throws Throwable {
+    	CloseableHttpClient httpclient = HttpClients.createDefault();
+ 	   	HttpGet httpget = new HttpGet(baseUrl + "/quotes");
+ 	   	CloseableHttpResponse response = httpclient.execute(httpget);
+ 	   	String results = "null";
+ 	   	results = EntityUtils.toString(response.getEntity());
+ 	   	response.close();
+ 	   	return results;
+    }
+    
+    @RequestMapping("quotes/{id}")
+    static public String getQuote(@PathVariable String id) throws Throwable {
+    	CloseableHttpClient httpclient = HttpClients.createDefault();
+ 	   	HttpGet httpget = new HttpGet(baseUrl + "/quotes" +"/" + id);
+ 	   	CloseableHttpResponse response = httpclient.execute(httpget);
+ 	   	String results = "null";
+ 	   	results = EntityUtils.toString(response.getEntity());
+ 	   	response.close();
+ 	   	return results;
     }
     
     @RequestMapping("customers/{number}/policies")
@@ -285,32 +190,6 @@ public class ApiController {
                 "}";
     }
     
-    @RequestMapping("claims")
-    // pagination should be supported later
-    public String listClaims() {
-    	return "{\n" +
-                "    \"total\": 1,\n" +
-                "    \"rows\": [\n" +
-                "        {\n" +
-                "			\"claim_id\":	\"1234567890\""+
-                "        }\n" +
-                "    ]\n" +
-                "}";
-    }
-    
-    @RequestMapping("quotes")
-    // pagination should be supported later
-    public String listQuotes() {
-    	return "{\n" +
-                "    \"total\": 1,\n" +
-                "    \"rows\": [\n" +
-                "        {\n" +
-                "			\"quote_number\":	\"quo.123456\","+
-                "			\"customer\":	\"Someone\",\n"+
-                "			\"object\":	\"Vehicle\"\n"+
-                "        }\n" +
-                "    ]\n" +
-                "}";
-    }
+
 }
 

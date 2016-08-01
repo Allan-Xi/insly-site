@@ -147,25 +147,26 @@ $('#policy-table').bootstrapTable({
     exportOptions: {
         fileName: 'policies'
     },
+    dataField: 'policies',
     columns: [{
-        field: 'policy_number',
+        field: 'policy_id',
         title: 'POLICY',
         sortable: true
     }, {
-        field: 'insurer',
+        field: 'insured',
         title: 'INSURER'
     }, {
-        field: 'inception_date',
+        field: 'inception_unix_secs',
         title: 'INCEPTION DATE'
     }, {
-        field: 'expiry_date',
+        field: 'expiry_unix_secs',
         title: 'EXPIRY DATE'
     }, {
         field: 'customer_full_name',
         title: 'CUSTOMER'
     }],
     onClickRow: function(row, element, field) {
-        window.location.href = 'policy-detail/' + row.policy_number;
+        window.location.href = 'policy-detail/' + row.policy_id;
     }
 });
 

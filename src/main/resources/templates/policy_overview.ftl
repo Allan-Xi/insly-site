@@ -19,8 +19,8 @@
                         <td>${policy.coverage!}</td>
                     </tr>
                     <tr>
-                        <td>Object</td>
-                        <td>${policy.object!}</td>
+                        <td>Vehicle</td>
+                        <td>${policy.vehicle!}</td>
                     </tr>
                 </table>
             </div>
