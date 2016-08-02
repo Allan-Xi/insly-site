@@ -1,7 +1,7 @@
 <#include "header.ftl"/>
 
 <body id="quotes" class="container-fluid">
-    <h1>Demo Broker</h1>
+    <h1>Journey Policy Administration</h1>
     <#include "nav.ftl"/>
     <script src="/bootstrap-table/bootstrap-table.js"></script>
     <link rel="stylesheet" href="/bootstrap-table/bootstrap-table.css">

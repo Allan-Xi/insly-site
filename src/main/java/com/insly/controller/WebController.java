@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.insly.JsonUtil;
+import com.insly.JsonUtils;
 
 import freemarker.template.Template;
 

@@ -145,28 +145,6 @@ $('#overview-policy-table').bootstrapTable({
         title: 'COMMISSION'
     }]
 });
-$('#page-overview #task-table').bootstrapTable({
-    url: '/api/customer/tasks',
-    pagination: true,
-    sidePagination: 'server',
-    columns: [{
-        field: 'date',
-        title: 'DATE',
-        sortable: true
-    }, {
-        field: 'person',
-        title: 'PERSON'
-    }, {
-        field: 'task',
-        title: 'TASK'
-    }, {
-        field: 'desctiption',
-        title: 'DESCRIPTION'
-    }, {
-        field: 'status',
-        title: 'STATUS'
-    }]
-});
 $('#policy-on-vehicle-table').bootstrapTable({
     url: '/api/customer/policies-on-vehicle',
     pagination: true,

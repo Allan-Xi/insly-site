@@ -10,107 +10,67 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.insly.JsonUtil;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.insly.ApiUtils;
+import com.insly.JsonUtils;
 
 @RestController
 @RequestMapping("/api")
 public class ApiController {
-	static private String baseUrl = "http://localhost:3000";
 	static private ObjectMapper mapper = new ObjectMapper();
 
     @RequestMapping("users")
     // pagination should be supported later
     static public String listCustomers() throws Throwable{
-    	CloseableHttpClient httpclient = HttpClients.createDefault();
-    	HttpGet httpget = new HttpGet(baseUrl + "/users");
-    	CloseableHttpResponse response = httpclient.execute(httpget);
-  	   	
-   	   	String results = JsonUtil.customersToString(EntityUtils.toString(response.getEntity()), mapper);
-   	   	
-   	   	response.close();
-   	   	return results;
+  	   	JsonNode users = ApiUtils.getUserList();
+   	   	return mapper.writeValueAsString(users);
     }
     
     @RequestMapping("users/{id}")
     static public String getCustomer(@PathVariable String id) throws Throwable{
-    	CloseableHttpClient httpclient = HttpClients.createDefault();
-    	HttpGet httpget = new HttpGet(baseUrl + "/users" + "/" + id);
-    	CloseableHttpResponse response = httpclient.execute(httpget);
-  	   	
-    	String results = JsonUtil.customersToString(EntityUtils.toString(response.getEntity()), mapper);
-  	   	
-   	   	response.close();
-   	   	return results;
+    	JsonNode user = ApiUtils.getUser(id);
+   	   	return mapper.writeValueAsString(user);
     }
     
     @RequestMapping("policies")
     static public String listPolicies() throws Throwable{
-    	CloseableHttpClient httpclient = HttpClients.createDefault();
- 	   	HttpGet httpget = new HttpGet(baseUrl + "/policies");
- 	   	CloseableHttpResponse response = httpclient.execute(httpget);
- 	   	String results = "null";
- 	   	results = EntityUtils.toString(response.getEntity());
- 	   	response.close();
- 	   	return results;
+ 	   	JsonNode policies = ApiUtils.getPolicyList(); 	   	
+ 	   	return mapper.writeValueAsString(policies);
     }
     
     @RequestMapping("policies/{id}")
     static public String getPolicy(@PathVariable String id) throws Throwable{
-    	CloseableHttpClient httpclient = HttpClients.createDefault();
- 	   	HttpGet httpget = new HttpGet(baseUrl + "/policies" + "/" + id);
- 	   	CloseableHttpResponse response = httpclient.execute(httpget);
- 	   	String results = "null";
- 	   	results = EntityUtils.toString(response.getEntity());
- 	   	response.close();
- 	   	return results;
+    	JsonNode policy = ApiUtils.getPolicy(id);
+    	return mapper.writeValueAsString(policy);
     }
     
     @RequestMapping("claims")
     // pagination should be supported later
     static public String listClaims() throws Throwable{
-    	CloseableHttpClient httpclient = HttpClients.createDefault();
- 	   	HttpGet httpget = new HttpGet(baseUrl + "/claims");
- 	   	CloseableHttpResponse response = httpclient.execute(httpget);
- 	   	String results = "null";
- 	   	results = EntityUtils.toString(response.getEntity());
- 	   	response.close();
- 	   	return results;
+    	JsonNode claims = ApiUtils.getClaimList();
+    	return mapper.writeValueAsString(claims);
     }
     
     @RequestMapping("claims/{id}")
     // pagination should be supported later
     static public String getClaim(@PathVariable String id) throws Throwable{
-    	CloseableHttpClient httpclient = HttpClients.createDefault();
- 	   	HttpGet httpget = new HttpGet(baseUrl + "/claims" + "/" + id);
- 	   	CloseableHttpResponse response = httpclient.execute(httpget);
- 	   	String results = "null";
- 	   	results = EntityUtils.toString(response.getEntity());
- 	   	response.close();
- 	   	return results;
+    	JsonNode claim = ApiUtils.getClaim(id);
+    	return mapper.writeValueAsString(claim);
     }
     
     @RequestMapping("quotes")
     // pagination should be supported later
     static public String listQuotes() throws Throwable {
-    	CloseableHttpClient httpclient = HttpClients.createDefault();
- 	   	HttpGet httpget = new HttpGet(baseUrl + "/quotes");
- 	   	CloseableHttpResponse response = httpclient.execute(httpget);
- 	   	String results = "null";
- 	   	results = EntityUtils.toString(response.getEntity());
- 	   	response.close();
- 	   	return results;
+    	JsonNode quotes = ApiUtils.getQuoteList();
+    	return mapper.writeValueAsString(quotes);
     }
     
     @RequestMapping("quotes/{id}")
     static public String getQuote(@PathVariable String id) throws Throwable {
-    	CloseableHttpClient httpclient = HttpClients.createDefault();
- 	   	HttpGet httpget = new HttpGet(baseUrl + "/quotes" +"/" + id);
- 	   	CloseableHttpResponse response = httpclient.execute(httpget);
- 	   	String results = "null";
- 	   	results = EntityUtils.toString(response.getEntity());
- 	   	response.close();
- 	   	return results;
+    	JsonNode quote = ApiUtils.getQuote(id);
+    	return mapper.writeValueAsString(quote);
     }
     
     @RequestMapping("customers/{number}/policies")
