@@ -1,5 +1,5 @@
 <script src="/bootstrap-table/bootstrap-table.js"></script>
-<link rel="stylesheet" href="bootstrap-table/bootstrap-table.css">
+<link rel="stylesheet" href="/bootstrap-table/bootstrap-table.css">
 <script src="/bootstrap-table/extensions/tableExport.js"></script>
 <script src="/bootstrap-table/bootstrap-table-export.js"></script>
 <div class="tab-pane fade" id="page-vehicles" role="tabpanel">
