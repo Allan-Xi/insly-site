@@ -1,5 +1,5 @@
 <script src="/bootstrap-table/bootstrap-table.js"></script>
-<link rel="stylesheet" href="bootstrap-table/bootstrap-table.css">
+<link rel="stylesheet" href="/bootstrap-table/bootstrap-table.css">
 <script src="/bootstrap-table/extensions/tableExport.js"></script>
 <script src="/bootstrap-table/bootstrap-table-export.js"></script>
 <div id="page-customers" class="container-fluid">
@@ -86,7 +86,12 @@ $('#customer-table').bootstrapTable({
     exportOptions: {
         fileName: 'customers'
     },
+    dataField:'users',
     columns: [{
+    	field: 'user_id',
+    	visible: false
+    },
+    {
         field: 'name',
         title: 'NAME',
         sortable: true
@@ -101,7 +106,7 @@ $('#customer-table').bootstrapTable({
         title: 'PHONE'
     } ],
     onClickRow: function(row, element, field){
-            window.location.href = 'customer-detail/' + row.name;
+            window.location.href = 'customer-detail/' + row.user_id;
         }
 });
 	// Position between .fixed-table-toolbar and btn-group should be adjusted

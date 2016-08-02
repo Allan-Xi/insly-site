@@ -1,7 +1,7 @@
 <#include "header.ftl"/>
 
 <body id="quotes" class="container-fluid">
-    <h1>Demo Broker</h1>
+    <h1>Journey Policy Administration</h1>
     <#include "nav.ftl"/>
     <script src="/bootstrap-table/bootstrap-table.js"></script>
     <link rel="stylesheet" href="/bootstrap-table/bootstrap-table.css">
@@ -151,20 +151,21 @@ $('#quote-table').bootstrapTable({
     pagination: true,
     sidePagination: 'server',
     exportOptions: {
-        fileName: 'policies'
+        fileName: 'quotes'
     },
+    dataField:'quotes',
     columns: [{
-        field: 'quote_number',
+        field: 'quote_id',
         title: 'QUOTE NO',
         sortable: true
     }, {
         field: 'customer',
         title: 'CUSTOMER'
     }, {
-        field: 'object',
-        title: 'OBJECT'
+        field: 'vehicle',
+        title: 'VEHICLE'
     }, {
-        field: 'date',
+        field: 'inception_unix_secs',
         title: 'Date'
     }, {
         field: 'status',
@@ -174,7 +175,7 @@ $('#quote-table').bootstrapTable({
         title: 'Broker'
     }],
     onClickRow: function(row, element, field) {
-        window.location.href = 'quote-detail/' + row.quote_no;
+        window.location.href = 'quote-detail/' + row.quote_id;
     }
 });
 // Position between .fixed-table-toolbar and btn-group should be adjusted

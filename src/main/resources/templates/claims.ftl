@@ -1,6 +1,6 @@
 <#include "header.ftl"/>
 <body id="claims">
-    <h1>Demo Broker</h1>
+    <h1>Journey Policy Administration</h1>
     <#include "nav.ftl"/>
     <script src="/bootstrap-table/bootstrap-table.js"></script>
     <link rel="stylesheet" href="/bootstrap-table/bootstrap-table.css">
@@ -170,6 +170,7 @@ $('#claim-table').bootstrapTable({
     exportOptions: {
         fileName: 'policies'
     },
+    dataField:'claims',
     columns: [{
         field: 'claim_id',
         title: 'CLAIM ID',
@@ -184,8 +185,8 @@ $('#claim-table').bootstrapTable({
         field: 'claimant',
         title: 'CLAIMANT'
     }, {
-        field: 'object',
-        title: 'OBJECT'
+        field: 'vehicle',
+        title: 'VEHICLE'
     }, {
         field: 'claim_handler',
         title: 'CLAIM HANDLER'

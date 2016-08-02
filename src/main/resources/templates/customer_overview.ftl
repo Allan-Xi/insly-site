@@ -1,4 +1,4 @@
-<script src="../bootstrap-table/bootstrap-table.js"></script>
+<script src="/bootstrap-table/bootstrap-table.js"></script>
 <link rel="stylesheet" href="/bootstrap-table/bootstrap-table.css">
 <div class="tab-pane fade in active" id="page-overview" role="tabpanel">
     <div class="col-md-7">
@@ -57,7 +57,7 @@
                     </tr>
                     <tr>
                         <td>Language</td>
-                        <td>English ${customer.language!}</td>
+                        <td>${customer.language!}</td>
                     </tr>
                 </table>
             </div>
@@ -143,28 +143,6 @@ $('#overview-policy-table').bootstrapTable({
     }, {
         field: 'commission',
         title: 'COMMISSION'
-    }]
-});
-$('#page-overview #task-table').bootstrapTable({
-    url: '/api/customer/tasks',
-    pagination: true,
-    sidePagination: 'server',
-    columns: [{
-        field: 'date',
-        title: 'DATE',
-        sortable: true
-    }, {
-        field: 'person',
-        title: 'PERSON'
-    }, {
-        field: 'task',
-        title: 'TASK'
-    }, {
-        field: 'desctiption',
-        title: 'DESCRIPTION'
-    }, {
-        field: 'status',
-        title: 'STATUS'
     }]
 });
 $('#policy-on-vehicle-table').bootstrapTable({
