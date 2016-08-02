@@ -119,5 +119,14 @@ public class ApiUtils {
 		response.close();
 		return object; 
 	}
-	
+
+	static public String getObjectByRelativePath(String path) throws Throwable{
+		initHttpsClient();
+		HttpGet httpget = new HttpGet(baseUrl + path);
+		CloseableHttpResponse response = client.execute(httpget);
+		String json = EntityUtils.toString(response.getEntity());
+		JsonNode object = mapper.readTree(json);
+		response.close();
+		return mapper.writeValueAsString(object);
+	}
 }

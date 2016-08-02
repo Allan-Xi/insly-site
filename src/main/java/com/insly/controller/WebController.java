@@ -17,6 +17,8 @@ import com.insly.JsonUtils;
 
 import freemarker.template.Template;
 
+import static com.insly.ApiUtils.getObjectByRelativePath;
+
 
 @Controller
 @RequestMapping("/")
@@ -86,9 +88,12 @@ public class WebController {
 //    	policy.put("installment", "1");
 //    	policy.put("collection", "insurer collects");
 //    	policy.put("net_premium", "123.00");
-//    	
-    	
-    	Map<String, Object> motor = new HashMap<String, Object>();
+//
+		// vehicle api is not ready
+		// String vehicleUrl = (String) policyValues.get("vehicle");
+		// String vehicleString = getObjectByRelativePath(vehicleUrl);
+		// Map<String, Object> vehicle = mapper.convertValue(mapper.readTree(vehicleString).get("users"), Map.class);
+		Map<String, Object> vehicle = new HashMap<String, Object>();
 //    	motor.put("coverage", "full coverage");
 //    	motor.put("tp_property", "5000000.00");
 //    	motor.put("tp_health", "25000000.00");
@@ -99,6 +104,11 @@ public class WebController {
 //    	motor.put("new_value_coverage", "yes");
 //    	motor.put("courtesy", "yes");
 //    	motor.put("commission", "10%");
+		String insurerUrl = (String) policyValues.get("insured");
+		String insurerString = getObjectByRelativePath(insurerUrl);
+		Map<String, Object> insurer = mapper.convertValue(mapper.readTree(insurerString).get("users"), Map.class);
+		insurer.put("contact_name", insurer.get("first_name") + " " + insurer.get("middle_initial")+ " " + insurer.get("last_name"));
+
     	
     	ModelAndView mav = new ModelAndView("policy_detail");
     	
@@ -107,7 +117,8 @@ public class WebController {
     	mav.addObject("previous_policy","po.123578");
     	mav.addObject("created_from_quote","qo.12345");
     	mav.addObject("renewal","not renewed");
-    	mav.addObject("motor", motor);
+    	mav.addObject("vehicle", vehicle);
+		mav.addObject("insurer", insurer);
     	return mav;
     }
     
@@ -135,15 +146,20 @@ public class WebController {
 //    	claim.put("info", "none");
 //    	claim.put("loss_amount", "10000");
 //    	claim.put("deducible", "2526");
-    	
-    	Map<String, Object> policy = new HashMap<String,Object>();
+
+		String policyUrl = (String) claimValues.get("policy");
+		String policyString = getObjectByRelativePath(policyUrl);
+    	Map<String, Object> policy = mapper.convertValue(mapper.readTree(policyString).get("policy"), Map.class);
 //    	policy.put("number", "R4789123235");
 //    	policy.put("insurer", "Continental Casualty Company");
 //    	policy.put("product", "Vehicle Insurance");
 //    	policy.put("start_date", "07/17/2014");
 //    	policy.put("end_date", "10/16/2014");
-    	
-    	Map<String, Object> insurer = new HashMap<String,Object>();
+
+		String insurerUrl = (String) claimValues.get("driver");
+		String insurerString = getObjectByRelativePath(insurerUrl);
+    	Map<String, Object> insurer = mapper.convertValue(mapper.readTree(insurerString).get("users"), Map.class);
+		insurer.put("contact_name", insurer.get("first_name") + " " + insurer.get("middle_initial")+ " " + insurer.get("last_name"));
 //    	insurer.put("contact_name", "CNA");
 //    	insurer.put("email", "test@journey.com");
 //    	insurer.put("phone", "414-14-14361");

@@ -12,7 +12,7 @@
                 <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Claim ID</td>
-                        <td>${claim.id!}</td>
+                        <td>${claim.claim_id!}</td>
                     </tr>
                     <tr>
                         <td>Driver</td>
@@ -39,7 +39,7 @@
                 <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Policy</td>
-                        <td>${policy.id!}</td>
+                        <td>${policy.policy_id!}</td>
                     </tr>
                     <tr>
                         <td>Insurer</td>
@@ -78,7 +78,7 @@
                     </tr>
                     <tr>
                         <td>Insurer reference ID</td>
-                        <td>${insurer.id!}</td>
+                        <td>${insurer.user_id!}</td>
                     </tr>
                 </table>
             </div>
