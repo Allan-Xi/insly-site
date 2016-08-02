@@ -1,4 +1,4 @@
-<script src="../bootstrap-table/bootstrap-table.js"></script>
+<script src="/bootstrap-table/bootstrap-table.js"></script>
 <link rel="stylesheet" href="/bootstrap-table/bootstrap-table.css">
 <div class="tab-pane fade in active" id="page-overview" role="tabpanel">
     <div class="col-md-7">
