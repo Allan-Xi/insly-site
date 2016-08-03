@@ -15,7 +15,7 @@
 <section id="login-container">
     <div id="login-box" class="rounded">
         <div class="login-panel-first">
-            <a target="_blank" href="http://www.insly.com/"><img src="/logo.png" height="38"></a>
+            <a target="_blank" href="http://journey.com"><img src="/logo.png" height="38"></a>
         </div>
         <section id="login-content">
             <fieldset>
@@ -62,19 +62,32 @@
                             </select>
                         </div>
                     </div>
-                    <button class="primary pull-right" name="login_submit" value="login_submit"
-                            id="login_submit" data-locale="insly.login.submit" onclick="location='/customer'">Log in
+                    <button class="primary pull-right" name="login_submit" value="login_submit" 
+                            id="login_submit" data-locale="insly.login.submit" onclick="javascript:onLogin()">Log in
                     </button>
                 </div>
             </fieldset>
         </section>
 
     </div>
-    <div id="login-footer">
+    <!--<div id="login-footer" style="{display:none;}">
         <div id="footer-left"><a href="#" data-locale="insly.login.forgotpwd">Forgot my password</a></div>
-    </div>
+    </div>-->
 </section>
 
 <div id="smartlook-ct"></div>
 </body>
+<script>
+function onLogin(){
+	
+	$.ajax({
+			type: "post",
+        	url: "/api/login",
+        	data: "{username:111, password:222}",
+        	success: function(msg){
+        		window.location = '/customer'
+        	}   //操作成功后的操作！msg是后台传过来的值
+        }); 
+}
+</script>
 </html>

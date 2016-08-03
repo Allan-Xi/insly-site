@@ -137,7 +137,7 @@
 <script>
 
     $('#claims-table').bootstrapTable({
-        url: '/api/claims',
+        url: '/api/policies/${policy.policy_id}/claims',
         showColumns: true,
         showToggle: true,
         showExport: true,
@@ -146,6 +146,7 @@
         exportOptions: {
             fileName: 'claims'
         },
+        dataField: 'claims',
         columns: [{
             field: 'claim_id',
             title: 'CLIAM ID',

@@ -14,7 +14,7 @@
                 <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Customer type</td>
-                        <td>${customer.type!}</td>
+                        <td>${customer.type! 'Insured'}</td>
                     </tr>
                     <tr>
                         <td>Name</td>
@@ -22,7 +22,7 @@
                     </tr>
                     <tr>
                         <td>Birth date</td>
-                        <td>${customer.birthdate!}</td>
+                        <td>${customer.birthdate! '01/31/1970'}</td>
                     </tr>
                 </table>
             </div>
@@ -41,7 +41,7 @@
                     </tr>
                     <tr>
                         <td>Mobile phone</td>
-                        <td>${customer.mobile!}</td>
+                        <td>${customer.mobile! 'empty'}</td>
                     </tr>
                 </table>
             </div>
@@ -49,7 +49,7 @@
                 <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Sales channel</td>
-                        <td>${customer.sales_channel!}</td>
+                        <td>${customer.sales_channel! 'online'}</td>
                     </tr>
                     <tr>
                         <td>Account manager</td>
@@ -72,7 +72,15 @@
                 </h1>
             </div>
             <div class="panel-body">
-                <table class="table table-condensed table-striped" id="address-table"></table>
+                <table class="table table-condensed table-striped" id="address-table">
+                	<#list customer.addresses as address>
+                	<tr>
+                		<td> ${address.location! location}</td>
+                		<td> ${address.type! type}</td>
+                		<td> ${address.modified_date! modified_date}</td>
+                	</tr>
+                	</#list>
+                </table>
             </div>
         </div>
         <div class="panel panel-default open">

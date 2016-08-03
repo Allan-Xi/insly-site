@@ -125,7 +125,7 @@
 <script>
 
 $('#page-claims #claims-table').bootstrapTable({
-    url: '/api/customers/${customer.id!'none'}/claims',
+    url: '/api/customers/${customer.user_id!'none'}/claims',
     showColumns: true,
     showToggle: true,
     showExport: true,
@@ -134,6 +134,7 @@ $('#page-claims #claims-table').bootstrapTable({
     exportOptions: {
         fileName: 'claims'
     },
+    dataField: 'claims',
     columns: [{
         field: 'claim_id',
         title: 'CLIAM ID',

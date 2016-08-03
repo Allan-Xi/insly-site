@@ -4,7 +4,7 @@
 <body id="customer">
     <div class="navbar container-fluid" role="navigation">
         <div class="navbar-nav">
-            <h3>Customer: ${customer_name!"Visitor"}</h3>
+            <h3>Customer: ${customer.name!"Visitor"}</h3>
         </div>
     </div>
     <div class="navbar">

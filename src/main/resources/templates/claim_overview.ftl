@@ -170,7 +170,7 @@
                     </tr>
                     <tr>
                         <td>Lat/Lng</td>
-                        <td>${claim.lat!},${claim.lng!}</td>
+                        <td>${claim.accident_location_lat!},${claim.accident_location_long!}</td>
                     </tr>
                     <tr>
                         <td>Accident Type</td>
@@ -204,39 +204,17 @@
                         <td>
                             <!-- temp solution. TODO: should use freemaker #list as here. -->
                             <table class="img-condensed-table">
-                                <tr>
-                                    <td>
-                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
-                                    </td>
-                                    <td>
-                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
-                                    </td>
-                                    <td>
-                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
-                                    </td>
-                                    <td>
-                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
-                                    </td>
-                                    <td>
-                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
-                                    </td>
-                                    <td>
-                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
-                                    </td>
-                                    <td>
-                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
-                                    </td>
-                                </tr>
+                            	<#list claim.own_vehicle_photo_urls as photo>
+                                	<#if ((photo?counter)-1)%3 == 0>
+                                		<tr>
+                                	</#if>
+                                		<td>
+                                			<img src=${photo} alt="damage photos">
+                                		</td>
+                                	<#if ((photo?counter-1)-2)%3 == 0>
+                                		</tr>
+                                	</#if>	
+                                </#list>
                             </table>
                         </td>
                 </table>
@@ -263,39 +241,17 @@
                         <td>
                             <!-- temp solution. should use freemaker #list as here. -->
                             <table class="img-condensed-table">
-                                <tr>
-                                    <td>
-                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
-                                    </td>
-                                    <td>
-                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
-                                    </td>
-                                    <td>
-                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
-                                    </td>
-                                    <td>
-                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
-                                    </td>
-                                    <td>
-                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
-                                    </td>
-                                    <td>
-                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
-                                    </td>
-                                    <td>
-                                        <img src=${claim.damage_photos! "/images/damaged_car.jpg"} alt="damage photos">
-                                    </td>
-                                </tr>
+								<#list claim.own_vehicle_photo_urls as photo>
+                                	<#if ((photo?counter)-1)%3 == 0>
+                                		<tr>
+                                	</#if>
+                                		<td>
+                                			<img src=${photo} alt="damage photos">
+                                		</td>
+                                	<#if ((photo?counter-1)-2)%3 == 0>
+                                		</tr>
+                                	</#if>	
+                                </#list>
                             </table>
                         </td>
                 </table>

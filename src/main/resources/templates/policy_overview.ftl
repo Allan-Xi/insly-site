@@ -12,7 +12,7 @@
                 <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Customer</td>
-                        <td>${policy.customer!}</td>
+                        <td>${insured.name!}</td>
                     </tr>
                     <tr>
                         <td>Coverage</td>
@@ -39,7 +39,7 @@
                     </tr>
                     <tr>
                         <td>policy number</td>
-                        <td>${policy.number!}</td>
+                        <td>${policy.policy_number!}</td>
                     </tr>
                     <tr>
                         <td>issue date</td>
@@ -47,11 +47,11 @@
                     </tr>
                     <tr>
                         <td>start date</td>
-                        <td>${policy.start_date!}</td>
+                        <td>${policy.inception_unix_secs!}</td>
                     </tr>
                     <tr>
                         <td>end date</td>
-                        <td>${policy.end_date!}</td>
+                        <td>${policy.expiry_unix_secs!}</td>
                     </tr>
                     <tr>
                         <td>status</td>

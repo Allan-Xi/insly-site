@@ -3,7 +3,7 @@
 <body id="policies" class="container-fluid">
     <div class="navbar" role="navigation">
         <div class="navbar-nav">
-            <h3>Policy: ${policy_number!"xxxx"}</h3>
+            <h3>Policy: ${policy.policy_number!"xxxx"}</h3>
         </div>
     </div>
     <div class="navbar">

@@ -1,13 +1,19 @@
 package com.insly;
 
+import java.net.URI;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -120,13 +126,38 @@ public class ApiUtils {
 		return object; 
 	}
 
-	static public String getObjectByRelativePath(String path) throws Throwable{
+	static public JsonNode getObjectByRelativePath(String path) throws Throwable{
 		initHttpsClient();
 		HttpGet httpget = new HttpGet(baseUrl + path);
 		CloseableHttpResponse response = client.execute(httpget);
 		String json = EntityUtils.toString(response.getEntity());
 		JsonNode object = mapper.readTree(json);
 		response.close();
-		return mapper.writeValueAsString(object);
+		return object;
+	}
+	
+	// expand RESTful URL to object.
+	static public Map<String, JsonNode> getExpandedObject(String path, String id, String dataFieldName, List<String> expanededFields) throws Throwable{
+		initHttpsClient();
+		Map<String, JsonNode> result = new HashMap<>();
+		   URI uri = new URIBuilder(baseUrl)
+			        .setPath("/" + path + "/" + id)
+			        .setParameter("expand", "true")
+			        .build();
+		   // System.out.println(uri.toString());
+		HttpGet httpget = new HttpGet(uri);
+		CloseableHttpResponse response = client.execute(httpget);
+		String json = EntityUtils.toString(response.getEntity());
+		JsonNode object = mapper.readTree(json).path(dataFieldName);
+		if(!object.isMissingNode()){
+			for (String key : expanededFields){
+				JsonNode extendedField = object.path(key);
+				if(!extendedField.isMissingNode()){
+					result.put(key, extendedField);
+				}
+			}
+		}
+		response.close();
+		return result;
 	}
 }
