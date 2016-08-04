@@ -76,15 +76,15 @@ $('#vehicle-table').bootstrapTable({
     },
     dataField:  'vehicles',
     columns: [{
-        field: 'vehicle',
+        field: 'make',
         title: 'VEHICLE',
         sortable: true
     }, {
         field: 'type',
         title: 'TYPE'
     }, {
-        field: 'status',
-        title: 'STATUS'
+        field: 'condition',
+        title: 'CONDITION'
     }]
 });
 

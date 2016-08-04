@@ -71,6 +71,7 @@ public class JsonUtils {
    	    return result;
 	}
 	
+	// add other basic attr parse here.
 	static private JsonNode parseObjectBasicAttr(JsonNode object, ObjectMapper mapper) throws Throwable{
 		return parseUnixSecs(object, mapper);
 	}
@@ -97,5 +98,11 @@ public class JsonUtils {
 	    	}
 	    }
 	    return modifiedObject;
+	}
+	
+	private abstract class ItemParser{
+		// should use this abstract class to substitute parseObjectAttr. 
+		// TODO:  add a new ItemParse parameter to modifyGroupJson function. and invoke it inside the function.
+		public abstract JsonNode parse(JsonNode item, ObjectMapper mapper);
 	}
 }

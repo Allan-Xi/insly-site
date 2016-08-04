@@ -78,26 +78,17 @@ public class WebController {
 		// String vehicleUrl = (String) policyValues.get("vehicle");
 		// String vehicleString = getObjectByRelativePath(vehicleUrl);
 		// Map<String, Object> vehicle = mapper.convertValue(mapper.readTree(vehicleString).get("users"), Map.class);
-    	
-		Map<String, Object> vehicle = new HashMap<String, Object>();
 		
 		// should always use API controller.
 		String insuredUrl = (String) policy.get("insured");
 		JsonNode user = JsonUtils.modifyCustomersJson(getObjectByRelativePath(insuredUrl), mapper);
 		Map<String, Object> insured = mapper.convertValue(user.path(JsonContract.FIELD_USER), Map.class);
 		
-		Map<String, Object> motor = new HashMap<String,Object>();
     	
     	ModelAndView mav = new ModelAndView("policy_detail");
     	
     	mav.addObject("policy", policy);
-    	mav.addObject("sales_type","renewal");
-    	mav.addObject("previous_policy","po.123578");
-    	mav.addObject("created_from_quote","qo.12345");
-    	mav.addObject("renewal","not renewed");
-    	mav.addObject("vehicle", vehicle);
 		mav.addObject("insured", insured);
-		mav.addObject("motor", motor);
     	return mav;
     }
     
@@ -116,16 +107,16 @@ public class WebController {
     	JsonNode object = JsonUtils.modifyGroupJson(getObjectByRelativePath(policyUrl), "policy", mapper);
     	Map<String, Object> policy = mapper.convertValue(object.get("policy"), Map.class);
     	
-		String insurerUrl = (String) claim.get("driver");
-		object = JsonUtils.modifyGroupJson(getObjectByRelativePath(insurerUrl), "driver", mapper);
-    	Map<String, Object> insurer = mapper.convertValue(object.get("user"), Map.class);
+		String insuredUrl = (String) claim.get("driver");
+		object = JsonUtils.modifyCustomersJson(getObjectByRelativePath(insuredUrl), mapper);
+    	Map<String, Object> insured = mapper.convertValue(object.get("user"), Map.class);
 		
     	Map<String, Object> claimant = new HashMap<String,Object>();
     	
     	ModelAndView mav = new ModelAndView("claim_detail");
     	mav.addObject("claim", claim);
     	mav.addObject("policy", policy);
-    	mav.addObject("insurer", insurer);
+    	mav.addObject("insured", insured);
     	mav.addObject("claimant", claimant);
     	
     	return mav;

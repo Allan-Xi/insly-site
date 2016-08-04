@@ -147,7 +147,7 @@ $('#overview-policy-table').bootstrapTable({
         title: 'STATUS',
         sortable: true
     }, {
-        field: 'gross_premium',
+        field: 'gross_premium_amount',
         title: 'GROSS PREMIUM'
     }, {
         field: 'customer_payable',

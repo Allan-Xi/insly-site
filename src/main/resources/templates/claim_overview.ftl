@@ -16,7 +16,7 @@
                     </tr>
                     <tr>
                         <td>Driver</td>
-                        <td>${claim.driver!}</td>
+                        <td>${insured.name!}</td>
                     </tr>
                     <tr>
                         <td>Status</td>
@@ -60,25 +60,25 @@
                 </table>
             </div>
             <div class="panel-heading">
-                <h1 class="panel-title">Insurer contacts</h1>
+                <h1 class="panel-title">Insured contacts</h1>
             </div>
             <div class="panel-body">
                 <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
-                        <td>Insurer contact name</td>
-                        <td>${insurer.contact_name!}</td>
+                        <td>Insured contact name</td>
+                        <td>${insured.name!}</td>
                     </tr>
                     <tr>
                         <td>Insurer contact e-mail</td>
-                        <td>${insurer.email!}</td>
+                        <td>${insured.email!}</td>
                     </tr>
                     <tr>
                         <td>Insurer contact phone</td>
-                        <td>${insurer.phone!}</td>
+                        <td>${insured.phone!}</td>
                     </tr>
                     <tr>
                         <td>Insurer reference ID</td>
-                        <td>${insurer.user_id!}</td>
+                        <td>${insured.user_id!}</td>
                     </tr>
                 </table>
             </div>

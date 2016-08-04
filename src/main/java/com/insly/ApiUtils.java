@@ -6,7 +6,9 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -24,6 +26,8 @@ import org.apache.http.util.EntityUtils;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class ApiUtils {
 	
@@ -62,22 +66,27 @@ public class ApiUtils {
 		}
 		return client;
 	}
-	
+
 	static public JsonNode getUserList() throws Throwable{
-//		JsonNode users = JsonUtils.modifyCustomerJson(getObjectByPath("users"), mapper);
 		JsonNode users = getObjectByPath("users");
 		return users;
 	}
 	
 	static public JsonNode getUserById(String id) throws Throwable{
-//		JsonNode user = JsonUtils.modifyCustomerJson(getObjectByPathAndId("users", id), mapper);
 		JsonNode user = getObjectByPathAndId("users", id);
 		return user;
 	}
 	
 	static public JsonNode getPolicyList() throws Throwable{
 		JsonNode policies = getObjectByPath("policies");
-		return policies;
+		// temp solution. Expand insured here.
+		List<String> keys = new ArrayList<String>();
+		keys.add(JsonContract.FIELD_INSURED);
+		List<String> names = new ArrayList<String>();
+		names.add(JsonContract.FIELD_USER);
+		JsonNode result = expandFieldsOfGroup(policies, "policies", keys, names);
+		
+		return result;
 	}
 	
 	static public JsonNode getPolicy(String id) throws Throwable{
@@ -86,8 +95,17 @@ public class ApiUtils {
 	}
 	
 	static public JsonNode getQuoteList() throws Throwable{
-		JsonNode policies = getObjectByPath("quotes");
-		return policies;
+		JsonNode quotes = getObjectByPath("quotes");
+		List<String> keys = new ArrayList<String>();
+//		 vehicles api not ready.
+//		keys.add(JsonContract.FIELD_VEHICLE);
+		keys.add(JsonContract.FIELD_DRIVER);
+		List<String> names = new ArrayList<String>();
+//		names.add(JsonContract.FIELD_VEHICLE);
+		names.add(JsonContract.FIELD_USER);
+		JsonNode result = expandFieldsOfGroup(quotes, "quotes", keys, names);
+		
+		return result;
 	}
 	
 	static public JsonNode getQuote(String id) throws Throwable{
@@ -97,7 +115,18 @@ public class ApiUtils {
 	
 	static public JsonNode getClaimList() throws Throwable{
 		JsonNode claims = getObjectByPath("claims");
-		return claims;
+		
+		List<String> keys = new ArrayList<String>();
+//		keys.add(JsonContract.FIELD_VEHICLE);
+		keys.add(JsonContract.FIELD_POLICY);
+		keys.add(JsonContract.FIELD_DRIVER);
+		List<String> names = new ArrayList<String>();
+//		names.add(JsonContract.FIELD_VEHICLE);
+		names.add(JsonContract.FIELD_POLICY);
+		names.add(JsonContract.FIELD_USER);
+		JsonNode result = expandFieldsOfGroup(claims, "claims", keys, names);
+		
+		return result;
 	}
 	
 	static public JsonNode getClaim(String id) throws Throwable{
@@ -132,12 +161,8 @@ public class ApiUtils {
 		} else{
 			queryString = "expand=" + String.join(",", expanededFields);
 		}
-		URI uri = new URIBuilder(baseUrl)
-			        .setPath("/" + path + "/" + id)
-			        .setQuery(queryString)
-			        .build();
 
-		String json = getResponse(uri.toString());
+		String json = getResponse(baseUrl + "/" + path + "/" + id + "?" + "expand=1");
 		JsonNode object = mapper.readTree(json);
 
 		return object;
@@ -153,10 +178,71 @@ public class ApiUtils {
 		return json;
 	}
 	
-//	static public String getIdFromRelativePath(String path){
-//		URI uri = new URI(path);
-//		
-//		return "";
-//	}
+	static public final List<String> primaryFieldNames = new ArrayList<String>(){{  
+	     add(JsonContract.FIELD_USERS);  
+	     add(JsonContract.FIELD_POLICIES);  
+	     add(JsonContract.FIELD_QUOTES);
+	     add(JsonContract.FIELD_CLAIMS);
+	 }};
+			
+	static public JsonNode expandFieldsOfGroup(JsonNode group, String dataField, List<String> fieldNames, List<String> innerExpandFieldNames) throws Throwable{
+		ObjectNode result = mapper.convertValue(group, ObjectNode.class);
+		
+		JsonNode objects = group.path(dataField);
+		// Object is an array. such as users, policies.
+		if(!objects.isMissingNode() && objects.isArray() && fieldNames != null){
+			ArrayNode expandedObjects = mapper.createArrayNode();
+			
+			for(JsonNode object : objects){
+				ObjectNode expandedObject = mapper.convertValue(object, ObjectNode.class);
+				// expand each field in fieldNames
+				for(int i = 0; i<fieldNames.size(); i++){
+					String key = fieldNames.get(i);
+					String innerName = innerExpandFieldNames.get(i);
+					
+					String url = object.path(key).asText();
+					if(url == null || "".equals(url)){	
+						continue;
+					}
+					JsonNode expanededField = getObjectByRelativePath(url);
+					if(JsonContract.FIELD_USER.equals(innerName) || JsonContract.FIELD_USERS.equals(innerName)){
+						expanededField = JsonUtils.modifyCustomersJson(expanededField, mapper);
+					} else{
+						expanededField = JsonUtils.modifyGroupJson(expanededField, innerName, mapper);
+					}
+					expanededField = expanededField.findPath(innerName);
+					expandedObject.set(key, expanededField);
+				}
+				expandedObjects.add(expandedObject);
+			}
+			result.set(dataField, expandedObjects);
+			
+		}
+		
+		//objects is an object. such as user, policy.
+		if(!objects.isMissingNode() && !objects.isArray() && fieldNames != null){
+			JsonNode object = objects;
+			ObjectNode expandedObject = mapper.convertValue(object, ObjectNode.class);
+			// expand each field in fieldNames
+			for(int i = 0; i<fieldNames.size(); i++){
+				String key = fieldNames.get(i);
+				String innerName = innerExpandFieldNames.get(i);
+				
+				String url = object.path(key).asText();
+				if(url == null || "".equals(url)){	
+					continue;
+				}
+				JsonNode expanededField = getObjectByRelativePath(url);
+				if(JsonContract.FIELD_USER.equals(innerName) || JsonContract.FIELD_USERS.equals(innerName)){
+					expanededField = JsonUtils.modifyCustomersJson(expanededField, mapper);
+				} else{
+					expanededField = JsonUtils.modifyGroupJson(expanededField, innerName, mapper);
+				}
+				expandedObject.set(key, expanededField);
+			}
+			result.set(dataField, expandedObject);
+		}
+		return result;
+	}
 }
 

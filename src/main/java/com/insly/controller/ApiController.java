@@ -35,8 +35,19 @@ public class ApiController {
     @RequestMapping("users")
     // pagination should be supported later
     static public String listCustomers() throws Throwable{
+//    	return "{"
+//    			+ "\"total\":100,"
+//    			+ "\"users\":[{"
+//    			+ 		"\"name\":\"myname\","
+//    			+ 		"\"birthdate\":{"
+//    			+ 			"\"year\":10,"
+//    			+ 			"\"month\":5"
+//    			+ 		"}"
+//    			+ "}]"
+//    			+ "}";
   	   	JsonNode users = ApiUtils.getUserList();
   	   	JsonNode result = JsonUtils.modifyCustomersJson(users, mapper);
+
    	   	return mapper.writeValueAsString(result);
     }
     
@@ -131,18 +142,7 @@ public class ApiController {
     
     @RequestMapping("customers/{id}/crm")
     public String getCustomerCRM(@PathVariable String id) throws Throwable{
-    	return "{\n" +
-                "    \"total\": 1,\n" +
-                "    \"rows\": [\n" +
-                "        {\n" +
-                "			\"task\":	\"Finish website\",\n"+
-                "			\"description\":	\"Finish this website in 2 days!\",\n"+
-                "			\"responsible\":	\"Journey\",\n"+
-                "			\"status\":	\"valid\",\n"+
-                "			\"date\":	\"01/01/2016\"\n"+
-                "        }\n" +
-                "    ]\n" +
-                "}";
+    	return "";
     }
     
 

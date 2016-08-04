@@ -159,7 +159,7 @@ $('#quote-table').bootstrapTable({
         title: 'QUOTE NO',
         sortable: true
     }, {
-        field: 'customer',
+        field: 'driver.name',
         title: 'CUSTOMER'
     }, {
         field: 'vehicle',
