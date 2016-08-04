@@ -33,8 +33,8 @@ public class ApiUtils {
 	
 	static private CloseableHttpClient client = null;
 	static private ObjectMapper mapper = new ObjectMapper();
-//	static private String baseUrl = "https://jprod.wonderdev.com/policyadmin/v1";
-	static private String baseUrl = "https://localhost:3000";
+	static private String baseUrl = "https://jprod.wonderdev.com/policyadmin/v1";
+//	static private String baseUrl = "https://localhost:3000";
 	
 	static public CloseableHttpClient initHttpsClient(){
 		if(client == null){

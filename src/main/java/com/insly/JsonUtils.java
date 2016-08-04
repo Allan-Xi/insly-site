@@ -22,15 +22,15 @@ public class JsonUtils {
 	static private JsonNode parseCustomerJson(JsonNode user, ObjectMapper mapper) throws Throwable{
 		user = parseObjectBasicAttr(user, mapper);
 		// parse name
-		String firstName = user.get("first_name")==null ? "" : user.get("first_name").asText();
-		String middleInitial = user.get("middle_initial")==null ? "" : user.get("middle_initial").asText();
-		String lastName = user.get("last_name")==null ? "" : user.get("last_name").asText();
+		String firstName = user.path("first_name").isNull() ? "" : user.get("first_name").asText();
+		String middleInitial = user.path("middle_initial").isNull() ? " " : user.get("middle_initial").asText();
+		String lastName = user.path("last_name").isNull() ? "" : user.get("last_name").asText();
 		
 		if("".equals(firstName)&&"".equals(middleInitial)&&"".equals(lastName)){
 			return user;
 		} else{
 			ObjectNode modifiedUser = mapper.convertValue(user, ObjectNode.class);
-			modifiedUser.put("name", firstName + middleInitial + lastName);
+			modifiedUser.put("name", firstName + " " + middleInitial + " " + lastName);
 			return modifiedUser; 
 		}
 	}
