@@ -169,7 +169,7 @@ $('#policy-table').bootstrapTable({
         field: 'validity',
         title: 'VALIDITY'
     }, {
-        field: 'premium',
+        field: 'gross_premium_amount',
         title: 'PREMIUM'
     }, {
     	field: 'status',

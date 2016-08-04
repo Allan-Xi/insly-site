@@ -29,6 +29,7 @@ public class ApiUtils {
 	
 	static private CloseableHttpClient client = null;
 	static private ObjectMapper mapper = new ObjectMapper();
+//	static private String baseUrl = "https://jprod.wonderdev.com/policyadmin/v1";
 	static private String baseUrl = "https://localhost:3000";
 	
 	static public CloseableHttpClient initHttpsClient(){
@@ -61,103 +62,101 @@ public class ApiUtils {
 		}
 		return client;
 	}
+	
 	static public JsonNode getUserList() throws Throwable{
-		JsonNode users = JsonUtils.modifyCustomerJson(getObjectByPath("users"), mapper);
+//		JsonNode users = JsonUtils.modifyCustomerJson(getObjectByPath("users"), mapper);
+		JsonNode users = getObjectByPath("users");
 		return users;
 	}
 	
-	static public JsonNode getUser(String id) throws Throwable{
-		JsonNode user = JsonUtils.modifyCustomerJson(getObjectByPathAndId("users", id, "users"), mapper);
+	static public JsonNode getUserById(String id) throws Throwable{
+//		JsonNode user = JsonUtils.modifyCustomerJson(getObjectByPathAndId("users", id), mapper);
+		JsonNode user = getObjectByPathAndId("users", id);
 		return user;
 	}
+	
 	static public JsonNode getPolicyList() throws Throwable{
-		JsonNode policies = JsonUtils.wrapObjectWithStatus(getObjectByPath("policies"), "policies", mapper);
+		JsonNode policies = getObjectByPath("policies");
 		return policies;
 	}
 	
 	static public JsonNode getPolicy(String id) throws Throwable{
-		JsonNode policy = JsonUtils.wrapObjectWithStatus(
-				getObjectByPathAndId("policies", id, "policy"), 
-				"policy", mapper);
+		JsonNode policy = getObjectByPathAndId("policies", id);
 		return policy;
 	}
 	
 	static public JsonNode getQuoteList() throws Throwable{
-		JsonNode policies = JsonUtils.wrapObjectWithStatus(getObjectByPath("quotes"), "quotes", mapper);
+		JsonNode policies = getObjectByPath("quotes");
 		return policies;
 	}
 	
 	static public JsonNode getQuote(String id) throws Throwable{
-		JsonNode quote = JsonUtils.wrapObjectWithStatus(
-				getObjectByPathAndId("quotes", id, "quote"), 
-				"quote", mapper);
+		JsonNode quote = getObjectByPathAndId("quotes", id);
 		return quote;
 	}
 	
 	static public JsonNode getClaimList() throws Throwable{
-		JsonNode claims = JsonUtils.wrapObjectWithStatus(getObjectByPath("claims"), "claims", mapper);
+		JsonNode claims = getObjectByPath("claims");
 		return claims;
 	}
 	
 	static public JsonNode getClaim(String id) throws Throwable{
-		JsonNode claim = JsonUtils.wrapObjectWithStatus(
-				getObjectByPathAndId("claims", id, "claim"), 
-				"claim", mapper);
+		JsonNode claim = getObjectByPathAndId("claims", id);
 		return claim;
 	}
 	
 	static public JsonNode getObjectByPath(String path) throws Throwable{
-		initHttpsClient();
-		HttpGet httpget = new HttpGet(baseUrl + "/" + path);
-		CloseableHttpResponse response = client.execute(httpget);
-		String json = EntityUtils.toString(response.getEntity());
-		JsonNode dataList = mapper.readTree(json).path(path);
-		response.close();
+		String json = getResponse(baseUrl + "/" + path);
+		JsonNode dataList = mapper.readTree(json);
 		return dataList; 
 	}
 	
-	static public JsonNode getObjectByPathAndId(String path, String id, String dataFieldName) throws Throwable{
-		initHttpsClient();
-		HttpGet httpget = new HttpGet(baseUrl + "/" + path + "/" + id);
-		CloseableHttpResponse response = client.execute(httpget);
-		String json = EntityUtils.toString(response.getEntity());
-		JsonNode object = mapper.readTree(json).path(dataFieldName); 
-		response.close();
+	static public JsonNode getObjectByPathAndId(String path, String id) throws Throwable{
+		String json = getResponse(baseUrl + "/" + path + "/" + id);
+		JsonNode object = mapper.readTree(json); 
 		return object; 
 	}
 
 	static public JsonNode getObjectByRelativePath(String path) throws Throwable{
-		initHttpsClient();
-		HttpGet httpget = new HttpGet(baseUrl + path);
-		CloseableHttpResponse response = client.execute(httpget);
-		String json = EntityUtils.toString(response.getEntity());
+		String json = getResponse(baseUrl + path);
 		JsonNode object = mapper.readTree(json);
-		response.close();
 		return object;
 	}
 	
 	// expand RESTful URL to object.
-	static public Map<String, JsonNode> getExpandedObject(String path, String id, String dataFieldName, List<String> expanededFields) throws Throwable{
-		initHttpsClient();
-		Map<String, JsonNode> result = new HashMap<>();
-		   URI uri = new URIBuilder(baseUrl)
-			        .setPath("/" + path + "/" + id)
-			        .setParameter("expand", "true")
-			        .build();
-		   // System.out.println(uri.toString());
-		HttpGet httpget = new HttpGet(uri);
-		CloseableHttpResponse response = client.execute(httpget);
-		String json = EntityUtils.toString(response.getEntity());
-		JsonNode object = mapper.readTree(json).path(dataFieldName);
-		if(!object.isMissingNode()){
-			for (String key : expanededFields){
-				JsonNode extendedField = object.path(key);
-				if(!extendedField.isMissingNode()){
-					result.put(key, extendedField);
-				}
-			}
+	static public JsonNode getExpandedObject(String path, String id, List<String> expanededFields) throws Throwable{
+		
+		String queryString = null;
+		if(expanededFields == null){
+			queryString = "expand=true";
+		} else{
+			queryString = "expand=" + String.join(",", expanededFields);
 		}
-		response.close();
-		return result;
+		URI uri = new URIBuilder(baseUrl)
+			        .setPath("/" + path + "/" + id)
+			        .setQuery(queryString)
+			        .build();
+
+		String json = getResponse(uri.toString());
+		JsonNode object = mapper.readTree(json);
+
+		return object;
 	}
+	static private String getResponse (String url) throws Throwable{
+		initHttpsClient();
+		System.out.println(url);
+		HttpGet httpget = new HttpGet(url);
+		CloseableHttpResponse response = client.execute(httpget);
+		// judge status here.
+		String json = EntityUtils.toString(response.getEntity());
+		response.close();
+		return json;
+	}
+	
+//	static public String getIdFromRelativePath(String path){
+//		URI uri = new URI(path);
+//		
+//		return "";
+//	}
 }
+

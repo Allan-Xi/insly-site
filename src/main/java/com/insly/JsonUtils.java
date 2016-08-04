@@ -17,65 +17,83 @@ public class JsonUtils {
 	private static final String unixLabel = "unix_secs";
 	private static final String dateLabel = "date";
 	
-	static private ObjectNode parseCustomerName(JsonNode user, ObjectMapper mapper) throws Throwable{
-		
+	
+	// given node is single user object.
+	static private JsonNode parseCustomerJson(JsonNode user, ObjectMapper mapper) throws Throwable{
+		user = parseObjectBasicAttr(user, mapper);
+		// parse name
 		String firstName = user.get("first_name")==null ? "" : user.get("first_name").asText();
 		String middleInitial = user.get("middle_initial")==null ? "" : user.get("middle_initial").asText();
 		String lastName = user.get("last_name")==null ? "" : user.get("last_name").asText();
 		
-		ObjectNode modifiedUser = mapper.convertValue(user, ObjectNode.class);
-		modifiedUser.put("name", firstName + middleInitial + lastName);
-		
-		return modifiedUser; 
+		if("".equals(firstName)&&"".equals(middleInitial)&&"".equals(lastName)){
+			return user;
+		} else{
+			ObjectNode modifiedUser = mapper.convertValue(user, ObjectNode.class);
+			modifiedUser.put("name", firstName + middleInitial + lastName);
+			return modifiedUser; 
+		}
 	}
 	
-	static public JsonNode modifyCustomerJson(JsonNode users, ObjectMapper mapper) throws Throwable{
-		
-   	   	ObjectNode modifiedResult = mapper.createObjectNode();
-   	   	
-   	    if(users.isArray()){
-   	    	ArrayNode modifiedUsers = mapper.createArrayNode();
-   	    	for(JsonNode item : users){
-   	   			modifiedUsers.add(parseCustomerName(item, mapper));
-   	   			//parseUnixSecs(item, mapper);
-   	   			
+	// 
+	static public JsonNode modifyCustomersJson(JsonNode users, ObjectMapper mapper) throws Throwable{
+   	    ObjectNode result = mapper.convertValue(users, ObjectNode.class);
+   	    JsonNode objects = result.path(JsonContract.FIELD_USERS);
+   	    JsonNode object = result.path(JsonContract.FIELD_USER);
+   	    
+		if(!objects.isMissingNode()){
+   	    	ArrayNode modifiedObjects = mapper.createArrayNode();
+   	    	for(JsonNode item : objects){
+   	    		modifiedObjects.add(parseCustomerJson(item, mapper));
    	   		}
-   	    	modifiedResult.set("users", modifiedUsers);
+   	    	result.set(JsonContract.FIELD_USERS, modifiedObjects);
    	    }
-   	    else{
-   	    	modifiedResult.set("users", parseCustomerName(users, mapper));
+		
+		if(!object.isMissingNode()) {
+   	    	result.set(JsonContract.FIELD_USER, parseCustomerJson(object, mapper));
    	    }
-   	   	modifiedResult.put("status", 200);
-		return modifiedResult;
+   	    return result;
 	}
 	
-	static public JsonNode wrapObjectWithStatus(JsonNode object, String fieldName, ObjectMapper mapper) throws Throwable{
-		ObjectNode modifiedResult = mapper.createObjectNode();
-		modifiedResult.put("status", 200);
-		modifiedResult.set(fieldName, object);
-		return modifiedResult;
+	static public JsonNode modifyGroupJson(JsonNode group, String dataField, ObjectMapper mapper) throws Throwable{
+   	    ObjectNode result = mapper.convertValue(group, ObjectNode.class);
+   	    JsonNode objects = result.path(dataField);
+   	    
+		if(!objects.isMissingNode() && objects.isArray()){
+   	    	ArrayNode modifiedObjects = mapper.createArrayNode();
+   	    	for(JsonNode item : objects){
+   	    		modifiedObjects.add(parseObjectBasicAttr(item, mapper));
+   	   		}
+   	    	result.set(dataField, modifiedObjects);
+   	    } else if(!objects.isMissingNode()) {
+   	    	result.set(dataField, parseObjectBasicAttr(objects, mapper));
+   	    }
+   	    return result;
 	}
 	
-	// change unix time stamp format.
-	static private ObjectNode parseUnixSecs(JsonNode object, ObjectMapper mapper) throws Throwable{
+	static private JsonNode parseObjectBasicAttr(JsonNode object, ObjectMapper mapper) throws Throwable{
+		return parseUnixSecs(object, mapper);
+	}
+	
+	// change unix time stamp format. given object is a single object.
+	static public JsonNode parseUnixSecs(JsonNode object, ObjectMapper mapper) throws Throwable{
 	    ObjectNode modifiedObject = mapper.convertValue(object, ObjectNode.class);
 	    Iterator<Entry<String, JsonNode>> attrs = object.fields();
-	    // why null pointer ????
+
+	    // do not change attr in the loop.
 	    while (attrs.hasNext()){
 	    	Entry<String, JsonNode> attr = attrs.next();
-	    	if(attr != null && attr.getKey().indexOf(unixLabel) != -1){
+	    	if(attr.getKey().indexOf(unixLabel) != -1){
 	    		long unixSeconds = attr.getValue().asLong();
 	    		
 	    		Date date = new Date(unixSeconds*1000L); // *1000 is to convert seconds to milliseconds
 	        	SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy"); // the format of your date
 	        	String formattedDate = sdf.format(date);
-	        	
-	        	String newFieldName = attr.getKey().replace(unixLabel, dateLabel);
+
+	        	String newFieldName = attr.getKey();
+	        	newFieldName.replace(unixLabel, dateLabel);
 	        	modifiedObject.put(newFieldName, formattedDate);
 
-	        	// debug use
-	        	System.out.println(newFieldName);
-	        	System.out.println(formattedDate);
 	    	}
 	    }
 	    return modifiedObject;

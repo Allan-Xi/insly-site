@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.insly.ApiUtils;
+import com.insly.JsonContract;
 import com.insly.JsonUtils;
 
 @RestController
@@ -35,61 +36,69 @@ public class ApiController {
     // pagination should be supported later
     static public String listCustomers() throws Throwable{
   	   	JsonNode users = ApiUtils.getUserList();
-   	   	return mapper.writeValueAsString(users);
+  	   	JsonNode result = JsonUtils.modifyCustomersJson(users, mapper);
+   	   	return mapper.writeValueAsString(result);
     }
     
     @RequestMapping("users/{id}")
     static public String getCustomer(@PathVariable String id) throws Throwable{
-    	JsonNode user = ApiUtils.getUser(id);
-   	   	return mapper.writeValueAsString(user);
+    	JsonNode user = ApiUtils.getUserById(id);
+    	JsonNode result = JsonUtils.modifyCustomersJson(user, mapper);
+   	   	return mapper.writeValueAsString(result);
     }
     
     @RequestMapping("policies")
     static public String listPolicies() throws Throwable{
- 	   	JsonNode policies = ApiUtils.getPolicyList(); 	   	
- 	   	return mapper.writeValueAsString(policies);
+ 	   	JsonNode policies = ApiUtils.getPolicyList();
+ 	   	JsonNode result = JsonUtils.modifyGroupJson(policies, JsonContract.FIELD_POLICIES, mapper);
+ 	   	return mapper.writeValueAsString(result);
     }
     
     @RequestMapping("policies/{id}")
     static public String getPolicy(@PathVariable String id) throws Throwable{
     	JsonNode policy = ApiUtils.getPolicy(id);
-    	return mapper.writeValueAsString(policy);
+    	JsonNode result = JsonUtils.modifyGroupJson(policy, JsonContract.FIELD_POLICY, mapper);
+ 	   	return mapper.writeValueAsString(result);
     }
     
     @RequestMapping("claims")
     // pagination should be supported later
     static public String listClaims() throws Throwable{
     	JsonNode claims = ApiUtils.getClaimList();
-    	return mapper.writeValueAsString(claims);
+    	JsonNode result = JsonUtils.modifyGroupJson(claims, JsonContract.FIELD_CLAIMS, mapper);
+ 	   	return mapper.writeValueAsString(result);
     }
     
     @RequestMapping("claims/{id}")
     // pagination should be supported later
     static public String getClaim(@PathVariable String id) throws Throwable{
     	JsonNode claim = ApiUtils.getClaim(id);
-    	return mapper.writeValueAsString(claim);
+    	JsonNode result = JsonUtils.modifyGroupJson(claim, JsonContract.FIELD_CLAIM, mapper);
+ 	   	return mapper.writeValueAsString(result);
     }
     
     @RequestMapping("quotes")
     // pagination should be supported later
     static public String listQuotes() throws Throwable {
     	JsonNode quotes = ApiUtils.getQuoteList();
-    	return mapper.writeValueAsString(quotes);
+    	JsonNode result = JsonUtils.modifyGroupJson(quotes, JsonContract.FIELD_QUOTES, mapper);
+ 	   	return mapper.writeValueAsString(result);
     }
     
     @RequestMapping("quotes/{id}")
     static public String getQuote(@PathVariable String id) throws Throwable {
     	JsonNode quote = ApiUtils.getQuote(id);
-    	return mapper.writeValueAsString(quote);
+    	JsonNode result = JsonUtils.modifyGroupJson(quote, JsonContract.FIELD_QUOTE, mapper);
+ 	   	return mapper.writeValueAsString(result);
     }
     
     @RequestMapping("customers/{id}/policies")
     public String customerPolicies(@PathVariable String id ) throws Throwable{
     	List<String> keys = new ArrayList<String>();
-    	keys.add("policies");
-    	Map<String, JsonNode> result = ApiUtils.getExpandedObject("users", id, "users", keys);
+    	keys.add(JsonContract.FIELD_POLICIES);
+    	JsonNode result = ApiUtils.getExpandedObject(JsonContract.FIELD_USERS, id, keys);
     	
-    	return mapper.writeValueAsString(mapper.convertValue(result, JsonNode.class)); 
+    	return mapper.writeValueAsString(result.path(JsonContract.FIELD_USER));
     	
     }
     
@@ -97,27 +106,27 @@ public class ApiController {
     public String getCustomerVehicles(@PathVariable String id) throws Throwable{
     	List<String> keys = new ArrayList<String>();
     	keys.add("vehicles");
-    	Map<String, JsonNode> result = ApiUtils.getExpandedObject("users", id, "users", keys);
+    	JsonNode result = ApiUtils.getExpandedObject(JsonContract.FIELD_USERS, id, keys);
     	
-    	return mapper.writeValueAsString(mapper.convertValue(result, JsonNode.class));
+    	return mapper.writeValueAsString(result.path(JsonContract.FIELD_USER));
     }
     
     @RequestMapping("customers/{id}/quotes")
     public String getCustomerQuotes(@PathVariable String id) throws Throwable{
     	List<String> keys = new ArrayList<String>();
     	keys.add("quotes");
-    	Map<String, JsonNode> result = ApiUtils.getExpandedObject("users", id, "users", keys);
+    	JsonNode result = ApiUtils.getExpandedObject(JsonContract.FIELD_USERS, id, keys);
     	
-    	return mapper.writeValueAsString(mapper.convertValue(result, JsonNode.class));
+    	return mapper.writeValueAsString(result.path(JsonContract.FIELD_USER));
     }
     
     @RequestMapping("customers/{id}/claims")
     public String getCustomerClaims(@PathVariable String id) throws Throwable{
     	List<String> keys = new ArrayList<String>();
-    	keys.add("claims");
-    	Map<String, JsonNode> result = ApiUtils.getExpandedObject("users", id, "users", keys);
+    	keys.add(JsonContract.FIELD_CLAIMS);
+    	JsonNode result = ApiUtils.getExpandedObject(JsonContract.FIELD_USERS, id, keys);
     	
-    	return mapper.writeValueAsString(mapper.convertValue(result, JsonNode.class));
+    	return mapper.writeValueAsString(result.path(JsonContract.FIELD_USER));
     }
     
     @RequestMapping("customers/{id}/crm")
@@ -140,10 +149,10 @@ public class ApiController {
     @RequestMapping("policies/{id}/claims")
     public String getPolicyClaims(@PathVariable String id) throws Throwable{
     	List<String> keys = new ArrayList<String>();
-    	keys.add("claims");
-    	Map<String, JsonNode> result = ApiUtils.getExpandedObject("policies", id, "policy", keys);
+    	keys.add(JsonContract.FIELD_CLAIMS);
+    	JsonNode result = ApiUtils.getExpandedObject(JsonContract.FIELD_POLICIES, id, keys);
     	
-    	return mapper.writeValueAsString(mapper.convertValue(result, JsonNode.class));
+    	return mapper.writeValueAsString(result.path(JsonContract.FIELD_POLICY));
     }
     
 }

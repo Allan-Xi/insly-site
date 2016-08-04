@@ -2,74 +2,89 @@
     <div class="col-md-12">
         <div class="panel panel-default open">
             <div class="panel-heading">
-            <ul class="panel-actions list-inline pull-right">
+                <ul class="panel-actions list-inline pull-right">
                     <ls><span class="glyphicon glyphicon-edit"></span></ls>
                     <ls><span class="glyphicon glyphicon-trash"></span></ls>
                 </ul>
-                <h1 class="panel-title">Motor Insurance</h1>
+                <h1 class="panel-title">Insurance</h1>
             </div>
             <div class="panel-body">
                 <table class="table table-condensed table-striped">
                     <tr class="field">
-                        <td>COVERAGE</td>
+                        <td>Customer</td>
                         <td>
-                            <input type="text" class="hidden" id="motor-coverage">
-                            ${motor.customer!}
+                            <input type="text" class="hidden" id="motor-coverage"> ${insured.name!}
                         </td>
                     </tr>
                     <tr class="field">
-                        <td>THRID PARTY LIABILITY PROPERTY: COVERAGE</td>
+                        <td>Bodily Injury Liability Per Person</td>
                         <td>
-                            <input type="text" class="hidden" id="motor-tp-property">
-                            ${motor.tp_property!} USD</td>
+                            <input type="text" class="hidden" id="motor-tp-property"> ${policy.bi_limit_per_person!} USD</td>
                     </tr>
                     <tr class="field">
-                        <td>THIRD PARTY LIABILITY: HEALTH COVERAGE</td>
+                        <td>Bodily Injury Liability Per Accident</td>
                         <td>
-                            <input type="text" class="hidden" id="motor-tp-health">
-                            ${motor.tp_health!} USD
+                            <input type="text" class="hidden" id="motor-tp-health"> ${policy.bi_limit_per_accident!} USD
                         </td>
                     </tr>
                     <tr class="field">
-                        <td>THIRD PARTY LIABILITY: DEDUCTIBLE</td>
+                        <td>Property Damage Liability</td>
                         <td>
-                            <input type="text" class="hidden" id="motor-tp-deductible">
-                            ${motor.tp_deductible!} USD
+                            <input type="text" class="hidden" id="motor-tp-deductible"> ${policy.pd_limit!} USD
                         </td>
                     </tr>
                     <tr class="field">
-                        <td>OWN DAMAGE: PROPERTY COVERAGE</td>
+                        <td>Collision Deductible</td>
                         <td>
-                            <input type="text" class="hidden" id="own-property">
-                            ${motor.own_property!} USD
+                            <input type="text" class="hidden" id="own-property"> ${policy.coll_deductible!} USD
                         </td>
                     </tr>
                     <tr class="field">
-                        <td>OWN DAMAGE: HEALTH COVERAGE</td>
+                        <td>Comprehensive Deductible</td>
                         <td>
-                            <input type="text" class="hidden" id="own-health">
-                            ${motor.own_health!} USD
+                            <input type="text" class="hidden" id="own-health"> ${policy.comp_deductible!} USD
                         </td>
                     </tr>
                     <tr class="field">
-                        <td>OWN DAMAGE: DEDUCTIBLE</td>
+                        <td>Uninsured Motorist Bodily Injury Liablity Per Person</td>
                         <td>
-                            <input type="text" class="hidden" id="own-deductible">
-                            ${motor.own_deductible!} USD
+                            <input type="text" class="hidden" id="own-deductible"> ${policy.umbi_limit_per_person!} USD
                         </td>
                     </tr>
                     <tr class="field">
-                        <td>NEW VALUE COVERAGE</td>
+                        <td>Uninsured Motorist Bodily Injury Liablity Per Accident</td>
                         <td>
-                            <input type="text" class="hidden" id="value-coverage">
-                            ${motor.value_coverage!}
+                            <input type="text" class="hidden" id="value-coverage"> ${policy.umbi_limit_per_accident!} USD
                         </td>
                     </tr>
                     <tr class="field">
-                        <td>COURTESY CAR</td>
+                        <td>Uninsured Motorist Property Damage Liability</td>
                         <td>
-                            <input type="text" class="hidden" id="courtesy-car">
-                            ${motor.curtesy_car!}
+                            <input type="text" class="hidden" id="own-deductible"> ${policy.umpd!} USD
+                        </td>
+                    </tr>
+                    <tr class="field">
+                        <td>Collision Damage Waiver</td>
+                        <td>
+                            <input type="text" class="hidden" id="own-deductible"> ${policy.cdw_waiver?string('Yes','No')!}
+                        </td>
+                    </tr>
+                    <tr class="field">
+                        <td>Rental Car</td>
+                        <td>
+                            <input type="text" class="hidden" id="own-deductible"> ${policy.rental_car?string('Yes','No')!}
+                        </td>
+                    </tr>
+                    <tr class="field">
+                        <td>Roadside Assistance</td>
+                        <td>
+                            <input type="text" class="hidden" id="courtesy-car"> ${policy.roadside_assistance?string('Yes','No')!}
+                        </td>
+                    </tr>
+                    <tr class="field">
+                        <td>Lease Gap Coverage</td>
+                        <td>
+                            <input type="text" class="hidden" id="courtesy-car"> ${policy.lease_gap_coverage?string('Yes','No')!}
                         </td>
                     </tr>
                 </table>
@@ -82,8 +97,7 @@
                     <tr>
                         <td>COMMISSION</td>
                         <td>
-                            <input type="text" class="hidden" id="commission">10%
-                            ${commission!}
+                            <input type="text" class="hidden" id="commission">10% ${commission!}
                         </td>
                     </tr>
                 </table>

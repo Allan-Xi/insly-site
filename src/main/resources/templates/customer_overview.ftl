@@ -14,7 +14,7 @@
                 <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Customer type</td>
-                        <td>${customer.type! 'Insured'}</td>
+                        <td>${customer.type!}</td>
                     </tr>
                     <tr>
                         <td>Name</td>
@@ -22,7 +22,7 @@
                     </tr>
                     <tr>
                         <td>Birth date</td>
-                        <td>${customer.birthdate! '01/31/1970'}</td>
+                        <td>${customer.birthdate!}</td>
                     </tr>
                 </table>
             </div>
@@ -37,11 +37,11 @@
                     </tr>
                     <tr>
                         <td>Phone</td>
-                        <td>${customer.phone!}</td>
+                        <td>${customer.phone_number!}</td>
                     </tr>
                     <tr>
                         <td>Mobile phone</td>
-                        <td>${customer.mobile! 'empty'}</td>
+                        <td>${customer.mobile!}</td>
                     </tr>
                 </table>
             </div>
@@ -49,7 +49,7 @@
                 <table class="table table-striped table-condensed aligned-table-col-2">
                     <tr>
                         <td>Sales channel</td>
-                        <td>${customer.sales_channel! 'online'}</td>
+                        <td>${customer.sales_channel!}</td>
                     </tr>
                     <tr>
                         <td>Account manager</td>
@@ -73,13 +73,16 @@
             </div>
             <div class="panel-body">
                 <table class="table table-condensed table-striped" id="address-table">
-                	<#list customer.addresses as address>
-                	<tr>
-                		<td> ${address.location! location}</td>
-                		<td> ${address.type! type}</td>
-                		<td> ${address.modified_date! modified_date}</td>
-                	</tr>
-                	</#list>
+                	<#if customer.addresses?exists>
+	                	<#list customer.addresses as address>
+	                	<tr>
+	                		<td> ${address.location! location}</td>
+	                		<td> ${address.type! type}</td>
+	                		<td> ${address.modified_date! modified_date}</td>
+	                	</tr>
+	                	</#list>
+					</#if>
+					
                 </table>
             </div>
         </div>
@@ -135,9 +138,10 @@ $('#address-table').bootstrapTable({
     }]
 });
 $('#overview-policy-table').bootstrapTable({
-    url: '/api',
+    url: '/api/customers/${customer.user_id}/policies',
     pagination: true,
     sidePagination: 'server',
+    dataField: 'policies',
     columns: [{
         field: 'status',
         title: 'STATUS',

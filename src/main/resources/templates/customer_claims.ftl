@@ -140,7 +140,7 @@ $('#page-claims #claims-table').bootstrapTable({
         title: 'CLIAM ID',
         sortable: true
     }, {
-        field: 'customer',
+        field: 'driver',
         title: 'CUSTOMER'
     }, {
         field: 'insurer',
@@ -149,14 +149,11 @@ $('#page-claims #claims-table').bootstrapTable({
         field: 'status',
         title: 'STATUS'
     }, {
-        field: 'claimant',
-        title: 'CLAIMANT'
-    }, {
         field: 'product',
         title: 'PRODUCT'
     }, {
-        field: 'object',
-        title: 'OBJECT'
+        field: 'vehicle',
+        title: 'VEHICLE'
     }, {
         field: 'broker',
         title: 'BROKER'
