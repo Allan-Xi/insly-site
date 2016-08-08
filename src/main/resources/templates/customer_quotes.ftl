@@ -75,7 +75,7 @@
 
 
 $('#quote-table').bootstrapTable({
-    url: '/api/customers/{number}/quotes',
+    url: '/api/customers/${customer.user_id}/quotes',
     showColumns: true,
     showToggle: true,
     showExport: true,
@@ -84,6 +84,7 @@ $('#quote-table').bootstrapTable({
     exportOptions: {
         fileName: 'claims'
     },
+    dataField: 'quotes',
     columns: [{
         field: 'quote_number',
         title: 'QUOTE NO',

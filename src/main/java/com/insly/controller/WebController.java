@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.insly.JsonContract;
 import com.insly.JsonUtils;
 
 import freemarker.template.Template;
@@ -43,7 +44,7 @@ public class WebController {
     @RequestMapping("customer-detail/{id}")
     public ModelAndView customerDetail(@PathVariable String id) throws Throwable{
     	String userString = ApiController.getCustomer(id);
-    	JsonNode root = mapper.readTree(userString).path("users");
+    	JsonNode root = mapper.readTree(userString).path("user");
     	Map<String, Object> userValues = mapper.convertValue(root, Map.class);
     	
     	ModelAndView mav = new ModelAndView("customer_detail");
@@ -71,54 +72,23 @@ public class WebController {
     public ModelAndView policyDetail(@PathVariable String id) throws Throwable{
     	String policyString = ApiController.getPolicy(id);
     	JsonNode root = mapper.readTree(policyString).path("policy");
-    	Map<String, Object> policyValues = mapper.convertValue(root, Map.class);    	
-    	
-//    	Map<String, Object> policy = new HashMap<String,Object>();
-//    	policy.put("customer_name", "Kiehn, Antonette");
-//    	policy.put("customer_number", "cus-number123");
-//    	policy.put("coverage", "vehicle insurance");
-//    	policy.put("object", "vehicle");
-//    	policy.put("type", "regular policy");
-//    	policy.put("insurer", "Journey");
-//    	policy.put("number", "po.12345678");
-//    	policy.put("start_date", "01/01/2016");
-//    	policy.put("end_date", "01/12/2016");
-//    	policy.put("status", "valid");
-//    	policy.put("gross_premium", "123.00");
-//    	policy.put("installment", "1");
-//    	policy.put("collection", "insurer collects");
-//    	policy.put("net_premium", "123.00");
-//
+    	Map<String, Object> policy = mapper.convertValue(root, Map.class);    	
+
 		// vehicle api is not ready
 		// String vehicleUrl = (String) policyValues.get("vehicle");
 		// String vehicleString = getObjectByRelativePath(vehicleUrl);
 		// Map<String, Object> vehicle = mapper.convertValue(mapper.readTree(vehicleString).get("users"), Map.class);
-		Map<String, Object> vehicle = new HashMap<String, Object>();
-//    	motor.put("coverage", "full coverage");
-//    	motor.put("tp_property", "5000000.00");
-//    	motor.put("tp_health", "25000000.00");
-//    	motor.put("tp_deductible", "5000000.00");
-//    	motor.put("own_property", "50000.00");
-//    	motor.put("own_health", "25000.00");
-//    	motor.put("own_deductible", "5000.00");
-//    	motor.put("new_value_coverage", "yes");
-//    	motor.put("courtesy", "yes");
-//    	motor.put("commission", "10%");
-		String insurerUrl = (String) policyValues.get("insured");
-		String insurerString = getObjectByRelativePath(insurerUrl);
-		Map<String, Object> insurer = mapper.convertValue(mapper.readTree(insurerString).get("users"), Map.class);
-		insurer.put("contact_name", insurer.get("first_name") + " " + insurer.get("middle_initial")+ " " + insurer.get("last_name"));
-
+		
+		// should always use API controller.
+		String insuredUrl = (String) policy.get("insured");
+		JsonNode user = JsonUtils.modifyCustomersJson(getObjectByRelativePath(insuredUrl), mapper);
+		Map<String, Object> insured = mapper.convertValue(user.path(JsonContract.FIELD_USER), Map.class);
+		
     	
     	ModelAndView mav = new ModelAndView("policy_detail");
     	
-    	mav.addObject("policy", policyValues);
-    	mav.addObject("sales_type","renewal");
-    	mav.addObject("previous_policy","po.123578");
-    	mav.addObject("created_from_quote","qo.12345");
-    	mav.addObject("renewal","not renewed");
-    	mav.addObject("vehicle", vehicle);
-		mav.addObject("insurer", insurer);
+    	mav.addObject("policy", policy);
+		mav.addObject("insured", insured);
     	return mav;
     }
     
@@ -131,50 +101,22 @@ public class WebController {
     public ModelAndView claimDetail(@PathVariable String id) throws Throwable{
     	String claimString = ApiController.getClaim(id);
     	JsonNode root = mapper.readTree(claimString).get("claim");
-    	Map<String, Object> claimValues = mapper.convertValue(root, Map.class);
+    	Map<String, Object> claim = mapper.convertValue(root, Map.class);
+		
+    	String policyUrl = (String) claim.get("policy");
+    	JsonNode object = JsonUtils.modifyGroupJson(getObjectByRelativePath(policyUrl), "policy", mapper);
+    	Map<String, Object> policy = mapper.convertValue(object.get("policy"), Map.class);
     	
-//    	claim.put("id", "10107600");
-//    	claim.put("customer", "Kiehn, Antonette");
-//    	claim.put("status", "Claim reopened");
-//    	claim.put("incident_loss_date", "09/01/2014 12:00");
-//    	claim.put("date_submitted", "10/01/2014");
-//    	claim.put("settlement_date", "11/01/2014");
-//    	claim.put("location_of_incident", "5651 Distribution Way Englewood, CO 80110");
-//    	claim.put("loss_description", "Head on collision");
-//    	claim.put("injury_description", "Internal bruising");
-//    	claim.put("incident_circumstances", "Blinding sun");
-//    	claim.put("info", "none");
-//    	claim.put("loss_amount", "10000");
-//    	claim.put("deducible", "2526");
-
-		String policyUrl = (String) claimValues.get("policy");
-		String policyString = getObjectByRelativePath(policyUrl);
-    	Map<String, Object> policy = mapper.convertValue(mapper.readTree(policyString).get("policy"), Map.class);
-//    	policy.put("number", "R4789123235");
-//    	policy.put("insurer", "Continental Casualty Company");
-//    	policy.put("product", "Vehicle Insurance");
-//    	policy.put("start_date", "07/17/2014");
-//    	policy.put("end_date", "10/16/2014");
-
-		String insurerUrl = (String) claimValues.get("driver");
-		String insurerString = getObjectByRelativePath(insurerUrl);
-    	Map<String, Object> insurer = mapper.convertValue(mapper.readTree(insurerString).get("users"), Map.class);
-		insurer.put("contact_name", insurer.get("first_name") + " " + insurer.get("middle_initial")+ " " + insurer.get("last_name"));
-//    	insurer.put("contact_name", "CNA");
-//    	insurer.put("email", "test@journey.com");
-//    	insurer.put("phone", "414-14-14361");
-    	
+		String insuredUrl = (String) claim.get("driver");
+		object = JsonUtils.modifyCustomersJson(getObjectByRelativePath(insuredUrl), mapper);
+    	Map<String, Object> insured = mapper.convertValue(object.get("user"), Map.class);
+		
     	Map<String, Object> claimant = new HashMap<String,Object>();
-//    	claimant.put("type", "General claimant info");
-//    	claimant.put("name", "Kwikprint");
-//    	claimant.put("address", "nowhere");
-//    	claimant.put("email", "hailhydra@journey.com");
-//    	claimant.put("telephone", "1516614163");
     	
     	ModelAndView mav = new ModelAndView("claim_detail");
-    	mav.addObject("claim", claimValues);
+    	mav.addObject("claim", claim);
     	mav.addObject("policy", policy);
-    	mav.addObject("insurer", insurer);
+    	mav.addObject("insured", insured);
     	mav.addObject("claimant", claimant);
     	
     	return mav;

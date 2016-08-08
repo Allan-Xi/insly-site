@@ -176,13 +176,13 @@ $('#claim-table').bootstrapTable({
         title: 'CLAIM ID',
         sortable: true
     }, {
-        field: 'policy',
+        field: 'policy.policy_number',
         title: 'POLICY'
     }, {
         field: 'status',
         title: 'STATUS'
     }, {
-        field: 'claimant',
+        field: 'driver.name',
         title: 'CLAIMANT'
     }, {
         field: 'vehicle',

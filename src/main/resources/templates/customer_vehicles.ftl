@@ -65,7 +65,7 @@
 </div>
 <script>
 $('#vehicle-table').bootstrapTable({
-    url: '/api/customers/{number}/vehicles',
+    url: '/api/customers/${customer.user_id}/vehicles',
     showColumns: true,
     showToggle: true,
     showExport: true,
@@ -74,16 +74,17 @@ $('#vehicle-table').bootstrapTable({
     exportOptions: {
         fileName: 'claims'
     },
+    dataField:  'vehicles',
     columns: [{
-        field: 'vehicle',
+        field: 'make',
         title: 'VEHICLE',
         sortable: true
     }, {
         field: 'type',
         title: 'TYPE'
     }, {
-        field: 'status',
-        title: 'STATUS'
+        field: 'condition',
+        title: 'CONDITION'
     }]
 });
 

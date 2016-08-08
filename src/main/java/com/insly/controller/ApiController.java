@@ -1,6 +1,11 @@
 package com.insly.controller;
 
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -14,142 +19,141 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.insly.ApiUtils;
+import com.insly.JsonContract;
 import com.insly.JsonUtils;
 
 @RestController
 @RequestMapping("/api")
 public class ApiController {
 	static private ObjectMapper mapper = new ObjectMapper();
-
+	
+	@RequestMapping("login")
+	static public String login() throws Throwable{
+		return "success";
+	}
+	
     @RequestMapping("users")
     // pagination should be supported later
     static public String listCustomers() throws Throwable{
+//    	return "{"
+//    			+ "\"total\":100,"
+//    			+ "\"users\":[{"
+//    			+ 		"\"name\":\"myname\","
+//    			+ 		"\"birthdate\":{"
+//    			+ 			"\"year\":10,"
+//    			+ 			"\"month\":5"
+//    			+ 		"}"
+//    			+ "}]"
+//    			+ "}";
   	   	JsonNode users = ApiUtils.getUserList();
-   	   	return mapper.writeValueAsString(users);
+  	   	JsonNode result = JsonUtils.modifyCustomersJson(users, mapper);
+
+   	   	return mapper.writeValueAsString(result);
     }
     
     @RequestMapping("users/{id}")
     static public String getCustomer(@PathVariable String id) throws Throwable{
-    	JsonNode user = ApiUtils.getUser(id);
-   	   	return mapper.writeValueAsString(user);
+    	JsonNode user = ApiUtils.getUserById(id);
+    	JsonNode result = JsonUtils.modifyCustomersJson(user, mapper);
+   	   	return mapper.writeValueAsString(result);
     }
     
     @RequestMapping("policies")
     static public String listPolicies() throws Throwable{
- 	   	JsonNode policies = ApiUtils.getPolicyList(); 	   	
- 	   	return mapper.writeValueAsString(policies);
+ 	   	JsonNode policies = ApiUtils.getPolicyList();
+ 	   	JsonNode result = JsonUtils.modifyGroupJson(policies, JsonContract.FIELD_POLICIES, mapper);
+ 	   	return mapper.writeValueAsString(result);
     }
     
     @RequestMapping("policies/{id}")
     static public String getPolicy(@PathVariable String id) throws Throwable{
     	JsonNode policy = ApiUtils.getPolicy(id);
-    	return mapper.writeValueAsString(policy);
+    	JsonNode result = JsonUtils.modifyGroupJson(policy, JsonContract.FIELD_POLICY, mapper);
+ 	   	return mapper.writeValueAsString(result);
     }
     
     @RequestMapping("claims")
     // pagination should be supported later
     static public String listClaims() throws Throwable{
     	JsonNode claims = ApiUtils.getClaimList();
-    	return mapper.writeValueAsString(claims);
+    	JsonNode result = JsonUtils.modifyGroupJson(claims, JsonContract.FIELD_CLAIMS, mapper);
+ 	   	return mapper.writeValueAsString(result);
     }
     
     @RequestMapping("claims/{id}")
     // pagination should be supported later
     static public String getClaim(@PathVariable String id) throws Throwable{
     	JsonNode claim = ApiUtils.getClaim(id);
-    	return mapper.writeValueAsString(claim);
+    	JsonNode result = JsonUtils.modifyGroupJson(claim, JsonContract.FIELD_CLAIM, mapper);
+ 	   	return mapper.writeValueAsString(result);
     }
     
     @RequestMapping("quotes")
     // pagination should be supported later
     static public String listQuotes() throws Throwable {
     	JsonNode quotes = ApiUtils.getQuoteList();
-    	return mapper.writeValueAsString(quotes);
+    	JsonNode result = JsonUtils.modifyGroupJson(quotes, JsonContract.FIELD_QUOTES, mapper);
+ 	   	return mapper.writeValueAsString(result);
     }
     
     @RequestMapping("quotes/{id}")
     static public String getQuote(@PathVariable String id) throws Throwable {
     	JsonNode quote = ApiUtils.getQuote(id);
-    	return mapper.writeValueAsString(quote);
+    	JsonNode result = JsonUtils.modifyGroupJson(quote, JsonContract.FIELD_QUOTE, mapper);
+ 	   	return mapper.writeValueAsString(result);
     }
     
-    @RequestMapping("customers/{number}/policies")
-    public String customerPolicies(@PathVariable String number ){
-    	return "{\n" +
-                "    \"total\": 1,\n" +
-                "    \"rows\": [\n" +
-                "        {\n" +
-                "			\"policy_number\":	\"AAAAAAAAAAA\",\n"+
-                "			\"insurer\":	\"Journey Ltd\",\n"+
-                "			\"validity\":	\"valid\"\n"+
-                "        }\n" +
-                "    ]\n" +
-                "}";
+    @RequestMapping("customers/{id}/policies")
+    public String customerPolicies(@PathVariable String id ) throws Throwable{
+    	List<String> keys = new ArrayList<String>();
+    	keys.add(JsonContract.FIELD_POLICIES);
+    	JsonNode result = ApiUtils.getExpandedObject(JsonContract.FIELD_USERS, id, keys);
+    	
+    	return mapper.writeValueAsString(result.path(JsonContract.FIELD_USER));
+    	
     }
     
-    @RequestMapping("customers/{number}/vehicles")
-    public String getCustomerVehicles(@PathVariable String number){
-    	return "{\n" +
-                "    \"total\": 1,\n" +
-                "    \"rows\": [\n" +
-                "        {\n" +
-                "			\"vehicle\":	\"Toyata S1\",\n"+
-                "			\"type\":	\"whatever\",\n"+
-                "			\"status\":	\"valid\"\n"+
-                "        }\n" +
-                "    ]\n" +
-                "}";
+    @RequestMapping("customers/{id}/vehicles")
+    public String getCustomerVehicles(@PathVariable String id) throws Throwable{
+    	List<String> keys = new ArrayList<String>();
+    	keys.add("vehicles");
+    	JsonNode result = ApiUtils.getExpandedObject(JsonContract.FIELD_USERS, id, keys);
+    	
+    	return mapper.writeValueAsString(result.path(JsonContract.FIELD_USER));
     }
     
-    @RequestMapping("customers/{number}/quotes")
-    public String getCustomerQuotes(@PathVariable String number){
-    	return "{\n" +
-                "    \"total\": 1,\n" +
-                "    \"rows\": [\n" +
-                "        {\n" +
-                "			\"quote_number\":	\"1\",\n"+
-                "			\"object\":	\"vehicle\",\n"+
-                "			\"status\":	\"valid\",\n"+
-                "			\"broker\":	\"broker\",\n"+
-                "			\"date\":	\"01/01/2016\"\n"+
-                "        }\n" +
-                "    ]\n" +
-                "}";
+    @RequestMapping("customers/{id}/quotes")
+    public String getCustomerQuotes(@PathVariable String id) throws Throwable{
+    	List<String> keys = new ArrayList<String>();
+    	keys.add("quotes");
+    	JsonNode result = ApiUtils.getExpandedObject(JsonContract.FIELD_USERS, id, keys);
+    	
+    	return mapper.writeValueAsString(result.path(JsonContract.FIELD_USER));
     }
     
-    @RequestMapping("customers/{number}/claims")
-    public String getCustomerClaims(@PathVariable String number){
-    	return "{\n" +
-                "    \"total\": 1,\n" +
-                "    \"rows\": [\n" +
-                "        {\n" +
-                "			\"claim_id\":	\"BBBBBBBAAABB\",\n"+
-                "			\"object\":	\"vehicle\",\n"+
-                "			\"customer\":	\"Piano\",\n"+
-                "			\"status\":	\"valid\",\n"+
-                "			\"broker\":	\"broker\",\n"+
-                "			\"date\":	\"01/01/2016\"\n"+
-                "        }\n" +
-                "    ]\n" +
-                "}";
+    @RequestMapping("customers/{id}/claims")
+    public String getCustomerClaims(@PathVariable String id) throws Throwable{
+    	List<String> keys = new ArrayList<String>();
+    	keys.add(JsonContract.FIELD_CLAIMS);
+    	JsonNode result = ApiUtils.getExpandedObject(JsonContract.FIELD_USERS, id, keys);
+    	
+    	return mapper.writeValueAsString(result.path(JsonContract.FIELD_USER));
     }
     
-    @RequestMapping("customers/{number}/crm")
-    public String getCustomerCRM(@PathVariable String number){
-    	return "{\n" +
-                "    \"total\": 1,\n" +
-                "    \"rows\": [\n" +
-                "        {\n" +
-                "			\"task\":	\"Finish website\",\n"+
-                "			\"description\":	\"Finish this website in 2 days!\",\n"+
-                "			\"responsible\":	\"Journey\",\n"+
-                "			\"status\":	\"valid\",\n"+
-                "			\"date\":	\"01/01/2016\"\n"+
-                "        }\n" +
-                "    ]\n" +
-                "}";
+    @RequestMapping("customers/{id}/crm")
+    public String getCustomerCRM(@PathVariable String id) throws Throwable{
+    	return "";
     }
     
 
+    @RequestMapping("policies/{id}/claims")
+    public String getPolicyClaims(@PathVariable String id) throws Throwable{
+    	List<String> keys = new ArrayList<String>();
+    	keys.add(JsonContract.FIELD_CLAIMS);
+    	JsonNode result = ApiUtils.getExpandedObject(JsonContract.FIELD_POLICIES, id, keys);
+    	
+    	return mapper.writeValueAsString(result.path(JsonContract.FIELD_POLICY));
+    }
+    
 }
 

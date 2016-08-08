@@ -125,7 +125,7 @@
 <script>
 
 $('#page-claims #claims-table').bootstrapTable({
-    url: '/api/customers/${customer.id!'none'}/claims',
+    url: '/api/customers/${customer.user_id!'none'}/claims',
     showColumns: true,
     showToggle: true,
     showExport: true,
@@ -134,12 +134,13 @@ $('#page-claims #claims-table').bootstrapTable({
     exportOptions: {
         fileName: 'claims'
     },
+    dataField: 'claims',
     columns: [{
         field: 'claim_id',
         title: 'CLIAM ID',
         sortable: true
     }, {
-        field: 'customer',
+        field: 'driver',
         title: 'CUSTOMER'
     }, {
         field: 'insurer',
@@ -148,14 +149,11 @@ $('#page-claims #claims-table').bootstrapTable({
         field: 'status',
         title: 'STATUS'
     }, {
-        field: 'claimant',
-        title: 'CLAIMANT'
-    }, {
         field: 'product',
         title: 'PRODUCT'
     }, {
-        field: 'object',
-        title: 'OBJECT'
+        field: 'vehicle',
+        title: 'VEHICLE'
     }, {
         field: 'broker',
         title: 'BROKER'

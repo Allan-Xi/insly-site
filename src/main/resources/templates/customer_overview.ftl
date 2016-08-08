@@ -37,7 +37,7 @@
                     </tr>
                     <tr>
                         <td>Phone</td>
-                        <td>${customer.phone!}</td>
+                        <td>${customer.phone_number!}</td>
                     </tr>
                     <tr>
                         <td>Mobile phone</td>
@@ -72,7 +72,18 @@
                 </h1>
             </div>
             <div class="panel-body">
-                <table class="table table-condensed table-striped" id="address-table"></table>
+                <table class="table table-condensed table-striped" id="address-table">
+                	<#if customer.addresses?exists>
+	                	<#list customer.addresses as address>
+	                	<tr>
+	                		<td> ${address.location! location}</td>
+	                		<td> ${address.type! type}</td>
+	                		<td> ${address.modified_date! modified_date}</td>
+	                	</tr>
+	                	</#list>
+					</#if>
+					
+                </table>
             </div>
         </div>
         <div class="panel panel-default open">
@@ -127,15 +138,16 @@ $('#address-table').bootstrapTable({
     }]
 });
 $('#overview-policy-table').bootstrapTable({
-    url: '/api',
+    url: '/api/customers/${customer.user_id}/policies',
     pagination: true,
     sidePagination: 'server',
+    dataField: 'policies',
     columns: [{
         field: 'status',
         title: 'STATUS',
         sortable: true
     }, {
-        field: 'gross_premium',
+        field: 'gross_premium_amount',
         title: 'GROSS PREMIUM'
     }, {
         field: 'customer_payable',

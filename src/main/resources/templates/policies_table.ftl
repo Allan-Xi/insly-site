@@ -153,8 +153,8 @@ $('#policy-table').bootstrapTable({
         title: 'POLICY',
         sortable: true
     }, {
-        field: 'insured',
-        title: 'INSURER'
+        field: 'insured.name',
+        title: 'INSURED'
     }, {
         field: 'inception_unix_secs',
         title: 'INCEPTION DATE'

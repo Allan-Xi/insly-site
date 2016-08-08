@@ -4,17 +4,17 @@
 <body id="customer">
     <div class="navbar container-fluid" role="navigation">
         <div class="navbar-nav">
-            <h3>Customer: ${customer_name!"Visitor"}</h3>
+            <h3>Customer: ${customer.name!"Visitor"}</h3>
         </div>
     </div>
     <div class="navbar">
         <ul class="nav nav-pills" id="customer-tabs">
             <li class="active"><a href="#page-overview" data-toggle="tab">OVERVIEW</a></li>
-            <li><a href="#page-policies" data-toggle="tab">POLICIES</a></li>
-            <li><a href="#page-vehicles" data-toggle="tab">VEHICLES(?)</a></li>
-            <li><a href="#page-quotes" data-toggle="tab">QUOTES(?)</a></li>
-            <li><a href="#page-invoices" data-toggle="tab">INVOICES(?)</a></li>
-            <li><a href="#page-claims" data-toggle="tab">CLAIMS</a></li>
+            <li><a href="#page-policies" data-toggle="tab">POLICIES (${customer.policies?size})</a></li>
+            <li><a href="#page-vehicles" data-toggle="tab">VEHICLES (${customer.vehicles?size})</a></li>
+            <li><a href="#page-quotes" data-toggle="tab">QUOTES</a></li>
+            <li><a href="#page-invoices" data-toggle="tab">INVOICES</a></li>
+            <li><a href="#page-claims" data-toggle="tab">CLAIMS (${customer.claims?size})</a></li>
             <li><a href="#page-crm" data-toggle="tab">CRM</a></li>
         </ul>
     </div>

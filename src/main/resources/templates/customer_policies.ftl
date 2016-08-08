@@ -148,7 +148,7 @@
 </div>
 <script>
 $('#policy-table').bootstrapTable({
-    url: '/api/customers/{number}/policies',
+    url: '/api/customers/${customer.user_id!'12341234'}/policies',
     showColumns: true,
     showToggle: true,
     showExport: true,
@@ -157,6 +157,7 @@ $('#policy-table').bootstrapTable({
     exportOptions: {
         fileName: 'policies'
     },
+    dataField: 'policies',
     columns: [{
         field: 'policy_number',
         title: 'POLICY NUMBER',
@@ -168,7 +169,7 @@ $('#policy-table').bootstrapTable({
         field: 'validity',
         title: 'VALIDITY'
     }, {
-        field: 'premium',
+        field: 'gross_premium_amount',
         title: 'PREMIUM'
     }, {
     	field: 'status',
