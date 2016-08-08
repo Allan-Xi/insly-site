@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import com.insly.ApiUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +44,7 @@ public class WebController {
     
     @RequestMapping("customer-detail/{id}")
     public ModelAndView customerDetail(@PathVariable String id) throws Throwable{
-    	String userString = ApiController.getCustomer(id);
+    	String userString = getCustomer(id);
     	JsonNode root = mapper.readTree(userString).path("user");
     	Map<String, Object> userValues = mapper.convertValue(root, Map.class);
     	
@@ -70,7 +71,7 @@ public class WebController {
     
     @RequestMapping("policy-detail/{id}")
     public ModelAndView policyDetail(@PathVariable String id) throws Throwable{
-    	String policyString = ApiController.getPolicy(id);
+    	String policyString = getPolicy(id);
     	JsonNode root = mapper.readTree(policyString).path("policy");
     	Map<String, Object> policy = mapper.convertValue(root, Map.class);    	
 
@@ -99,7 +100,7 @@ public class WebController {
     
     @RequestMapping("claim-detail/{id}")
     public ModelAndView claimDetail(@PathVariable String id) throws Throwable{
-    	String claimString = ApiController.getClaim(id);
+    	String claimString = getClaim(id);
     	JsonNode root = mapper.readTree(claimString).get("claim");
     	Map<String, Object> claim = mapper.convertValue(root, Map.class);
 		
@@ -126,6 +127,24 @@ public class WebController {
     public String quotes(){
     	return "quotes";
     }
-    
+
+	private String getPolicy(@PathVariable String id) throws Throwable{
+		JsonNode policy = ApiUtils.getPolicy(id);
+		JsonNode result = JsonUtils.modifyGroupJson(policy, JsonContract.FIELD_POLICY, mapper);
+		return mapper.writeValueAsString(result);
+	}
+
+	// pagination should be supported later
+	private String getClaim(@PathVariable String id) throws Throwable{
+		JsonNode claim = ApiUtils.getClaim(id);
+		JsonNode result = JsonUtils.modifyGroupJson(claim, JsonContract.FIELD_CLAIM, mapper);
+		return mapper.writeValueAsString(result);
+	}
+
+	private String getCustomer(@PathVariable String id) throws Throwable{
+		JsonNode user = ApiUtils.getUserById(id);
+		JsonNode result = JsonUtils.modifyCustomersJson(user, mapper);
+		return mapper.writeValueAsString(result);
+	}
 }
 

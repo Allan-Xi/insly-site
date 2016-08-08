@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.insly.service.ApiService;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +27,9 @@ import com.insly.JsonUtils;
 @RestController
 @RequestMapping("/api")
 public class ApiController {
+	@Autowired
+	private ApiService apiService;
+
 	static private ObjectMapper mapper = new ObjectMapper();
 	
 	@RequestMapping("login")
@@ -34,70 +39,40 @@ public class ApiController {
 	
     @RequestMapping("users")
     // pagination should be supported later
-    static public String listCustomers() throws Throwable{
-//    	return "{"
-//    			+ "\"total\":100,"
-//    			+ "\"users\":[{"
-//    			+ 		"\"name\":\"myname\","
-//    			+ 		"\"birthdate\":{"
-//    			+ 			"\"year\":10,"
-//    			+ 			"\"month\":5"
-//    			+ 		"}"
-//    			+ "}]"
-//    			+ "}";
-  	   	JsonNode users = ApiUtils.getUserList();
+	public String listCustomers() throws Throwable{
+  	   	JsonNode users = apiService.getUserList();
   	   	JsonNode result = JsonUtils.modifyCustomersJson(users, mapper);
 
    	   	return mapper.writeValueAsString(result);
     }
     
-    @RequestMapping("users/{id}")
-    static public String getCustomer(@PathVariable String id) throws Throwable{
-    	JsonNode user = ApiUtils.getUserById(id);
-    	JsonNode result = JsonUtils.modifyCustomersJson(user, mapper);
-   	   	return mapper.writeValueAsString(result);
-    }
-    
     @RequestMapping("policies")
-    static public String listPolicies() throws Throwable{
+    public String listPolicies() throws Throwable{
  	   	JsonNode policies = ApiUtils.getPolicyList();
  	   	JsonNode result = JsonUtils.modifyGroupJson(policies, JsonContract.FIELD_POLICIES, mapper);
  	   	return mapper.writeValueAsString(result);
     }
     
-    @RequestMapping("policies/{id}")
-    static public String getPolicy(@PathVariable String id) throws Throwable{
-    	JsonNode policy = ApiUtils.getPolicy(id);
-    	JsonNode result = JsonUtils.modifyGroupJson(policy, JsonContract.FIELD_POLICY, mapper);
- 	   	return mapper.writeValueAsString(result);
-    }
-    
     @RequestMapping("claims")
     // pagination should be supported later
-    static public String listClaims() throws Throwable{
+    public String listClaims() throws Throwable{
     	JsonNode claims = ApiUtils.getClaimList();
     	JsonNode result = JsonUtils.modifyGroupJson(claims, JsonContract.FIELD_CLAIMS, mapper);
  	   	return mapper.writeValueAsString(result);
     }
     
-    @RequestMapping("claims/{id}")
-    // pagination should be supported later
-    static public String getClaim(@PathVariable String id) throws Throwable{
-    	JsonNode claim = ApiUtils.getClaim(id);
-    	JsonNode result = JsonUtils.modifyGroupJson(claim, JsonContract.FIELD_CLAIM, mapper);
- 	   	return mapper.writeValueAsString(result);
-    }
+
     
     @RequestMapping("quotes")
     // pagination should be supported later
-    static public String listQuotes() throws Throwable {
+	public String listQuotes() throws Throwable {
     	JsonNode quotes = ApiUtils.getQuoteList();
     	JsonNode result = JsonUtils.modifyGroupJson(quotes, JsonContract.FIELD_QUOTES, mapper);
  	   	return mapper.writeValueAsString(result);
     }
     
     @RequestMapping("quotes/{id}")
-    static public String getQuote(@PathVariable String id) throws Throwable {
+	public String getQuote(@PathVariable String id) throws Throwable {
     	JsonNode quote = ApiUtils.getQuote(id);
     	JsonNode result = JsonUtils.modifyGroupJson(quote, JsonContract.FIELD_QUOTE, mapper);
  	   	return mapper.writeValueAsString(result);
